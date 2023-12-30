@@ -1,16 +1,15 @@
 ---
-title: "Testing testing 123!"
-publishDate: "13 May 2022"
-description: "Hello world!!! This is an example blog post showcasing some of the cool stuff Astro Cactus theme can do."
+title: "Init"
+publishDate: "21 December 2023"
+description: "First post that is not a thing ok guys!!! Oh I need this to be 50 characters!!"
 tags: ["example", "blog", "cool"]
-draft: true
 ---
 
-## Hello World
+# Hello World
 
 Following is an example blog post written in an mdx file. You can find me @ src/content/post/hello-world/index.mdx. Here you can add/update/delete details and watch the changes live when running in develop mode, `pnpm dev`
 
-![A pug in the woods, wrapped in a blanket](./pug.jpeg)
+![A pug in the woods, wrapped in a blanket](./hello-world/pug.jpeg)
 
 ## Using some markdown elements
 
