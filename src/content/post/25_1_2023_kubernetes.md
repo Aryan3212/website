@@ -6,7 +6,7 @@ description: >-
 keywords: ["portfolio", "containerization"]
 ---
 
-# Kubernetes is a container orchestration software. The containers here can be Docker containers. Docker itself is a revolution, it helped us package our apps in containers that had everything the app needed already configured, containers are like really really lightweight virtual machines with an efficient way of using the Host OS.
+Kubernetes is a container orchestration software. The containers here can be Docker containers. Docker itself is a revolution, it helped us package our apps in containers that had everything the app needed already configured, containers are like really really lightweight virtual machines with an efficient way of using the Host OS.
 
 Resource I learned from: Hitesh Chaudhary's YouTube video, I watched a few others but his one was simple and practical.
 

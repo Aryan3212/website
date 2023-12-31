@@ -5,9 +5,7 @@ description: The 80-20 of learning how to learn.
 tags: ["learning", "time management", "produtivity"]
 ---
 
-# Summary: A few simple tips on learning that go a long way.
-
----
+Summary: A few simple tips on learning that go a long way.
 
 Before we start, it's important to have a growth mindset when it comes to learning and life, in general.
 

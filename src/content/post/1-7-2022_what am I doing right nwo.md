@@ -7,9 +7,9 @@ description: >-
 tags: ["portfolio", "web dev"]
 ---
 
-# Let's start
+## Let's start
 
-## What am I working on right now?
+What am I working on right now?
 
 - I am currently working with Javascript to build a product. The backend Javascript framework that we're using is KoaJS, which is pretty similar to Express since they were created by the same team. With Koa we're mainly using the routing library and the Nunjucks templating engine to build our frontend.
 - We're using PostgreSQL as our database.

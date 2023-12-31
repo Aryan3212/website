@@ -6,7 +6,7 @@ description: >-
 tags: ["health", "productivity"]
 ---
 
-# Disclaimer: This is all anecdotal advice. I'm not linking studies nor will I. I got my info from Google Searches, SubReddits, YouTube Videos. I'm not advising you to do anything mentioned here and I sure can't follow through with everything written here but I'm trying. Also, this might change as we get more research done on these topics.
+Disclaimer: This is all anecdotal advice. I'm not linking studies nor will I. I got my info from Google Searches, SubReddits, YouTube Videos. I'm not advising you to do anything mentioned here and I sure can't follow through with everything written here but I'm trying. Also, this might change as we get more research done on these topics.
 
 ## Minimal Diet additions:
 
@@ -20,7 +20,7 @@ My plan with this diet addition is to ensure I get small amounts of these everyd
 
 I'll be experimenting with collagen, whey protein and creatine later when I start training.
 
-### Minimal Supplementation Stack:
+## Minimal Supplementation Stack:
 
 - 1 Organic bio-available Multivitamin from Primitive Sciences: For general health, this contains Vitamin K2 in both MK4 and MK7 forms. I plan on taking 1 - 2 tablets everyday rather than the prescribed 4 since they're expensive. I'm focusing on my diet additions to cover the rest.
 - 1 D3 7000IU supplement: Since we don't get sunlight.
@@ -30,7 +30,7 @@ I'll be experimenting with collagen, whey protein and creatine later when I star
 
 From my research the things that can contribute the most to optimal health is Cod Liver Oil or Fish Oil that contains enough Omega-3 Fatty Acids. You need 3-4 servings for them to have effect. Next is Vitamin D3, since most of us don't work outdoors anymore it's essential for us to get D3 as supplementation. The recommended daily value is 400IU but more optimum health some say that upto 5000IU can be supplemented. Before supplementing, make sure you also get enough Vitamin K2(organ meats) and Magnesium, as they are the ones that prevent calcification that may occur from too much D3. Getting the B vitamins is also important which is why I settled for a multi-vitamin but you can get these from vegetables as well.
 
-### Minimal Behaviours/Actions I take for my health:
+## Minimal Behaviours/Actions I take for my health:
 
 First of all you don't need to do these things but from research this is the least you can do that can greatly improve your health.
 
