@@ -1,22 +1,19 @@
 ---
-import { Image } from "astro:assets";
-
 import PageLayout from "@/layouts/Base";
-import aboutImg from "@/assets/about-astro.png";
 
 const meta = {
-	title: "About",
-	description: "I'm a starter theme for Astro.build",
+  title: "About",
+  description: "I'm a starter theme for Astro.build",
 };
 ---
 
 <PageLayout meta={meta}>
-	<div class="space-y-6">
-		<h1 class="title">About</h1>
-		<p>Hi, I'm Aryan, a software engineer based in Dhaka, Bangladesh.</p>
-		<p>Here are my some of my interests:</p>
-		<ul class="list-inside list-disc">
-			<li>Building software for people</li>
-		</ul>
-	</div>
+  <div class="space-y-6">
+    <h1 class="title">About</h1>
+    <p>Hi, I'm Aryan, a software engineer based in Dhaka, Bangladesh.</p>
+    <p>Here are my some of my interests:</p>
+    <ul class="list-inside list-disc">
+      <li>Building software for people</li>
+    </ul>
+  </div>
 </PageLayout>
