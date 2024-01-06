@@ -8,7 +8,7 @@ tags: ["portfolio", "web dev"]
 
 ## How to make your first open source contribution:
 
-#### I made my first open-source contribution this month and the experience was really refreshing.
+### I made my first open-source contribution this month and the experience was really refreshing.
 
 If you want to get started with open-source here are a few steps to get that first PR merged:
 
