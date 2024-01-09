@@ -4,23 +4,25 @@
 <h1 align="center">
   Astro Cactus
 </h1>
-
+PERF TEST: npx unlighthouse --site \< website-name \>
 Astro Cactus is a simple opinionated starter built with the Astro framework. Use it to create an easy-to-use blog or website.
 
 ## Table Of Contents
 
-1. [Key Features](#key-features)
-2. [Demo](#demo-💻)
-3. [Quick start](#quick-start)
-4. [Preview](#preview)
-5. [Commands](#commands)
-6. [Configure](#configure)
-7. [Adding Posts](#adding-posts)
-   - [Frontmatter](#frontmatter)
-8. [Pagefind search](#pagefind-search)
-9. [Analytics](#analytics)
-10. [Deploy](#deploy)
-11. [Acknowledgment](#acknowledgment)
+- [Table Of Contents](#table-of-contents)
+- [Key Features](#key-features)
+- [Demo 💻](#demo-)
+- [Quick start](#quick-start)
+- [Preview](#preview)
+- [Commands](#commands)
+- [Configure](#configure)
+- [Adding posts](#adding-posts)
+  - [Frontmatter](#frontmatter)
+- [Pagefind search](#pagefind-search)
+- [Analytics](#analytics)
+- [Deploy](#deploy)
+- [Acknowledgment](#acknowledgment)
+- [License](#license)
 
 ## Key Features
 
