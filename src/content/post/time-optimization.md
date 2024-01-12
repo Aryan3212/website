@@ -1,5 +1,5 @@
 ---
-publishDate: "2023-03-17T23:10:00.000Z"
+publishDate: "2024-01-12T23:10:00.000Z"
 title: The thing about optimizing time
 description: >-
   Optimizing time to become the person you want to be
@@ -12,7 +12,7 @@ Optimizing time can seem elusive. You made a plan to live your life in the best 
 
 The thing is.
 
-> It doesn't work out that way 9/10.
+> It doesn't work out that way 9/10 times.
 
 I've tried cutting out social media and video games. 2 things that drain most of my time but unfortunately, I always see the extra time being swallowed by other stupid things such as watching YouTube or a TV Show. In essence, everything balances out and I end up doing the same things all over again but in a different flavour.
 
