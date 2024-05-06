@@ -9,7 +9,7 @@ Summary: A few simple tips on learning that go a long way.
 
 Before we start, it's important to have a growth mindset when it comes to learning and life, in general.
 
-**Growth Mindset**: You can achieve things using hard work and dedication.
+**Growth Mindset** is basically the belief that You can achieve things using hard work and dedication.
 
 Learning is an important skill. Knowledge is _power, wealth and freedom_. How?
 
