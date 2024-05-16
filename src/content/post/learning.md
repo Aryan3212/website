@@ -2,7 +2,7 @@
 publishDate: "2023-04-11T23:11:00.000Z"
 title: The 80-20 of learning how to learn.
 description: The 80-20 of learning how to learn.
-tags: ["learning", "time management", "produtivity"]
+tags: ["learning", "productivity"]
 ---
 
 Summary: A few simple tips on learning that go a long way.

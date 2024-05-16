@@ -3,7 +3,7 @@ publishDate: "2023-01-27T23:10:00.000Z"
 title: My Programming Timeline
 description: >-
   My timeline from learning how to code to getting a job as a software engineer.
-keywords: ["portfolio", "web dev", "programming"]
+keywords: ["technical"]
 ---
 
 Let's talk about my timeline from learning how to code to getting a job as a software engineer. I went through a CSE\* degree and it served as inspiration for my career but most of the skills I had to learn were done outside of uni.

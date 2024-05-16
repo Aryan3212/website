@@ -3,7 +3,7 @@ publishDate: "2024-01-12T23:10:00.000Z"
 title: The thing about optimizing time
 description: >-
   Optimizing time to become the person you want to be
-tags: ["goals", "time"]
+tags: ["productivity"]
 ---
 
 ## Pitfalls of trying to optimize time

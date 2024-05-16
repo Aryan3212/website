@@ -3,7 +3,7 @@ publishDate: "2023-01-25T23:10:00.000Z"
 title: Kubernetes in a Nutshell
 description: >-
   A very simple way of looking at Kubernetes, mainly written to get rid of the fear around this tool
-keywords: ["portfolio", "containerization"]
+keywords: ["technical"]
 ---
 
 Kubernetes is a container orchestration software. The containers here can be Docker containers. Docker itself is a revolution, it helped us package our apps in containers that had everything the app needed already configured, containers are like really really lightweight virtual machines with an efficient way of using the Host OS.
