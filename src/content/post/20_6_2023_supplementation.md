@@ -3,7 +3,7 @@ publishDate: "2023-06-29T23:11:00.000Z"
 title: My Minimalist Supplementation Stack based on Personal Research
 description: >-
   Health is very important to achieve peak performance.
-tags: ["health", "productivity"]
+tags: ["blog"]
 ---
 
 Disclaimer: This is all anecdotal advice. I'm not linking studies nor will I. I got my info from Google Searches, SubReddits, YouTube Videos. I'm not advising you to do anything mentioned here and I sure can't follow through with everything written here but I'm trying. Also, this might change as we get more research done on these topics.

@@ -3,7 +3,7 @@ publishDate: "2023-03-17T23:10:00.000Z"
 title: You won't ever reach that big goal if you don't do this
 description: >-
   Optimize your actions according to your goals.
-tags: ["goals", "actions"]
+tags: ["productivity"]
 ---
 
 ## You won't ever reach that big goal, if you don't optimize your actions for the largest contribution to your goal.
