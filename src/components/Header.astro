@@ -11,13 +11,13 @@ import ToggleTheme from './ToggleTheme.astro'
 const SOCIALNETWORKS = [
 	{
 		name: 'Github',
-		url: 'https://github.com/danielcgilibert/blog-template',
+		url: 'https://github.com/aryan3212',
 		icon: GithubIcon
 	},
 
 	{
-		name: 'Twitter',
-		url: 'https://github.com/danielcgilibert/blog-template',
+		name: 'X/Twitter',
+		url: 'https://x.com/aryantwitting',
 		icon: TwitterIcon
 	}
 ]
@@ -36,6 +36,9 @@ const SOCIALNETWORKS = [
 			<div
 				class='flex flex-col gap-4 md:flex-row md:border-r-2 border-black pr-4 dark:border-white'
 			>
+				<div>
+					<Search />
+				</div>
 				<HeaderLink href='/tags' class='flex items-center gap-1 text-2xl md:text-base'>
 					<TagIcon /> Tags
 				</HeaderLink>
@@ -54,9 +57,6 @@ const SOCIALNETWORKS = [
 	</div>
 
 	<div class='flex items-center gap-3 md:pl-3' transition:persist='navbar'>
-		<div>
-			<Search />
-		</div>
 		<ToggleTheme />
 		<button id='astro-header-drawer-button' type='button' class='md:ml-6 md:hidden'>
 			<MenuIcon />

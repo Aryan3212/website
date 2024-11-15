@@ -9,11 +9,17 @@ interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-	author: 'DanielCG', // Site author
-	title: 'Astro Theme OpenBlog', // Site title.
-	description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', // Description to display in the meta tags
-	lang: 'en-GB',
-	ogLocale: 'en_GB',
+	// Used as both a meta property (src/components/BaseHead.astro L:31 + L:49) & the generated satori png (src/pages/og-image/[slug].png.ts)
+	author: 'Aryan Rahman',
+	// Meta property used to construct the meta title property, found in src/components/BaseHead.astro L:11
+	title: 'Aryan Rahman: Building Reality',
+	// Meta property used as the default description meta property
+	description:
+		'Blog and website for Aryan Rahman, full-stack software product engineer based in Bangladesh',
+	// HTML lang property, found in src/layouts/Base.astro L:18
+	lang: 'en-US',
+	// Meta property, found in src/components/BaseHead.astro L:42
+	ogLocale: 'en_US',
 	shareMessage: 'Share this post', // Message to share a post on social media
-	paginationSize: 6 // Number of posts per page
+	paginationSize: 10 // Number of posts per page
 }
