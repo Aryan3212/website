@@ -24,15 +24,17 @@ I put ratings as well as some descriptions here. When I was a beginner, I used t
 
 Other courses and playlists:
 Freecodecamp:
-[Python API Development - Comprehensive Course for Beginners](https://www.youtube.com/watch?v=0sOvCWFmrtA&list=PLhOXnuCBCjqe_IVEb7-b9b5CftXRFuxXj&index=1)(4/5)
-[Microservice Architecture and System Design with Python & Kubernetes – Full Course](https://www.youtube.com/watch?v=hmkF77F9TLw&list=PLhOXnuCBCjqe_IVEb7-b9b5CftXRFuxXj&index=6) (4/5)
 
-Tom Does Tech: 2. https://www.youtube.com/playlist?list=PL0iFifR5umclpRsRgWQtOtcgUffblcZgx (5/5)
+1. [Python API Development - Comprehensive Course for Beginners](https://www.youtube.com/watch?v=0sOvCWFmrtA&list=PLhOXnuCBCjqe_IVEb7-b9b5CftXRFuxXj&index=1)(4/5)
+2. [Microservice Architecture and System Design with Python & Kubernetes – Full Course](https://www.youtube.com/watch?v=hmkF77F9TLw&list=PLhOXnuCBCjqe_IVEb7-b9b5CftXRFuxXj&index=6) (4/5)
+
+3. Tom Does Tech: For more production grade backends, https://www.youtube.com/playlist?list=PL0iFifR5umclpRsRgWQtOtcgUffblcZgx (5/5)
 
 System Design and Advanced Backend:
-[Gaurav Sen](https://www.youtube.com/watch?v=SqcXvc3ZmRU&list=PLMCXHnjXnTnvo6alSjVkgxV-VH6EPyvoX): Gives an overview of the basics. Great content. (4.5/5)
-[Piyush Garg](https://www.youtube.com/@piyushgargdev/featured): This channel was great in teaching me advanced backend concepts and wrote the actual code rather than going high-level. (4.5/5)
-[CodeKarle](https://www.youtube.com/watch?v=EpASu_1dUdE&list=PLhgw50vUymyckXl3D1IlXoVl94wknJfUC): Completed the whole playlist of case studies (4.5/5)
+
+1. [Gaurav Sen](https://www.youtube.com/watch?v=SqcXvc3ZmRU&list=PLMCXHnjXnTnvo6alSjVkgxV-VH6EPyvoX): Gives an overview of the basics. Great content. (4.5/5)
+2. [Piyush Garg](https://www.youtube.com/@piyushgargdev/featured): This channel was great in teaching me advanced backend concepts and wrote the actual code rather than going high-level. (4.5/5)
+3. [CodeKarle](https://www.youtube.com/watch?v=EpASu_1dUdE&list=PLhgw50vUymyckXl3D1IlXoVl94wknJfUC): Completed the whole playlist of case studies (4.5/5)
 
 System design is vast and there are lot of resources I followed a few here and there. But the above ones have comprehensive content and I followed almost completely.
 
