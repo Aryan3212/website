@@ -1,10 +1,9 @@
 ---
-publishDate: '2023-03-17T23:10:00.000Z'
+pubDate: '2023-03-17T23:10:00.000Z'
 title: You won't ever reach that big goal if you don't do this
 description: >-
   Optimize your actions according to your goals.
 tags: ['productivity']
-pubDate: 'Jul 02 2022'
 heroImage: '../../assets/images/bg.jpg'
 category: 'Life'
 ---

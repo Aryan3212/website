@@ -1,5 +1,5 @@
 ---
-publishDate: '2023-01-26T23:11:00.000Z'
+pubDate: '2023-01-26T23:11:00.000Z'
 title: Do the little things to get big value
 description: >-
   Time is our most valuable resource, here's how I use the 80-20 principle on time

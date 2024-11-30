@@ -1,9 +1,9 @@
 ---
 title: Simplest tooling for a developer's blog
-publishDate: '2024-01-07T23:10:00.000Z'
+pubDate: '2024-01-07T23:10:00.000Z'
 description: Software engineers don't have a lot of time to spend creating a blog but it's still a good way to express your ideas and write out your thoughts. Hence, I figured out the 2 best tools to make a dev blog.
 tags: ['technical']
-pubDate: 'Jul 02 2022'
+
 heroImage: '../../assets/images/ventura.jpeg'
 category: 'Tech'
 ---

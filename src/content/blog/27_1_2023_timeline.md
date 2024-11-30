@@ -1,10 +1,9 @@
 ---
-publishDate: '2023-01-27T23:10:00.000Z'
+pubDate: '2023-01-27T23:10:00.000Z'
 title: My Programming Timeline
 description: >-
   My timeline from learning how to code to getting a job as a software engineer.
 tags: ['technical']
-pubDate: 'Jul 02 2022'
 heroImage: '../../assets/images/ventura.jpeg'
 category: 'Tech'
 ---

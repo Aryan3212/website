@@ -1,9 +1,9 @@
 ---
 title: 'Should Write More'
-publishDate: '6 May 2024'
+pubDate: '6 May 2024'
 description: "'Been a while, should write more', said 10000 other people."
 tags: ['blog']
-pubDate: 'Jul 02 2022'
+
 heroImage: '../../assets/images/banner.jpg'
 category: 'Life'
 ---

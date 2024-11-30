@@ -11,7 +11,7 @@ export const getCategories = async () => {
 export const getPosts = async (max?: number) => {
 	return (await getCollection('blog'))
 		.filter((post) => !post.data.draft)
-		.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 		.slice(0, max)
 }
 

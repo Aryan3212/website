@@ -1,9 +1,9 @@
 ---
 title: Life Updates and Thoughts, July 2022
-publishDate: '2022-07-01T23:10:00.000Z'
+pubDate: '2022-07-01T23:10:00.000Z'
 description: >-
   July 2022 marks roughly an year of learning HTML/CSS and Javascript. I'm now working at a startup as a software engineer and doing decent. This comes after close to 50 rejections and almost a 100 attempts.
-pubDate: 'Jul 02 2022'
+
 heroImage: '../../assets/images/4jhau2076uhb1.png'
 category: 'Life'
 tags: ['blog']

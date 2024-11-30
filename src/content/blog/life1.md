@@ -1,9 +1,9 @@
 ---
 title: 'Writing about Peace'
-publishDate: '12 May 2024'
+pubDate: '12 May 2024'
 description: 'Thoughts on peace'
 tags: ['blog']
-pubDate: 'Jul 02 2022'
+
 heroImage: '../../assets/images/hill.png'
 category: 'Life'
 ---

@@ -1,10 +1,9 @@
 ---
-publishDate: '2023-01-25T23:10:00.000Z'
+pubDate: '2023-01-25T23:10:00.000Z'
 title: Kubernetes in a Nutshell
 description: >-
   A very simple way of looking at Kubernetes, mainly written to get rid of the fear around this tool
 tags: ['technical']
-pubDate: 'Jul 02 2022'
 heroImage: '../../assets/images/te.jpg'
 category: 'Tech'
 ---

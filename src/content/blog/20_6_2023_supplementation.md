@@ -1,10 +1,9 @@
 ---
-publishDate: '2023-06-29T23:11:00.000Z'
+pubDate: '2023-06-29T23:11:00.000Z'
 title: My Minimalist Supplementation Stack based on Personal Research
 description: >-
   Health is very important to achieve peak performance.
 tags: ['blog']
-pubDate: 'Jul 02 2022'
 heroImage: '../../assets/images/green-leaves-close-up-portrait.jpg'
 category: 'Life'
 ---

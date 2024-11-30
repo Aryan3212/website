@@ -1,9 +1,9 @@
 ---
-publishDate: '2022-07-11T23:10:00.000Z'
+pubDate: '2022-07-11T23:10:00.000Z'
 title: How to contribute to open source on GitHub
 description: >-
   A step-by-step guide on making your first open source contribution
-pubDate: 'Jul 02 2022'
+
 heroImage: '../../assets/images/banner.jpg'
 category: 'Tech'
 tags: ['technical']

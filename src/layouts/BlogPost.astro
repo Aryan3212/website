@@ -14,9 +14,9 @@ type Props = {
 }
 
 const { data, readTime, headings, id } = Astro.props
-const { title, description, publishDate, heroImage, tags } = data
+const { title, description, pubDate, heroImage, tags } = data
 
-const articleDate = publishDate.toISOString()
+const articleDate = pubDate.toISOString()
 ---
 
 <BaseLayout
@@ -30,7 +30,7 @@ const articleDate = publishDate.toISOString()
 			<div class='flex flex-col gap-2'>
 				<div class='flex items-center justify-center gap-x-1'>
 					<p class='text-center text-sm text-opacity-50'>
-						Published <FormattedDate date={publishDate} />
+						Published <FormattedDate date={pubDate} />
 					</p>
 					<p class='text-center text-sm text-opacity-50 font-bold'>
 						- {readTime}

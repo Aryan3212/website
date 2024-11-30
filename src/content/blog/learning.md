@@ -1,9 +1,9 @@
 ---
-publishDate: '2023-04-11T23:11:00.000Z'
+pubDate: '2023-04-11T23:11:00.000Z'
 title: The 80-20 of learning how to learn.
 description: The 80-20 of learning how to learn.
 tags: ['learning', 'productivity']
-pubDate: 'Jul 02 2022'
+
 heroImage: '../../assets/images/4jhau2076uhb1.png'
 category: 'Life'
 ---

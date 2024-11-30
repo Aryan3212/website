@@ -1,10 +1,9 @@
 ---
-publishDate: '2024-01-12T23:10:00.000Z'
+pubDate: '2024-01-12T23:10:00.000Z'
 title: The thing about optimizing time
 description: >-
   Optimizing time to become the person you want to be
 tags: ['productivity']
-pubDate: 'Jul 02 2022'
 heroImage: '../../assets/images/banner.jpg'
 category: 'Life'
 ---
