@@ -3,7 +3,7 @@ publishDate: '2024-11-30T23:11:00.000Z'
 title: 'Resources I actually did to get better at web dev'
 description: 'Web dev resources I did'
 heroImage: '../../assets/images/hill.png'
-category: ['Tech']
+category: 'Tech'
 tags: ['technical']
 ---
 
