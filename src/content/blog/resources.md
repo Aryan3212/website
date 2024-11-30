@@ -9,7 +9,7 @@ tags: ['technical']
 
 I put ratings as well as some descriptions here. When I was a beginner, I used to follow along with code for most parts, but as time went by I only look for the concepts that are being taught. Then if I feel like this should be attempted using I code, I start writing some toy code. Like with Redis or Kafka, since these were alien to me when I first started learning them.
 
-### YouTube:
+## YouTube:
 
 [Sumit Saha](https://www.youtube.com/@LearnwithSumit) (Bangla Content): This is the most in-depth set of content I've seen anywhere. Solidified my understanding of a lot of aspects of development. Here's the playlists I saw fully(5/5):
 
@@ -40,7 +40,7 @@ Coding Interview:
 
 1. Neetcode(30% completed): https://www.youtube.com/watch?v=KLlXCFG5TnA&list=PLot-Xpze53ldVwtstag2TL4HQhAnC8ATf (5/5)
 
-### Udemy:
+## Udemy:
 
 (Colt Steele) [Web Development Bootcamp](https://www.udemy.com/course/the-web-developer-bootcamp/): One of the best courses a beginner can take. Set me up with NodeJS, HTML/CSS full-stack development.
 
@@ -84,14 +84,14 @@ Some courses I did but weren't that great:
 
 [Code with Mosh](https://codewithmosh.com/): - Ultimate Django Part 1-3: Teaches a lot about idiomatic Python and good REST API architecture for Django. (4/5)
 
-### Books I read:
+## Books I read:
 
 - Django for Beginners/Django for APIs: William S. Vincent: Basics of writing Django and Django REST Framework apps.(3/5)
 - Head First Object Oriented Analysis and Design: Good book on decomposing software projects but seemed to be rambling too much on certain topics.(3/5)
 
 I realize as I'm writing this that I haven't read that many books end-to-end I normally start and then leave it in the middle. I should fix that :)
 
-### Academic Online Courses:
+## Academic Online Courses:
 
 1. Systematic Program Design by edx: Not really related to web design but keeping here for a record. Teaches functional programming in LISP. Concepts such as worklists.
 
