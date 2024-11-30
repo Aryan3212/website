@@ -23,12 +23,13 @@ I put ratings as well as some descriptions here. When I was a beginner, I used t
 8. https://www.youtube.com/watch?v=PWXkYBmlbB4&list=PLHiZ4m8vCp9MFjMRp9EEHWKArbi0wdgXG
 
 Other courses and playlists:
-Freecodecamp:
 
-1. [Python API Development - Comprehensive Course for Beginners](https://www.youtube.com/watch?v=0sOvCWFmrtA&list=PLhOXnuCBCjqe_IVEb7-b9b5CftXRFuxXj&index=1)(4/5)
-2. [Microservice Architecture and System Design with Python & Kubernetes – Full Course](https://www.youtube.com/watch?v=hmkF77F9TLw&list=PLhOXnuCBCjqe_IVEb7-b9b5CftXRFuxXj&index=6) (4/5)
+1. Freecodecamp:
 
-3. Tom Does Tech: For more production grade backends, https://www.youtube.com/playlist?list=PL0iFifR5umclpRsRgWQtOtcgUffblcZgx (5/5)
+   1. [Python API Development - Comprehensive Course for Beginners](https://www.youtube.com/watch?v=0sOvCWFmrtA&list=PLhOXnuCBCjqe_IVEb7-b9b5CftXRFuxXj&index=1)(4/5)
+   2. [Microservice Architecture and System Design with Python & Kubernetes – Full Course](https://www.youtube.com/watch?v=hmkF77F9TLw&list=PLhOXnuCBCjqe_IVEb7-b9b5CftXRFuxXj&index=6) (4/5)
+
+2. Tom Does Tech: For more production grade backends, https://www.youtube.com/playlist?list=PL0iFifR5umclpRsRgWQtOtcgUffblcZgx (5/5)
 
 System Design and Advanced Backend:
 
@@ -83,6 +84,8 @@ Some courses I did but weren't that great:
 
 1. https://www.udemy.com/course/java-tutorial/learn/lecture/807408?start=795#overview (3.5/5)
 2. https://www.udemy.com/course/pythoncourse/learn/lecture/20490008#overview (3/5)
+
+## Other platforms:
 
 [Code with Mosh](https://codewithmosh.com/): - Ultimate Django Part 1-3: Teaches a lot about idiomatic Python and good REST API architecture for Django. (4/5)
 
