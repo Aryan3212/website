@@ -2,7 +2,9 @@
 publishDate: '2024-11-30T23:11:00.000Z'
 title: 'Resources I actually did to get better at web dev'
 description: 'Web dev resources I did'
-tags: ['tech']
+heroImage: '../../assets/images/hill.png'
+category: ['Tech']
+tags: ['technical']
 ---
 
 I put ratings as well as some descriptions here. When I was a beginner, I used to follow along with code for most parts, but as time went by I only look for the concepts that are being taught. Then if I feel like this should be attempted using I code, I start writing some toy code. Like with Redis or Kafka, since these were alien to me when I first started learning them.
