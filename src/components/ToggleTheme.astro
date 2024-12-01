@@ -8,8 +8,9 @@ import MoonIcon from '@/components/icons/MoonIcon'
 		constructor() {
 			super()
 			const button = this.querySelector('button') as HTMLButtonElement
-
 			if (button) {
+				const bodyThemeIsDark = document.documentElement.classList.contains('dark')
+				button.setAttribute('aria-pressed', String(bodyThemeIsDark))
 				button.addEventListener('click', (e) => {
 					if (e.currentTarget instanceof HTMLButtonElement) {
 						let isPressed = e.currentTarget.getAttribute('aria-pressed') === 'true'
@@ -46,10 +47,6 @@ import MoonIcon from '@/components/icons/MoonIcon'
 
 <script is:inline>
 	const button = document.getElementById('toggle-theme')
-
-	function setButtonPresssed() {
-		const bodyThemeIsDark = document.documentElement.classList.contains('dark')
-		button.setAttribute('aria-pressed', String(bodyThemeIsDark))
-	}
-	setButtonPresssed()
+	const bodyThemeIsDark = document.documentElement.classList.contains('dark')
+	button.setAttribute('aria-pressed', String(bodyThemeIsDark))
 </script>
