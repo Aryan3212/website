@@ -9,24 +9,25 @@ tags: ['technical']
 
 I put ratings as well as some descriptions here. When I was a beginner, I used to follow along with code for most parts, but as time went by I only look for the concepts that are being taught. Then if I feel like this should be attempted using I code, I start writing some toy code. Like with Redis or Kafka, since these were alien to me when I first started learning them.
 
+Everything with a (\*) at the beginning is for BEGINNERS.
+
 ## YouTube:
 
-[Sumit Saha](https://www.youtube.com/@LearnwithSumit) (Bangla Content): This is the most in-depth set of content I've seen anywhere. Solidified my understanding of a lot of aspects of development. Here's the playlists I saw fully(5/5):
+(\*)[Sumit Saha](https://www.youtube.com/@LearnwithSumit) (Bangla Content): This is the most in-depth set of content I've seen anywhere. Solidified my understanding of a lot of aspects of development. Here's the playlists I saw fully(5/5):
 
-1. https://www.youtube.com/watch?v=4tV1Mfi4fMA&list=PLHiZ4m8vCp9PX7cZ8s-gFe8OndxqQxhx4
-2. https://www.youtube.com/watch?v=rePN-VFo1Eo&list=PLHiZ4m8vCp9OkrURufHpGUUTBjJhO9Ghy
-3. https://www.youtube.com/watch?v=cdv4kM8MwsY&list=PLHiZ4m8vCp9NwCTJowt0HTCNRi5K6w4nv
-4. https://www.youtube.com/watch?v=5Xy-t8k_M4A&list=PLHiZ4m8vCp9M6HVQv7a36cp8LKzyHIePr
-5. https://www.youtube.com/watch?v=5Xy-t8k_M4A&list=PLHiZ4m8vCp9M6HVQv7a36cp8LKzyHIePr
-6. https://www.youtube.com/watch?v=XY96d0vEdFk&list=PLHiZ4m8vCp9MJDxMOzhYVuTrO1b5n-Tq_
-7. https://www.youtube.com/watch?v=WC-g0JtEIwM&list=PLHiZ4m8vCp9PHnOIT7gd30PCBoYCpGoQM
-8. https://www.youtube.com/watch?v=PWXkYBmlbB4&list=PLHiZ4m8vCp9MFjMRp9EEHWKArbi0wdgXG
+1. ReactJS tutorial: https://www.youtube.com/watch?v=5Xy-t8k_M4A&list=PLHiZ4m8vCp9M6HVQv7a36cp8LKzyHIePr
+2. Node.js: https://www.youtube.com/watch?v=WC-g0JtEIwM&list=PLHiZ4m8vCp9PHnOIT7gd30PCBoYCpGoQM
+3. JavaScript for Beginners: https://www.youtube.com/watch?v=rePN-VFo1Eo&list=PLHiZ4m8vCp9OkrURufHpGUUTBjJhO9Ghy
+4. JavaScript Tips and Tricks: https://www.youtube.com/watch?v=cdv4kM8MwsY&list=PLHiZ4m8vCp9NwCTJowt0HTCNRi5K6w4nv
+5. DOM JavaScript: https://www.youtube.com/watch?v=XY96d0vEdFk&list=PLHiZ4m8vCp9MJDxMOzhYVuTrO1b5n-Tq_
+6. ES6 JavaScript: https://www.youtube.com/watch?v=PWXkYBmlbB4&list=PLHiZ4m8vCp9MFjMRp9EEHWKArbi0wdgXG
+7. SASS Tutorial: https://www.youtube.com/watch?v=4tV1Mfi4fMA&list=PLHiZ4m8vCp9PX7cZ8s-gFe8OndxqQxhx4
 
 Other courses and playlists:
 
 1. Freecodecamp:
 
-   1. [Python API Development - Comprehensive Course for Beginners](https://www.youtube.com/watch?v=0sOvCWFmrtA&list=PLhOXnuCBCjqe_IVEb7-b9b5CftXRFuxXj&index=1)(4/5)
+   1. (\*)[Python API Development - Comprehensive Course for Beginners](https://www.youtube.com/watch?v=0sOvCWFmrtA&list=PLhOXnuCBCjqe_IVEb7-b9b5CftXRFuxXj&index=1)(4/5)
    2. [Microservice Architecture and System Design with Python & Kubernetes – Full Course](https://www.youtube.com/watch?v=hmkF77F9TLw&list=PLhOXnuCBCjqe_IVEb7-b9b5CftXRFuxXj&index=6) (4/5)
 
 2. Tom Does Tech: For more production grade backends, https://www.youtube.com/playlist?list=PL0iFifR5umclpRsRgWQtOtcgUffblcZgx (5/5)
@@ -45,7 +46,7 @@ Coding Interview:
 
 ## Udemy:
 
-(Colt Steele) [Web Development Bootcamp](https://www.udemy.com/course/the-web-developer-bootcamp/): One of the best courses a beginner can take. Set me up with NodeJS, HTML/CSS full-stack development.
+(\*)(Colt Steele) [Web Development Bootcamp](https://www.udemy.com/course/the-web-developer-bootcamp/): One of the best courses a beginner can take. Set me up with NodeJS, HTML/CSS full-stack development.
 
 5/5
 
@@ -57,26 +58,26 @@ Coding Interview:
 
 Until now: 4.7/5
 
-(Paulo Dichone) [Kotlin Android App Development using Jetpack Compose](https://www.udemy.com/course/kotling-android-jetpack-compose-/)(60% completed): Teaches basic Android development, had a lot of projects but explanations and purpose of the code architecture was not clear.
+(\*)(Paulo Dichone) [Kotlin Android App Development using Jetpack Compose](https://www.udemy.com/course/kotling-android-jetpack-compose-/)(60% completed): Teaches basic Android development, had a lot of projects but explanations and purpose of the code architecture was not clear.
 
 3.6/5
 
-(Al Sweigart) [Automate the Boring Stuff with Python](https://www.udemy.com/share/101W8U3@3COx2Jc45DFm1cYNDMVl5BTA25AZ663Z95s5Ec6wGfl2eztsgdpV7J-DIa3chOfwGg==/): Inspired me to use python for small use cases. Used it in my work before becoming a full-time developer quite a lot.
+(\*)(Al Sweigart) [Automate the Boring Stuff with Python](https://www.udemy.com/share/101W8U3@3COx2Jc45DFm1cYNDMVl5BTA25AZ663Z95s5Ec6wGfl2eztsgdpV7J-DIa3chOfwGg==/): Inspired me to use python for small use cases. Used it in my work before becoming a full-time developer quite a lot.
 4/5
 
-(Brad Schiff) [Become a WordPress Developer: Unlocking Power With Code](https://www.udemy.com/course/become-a-wordpress-developer-php-javascript/?couponCode=CPSALEBRAND24): Taught me about interacting a software like Wordpress. It's limitations and use cases. Instructor was really good. The limitations were enough to deter me from going further with it.
+(\*)(Brad Schiff) [Become a WordPress Developer: Unlocking Power With Code](https://www.udemy.com/course/become-a-wordpress-developer-php-javascript/?couponCode=CPSALEBRAND24): Taught me about interacting a software like Wordpress. It's limitations and use cases. Instructor was really good. The limitations were enough to deter me from going further with it.
 
 4.5/5
 
-(Jonas Schmedtmann) [# Build Responsive Real-World Websites with HTML and CSS](https://www.udemy.com/course/design-and-develop-a-killer-website-with-html5-and-css3/?couponCode=CPSALEBRAND24) : Needed to refresh on HTML/CSS. CSS is huge and there are a lot of concepts I couldn't a find a singular course that covers everything.
+(\*)(Jonas Schmedtmann) [# Build Responsive Real-World Websites with HTML and CSS](https://www.udemy.com/course/design-and-develop-a-killer-website-with-html5-and-css3/?couponCode=CPSALEBRAND24) : Needed to refresh on HTML/CSS. CSS is huge and there are a lot of concepts I couldn't a find a singular course that covers everything.
 
 4/5
 
-(Andrei Neagoie)[ The Complete Python Developer](https://www.udemy.com/course/complete-python-developer-zero-to-mastery/?couponCode=CPSALEBRAND24): A good intro to Python and what can be done with Python.
+(\*)(Andrei Neagoie)[ The Complete Python Developer](https://www.udemy.com/course/complete-python-developer-zero-to-mastery/?couponCode=CPSALEBRAND24): A good intro to Python and what can be done with Python.
 
 4/5
 
-(Brad Traversy) [20 Web Projects with Vanilla JS](https://www.udemy.com/course/web-projects-with-vanilla-javascript/?couponCode=CPSALEBRAND24) (20% done): This course can be good to have a few early fun projects under your belt.
+(\*)(Brad Traversy) [20 Web Projects with Vanilla JS](https://www.udemy.com/course/web-projects-with-vanilla-javascript/?couponCode=CPSALEBRAND24) (20% done): This course can be good to have a few early fun projects under your belt.
 
 4/5
 
@@ -87,12 +88,12 @@ Some courses I did but weren't that great:
 
 ## Other platforms:
 
-[Code with Mosh](https://codewithmosh.com/): - Ultimate Django Part 1-3: Teaches a lot about idiomatic Python and good REST API architecture for Django. (4/5)
+(\*)[Code with Mosh](https://codewithmosh.com/): - Ultimate Django Part 1-3: Teaches a lot about idiomatic Python and good REST API architecture for Django. (4/5)
 
 ## Books I read:
 
-- Django for Beginners/Django for APIs: William S. Vincent: Basics of writing Django and Django REST Framework apps.(3/5)
-- Head First Object Oriented Analysis and Design: Good book on decomposing software projects but seemed to be rambling too much on certain topics.(3/5)
+- (\*)Django for Beginners/Django for APIs: William S. Vincent: Basics of writing Django and Django REST Framework apps.(3/5)
+- (\*)Head First Object Oriented Analysis and Design: Good book on decomposing software projects but seemed to be rambling too much on certain topics.(3/5)
 
 I realize as I'm writing this that I haven't read that many books end-to-end I normally start and then leave it in the middle. I should fix that :)
 
