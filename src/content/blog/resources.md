@@ -54,7 +54,7 @@ Coding Interview:
 
 3.9/5 : Teaches a few new Backend/Node.js concepts which aren't connected but useful.
 
-(Stephen Grider) [Microservices built with Node, React, Docker and Kubernetes](https://www.udemy.com/course/microservices-with-node-js-and-react/)(70% completed): Teaches end-to-end building production grade microservices applications. Really teaches stuff you can't find anywhere else.
+(Stephen Grider) [Microservices built with Node, React, Docker and Kubernetes](https://www.udemy.com/course/microservices-with-node-js-and-react/): Teaches end-to-end building production grade microservices applications. Really teaches stuff you can't find anywhere else.
 
 Until now: 4.7/5
 
