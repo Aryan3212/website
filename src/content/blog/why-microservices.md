@@ -1,14 +1,15 @@
 ---
-pubDate: '2023-01-25T23:10:00.000Z'
+pubDate: '2025-01-01T23:10:00.000Z'
 title: 'Microservices Part 1: Why Microservices?'
 description: 'The reasoning behind choosing microservices architecture and why jobs require them.'
 tags: ['technical']
 heroImage: '../../assets/images/te.jpg'
 category: 'Tech'
 ---
+
 # What is Microservices?
 
-I was looking at LinkedIn the other day and noticed something interesting - there are about 50,000 jobs mentioning 'microservices' compared to 400,000 mentioning 'software developer'. That got me thinking: what exactly are microservices, and do we really need them?
+I was looking at LinkedIn the other day and noticed something interesting - there are about 50,000 jobs mentioning 'microservices' compared to 400,000 mentioning 'software developer'. What exactly are microservices, and do we really need them?
 
 Let me break it down for you. Microservices is an architectural pattern in software engineering. Think about traditional software - it's basically a program, right? Just lines of code running on your computer. Usually, all the features and business logic live in one codebase and run as a single process. This is what we call a monolithic architecture - everything runs as one unit. Sure, we can copy this code to run on multiple machines, but at its core, we're just replicating and running the same codebase (that's what scaling is!).
 
@@ -34,10 +35,10 @@ My theory? Everyone wants to be the next big thing. They're all looking up to FA
 
 Understanding microservices helps you visualize how to transition from a monolith when needed. It's not rocket science - you can even create microservices without Docker or Kubernetes (though they do make deployments easier).
 
-Bottom line? Knowing microservices helps us design better monoliths because we learn to think about services in isolation. This leads to lower coupling and higher cohesion*, making our software more manageable and easier to adapt as business needs change. Because at the end of the day, software's biggest challenge is managing complexity. Once your codebase becomes unmanageable, you're in trouble - you won't be able to keep up with competition.
+Bottom line? Knowing microservices helps us design better monoliths because we learn to think about services in isolation. This leads to lower coupling and higher cohesion\*, making our software more manageable and easier to adapt as business needs change. Because at the end of the day, software's biggest challenge is managing complexity. Once your codebase becomes unmanageable, you're in trouble - you won't be able to keep up with competition.
 
 Jobs therefore will still want microservices experience even though I believe this shouldn't be a hard requirement. But, the knowledge still helps us understand networks and handling data in a distributed fashion which can be beneficial for us.
 
-/* Coupling and cohesion: Loose coupling is good, when software is loosely coupled, unique features are properly isolated. High cohesion is good, when related features work together and have their code in the same place it's called high cohesion. Both these features combine to make good software, for example groups and pages are completely different features in Facebook so they should be loosely coupled and have code in separate places.
+/\* Coupling and cohesion: Loose coupling is good, when software is loosely coupled, unique features are properly isolated. High cohesion is good, when related features work together and have their code in the same place it's called high cohesion. Both these features combine to make good software, for example groups and pages are completely different features in Facebook so they should be loosely coupled and have code in separate places.
 
 Likes and posts are features that are closely intertwined so they should share some functionality. Therefore, they should be highly cohesive.
