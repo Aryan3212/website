@@ -34,6 +34,23 @@ const posts = page.data
 
 <BaseLayout title={params.category}>
 	<TitlePage title={unsluglifyNameCategory} />
+	{
+		params.category == 'portfolio' && (
+			<>
+				<h2 class='text-lg font-medium tracking-wide'>
+					Hi, I'm Aryan Rahman, a full-stack software engineer, I find joy in building products that
+					delight users and solve actual pain points in people's lives. This means working with any
+					technology or any part of the stack(including infra) to figure it out! I love taking
+					ownership of my work and finding new directions where the product can go.
+				</h2>
+
+				<h2 class='text-lg font-medium tracking-wide'>
+					This page contains a quick summary about my work(see first blog) and a few case studies.
+					You can find my other blogs in the other categories.
+				</h2>
+			</>
+		)
+	}
 	<ListCategories activeCategory={params.category} />
 	<ListPosts posts={posts} />
 	<Pagination page={page} />

@@ -11,8 +11,14 @@ const posts = await getPosts(MAX_POSTS)
 
 <BaseLayout title='Home'>
 	<TitlePage title='Building Reality by Aryan' />
+	<div>
+		<br />
+		<h2 class='text-lg font-medium tracking-wide'>
+			If you're interested about my work please go to the
+			<a class='underline' href='/category/portfolio/1'>Portfolio section.</a>
+		</h2>
+	</div>
 	<ListCategories />
-
 	<div>
 		<h2 class='text-lg font-medium tracking-wide text-end'>Latest Posts</h2>
 		<ListPosts FirstBig={true} posts={posts} />
