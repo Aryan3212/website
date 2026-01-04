@@ -1,7 +1,7 @@
 ---
-pubDate: '2099-09-23T23:11:00.000Z'
+pubDate: '2069-09-23T23:11:00.000Z'
 title: Worklist Job Board
-description: >-
+description: Lessons on building a job board with delightful UX
 heroImage: './wkl.png'
 category: 'Portfolio'
 tags: ['portfolio']

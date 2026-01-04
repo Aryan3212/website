@@ -1,7 +1,7 @@
 ---
-pubDate: '2099-09-23T23:11:00.000Z'
-title: Hashnode Sync - A CLI for syncing with Hashnode
-description: >-
+pubDate: '2070-09-23T23:11:00.000Z'
+title: Hashnode Sync
+description: A CLI for syncing with Hashnode - Hashnode Hackathon Submission
 heroImage: './hsync.png'
 category: 'Portfolio'
 tags: ['portfolio']

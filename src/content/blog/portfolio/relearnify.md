@@ -1,7 +1,8 @@
 ---
-pubDate: '2099-09-23T23:11:00.000Z'
-title: Relearnify - A notes app that helps you learn
+pubDate: '2096-09-23T23:11:00.000Z'
+title: Relearnify
 description: >-
+  A notes app that helps you learn
 heroImage: './relearnify.png'
 category: 'Portfolio'
 tags: ['portfolio']

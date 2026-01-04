@@ -5,8 +5,8 @@ import TitlePage from '@/components/TitlePage'
 import BaseLayout from '@/layouts/BaseLayout'
 import { getPosts } from '@/utils'
 
-const MAX_POSTS = 10 // max number of posts to show on the home page
-const posts = await getPosts(MAX_POSTS)
+const MAX_POSTS = 15 // max number of posts to show on the home page
+const posts = await getPosts(MAX_POSTS, true)
 ---
 
 <BaseLayout title='Home'>
@@ -21,7 +21,7 @@ const posts = await getPosts(MAX_POSTS)
 	<ListCategories />
 	<div>
 		<h2 class='text-lg font-medium tracking-wide text-end'>Latest Posts</h2>
-		<ListPosts FirstBig={true} posts={posts} />
+		<ListPosts FirstBig={false} posts={posts} activeCategory='all' />
 	</div>
 </BaseLayout>
 

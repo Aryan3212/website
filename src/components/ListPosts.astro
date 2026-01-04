@@ -6,9 +6,10 @@ import { cn } from '@/utils'
 type Props = {
 	posts: CollectionEntry<'blog'>[]
 	FirstBig?: boolean
+	activeCategory: string
 }
 
-const { posts, FirstBig = false } = Astro.props
+const { posts, FirstBig = false, activeCategory } = Astro.props
 ---
 
 <section
@@ -27,6 +28,7 @@ const { posts, FirstBig = false } = Astro.props
 					data={post.data}
 					slug={post.slug}
 					readTime={remarkPluginFrontmatter.minutesRead}
+					activeCategory={activeCategory}
 				/>
 			)
 		})

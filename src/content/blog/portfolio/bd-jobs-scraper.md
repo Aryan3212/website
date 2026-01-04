@@ -1,7 +1,8 @@
 ---
-pubDate: '2099-09-23T23:11:00.000Z'
-title: BDJobs Scraper - Scraping a Job Board
+pubDate: '2089-09-23T23:11:00.000Z'
+title: BDJobs Scraper
 description: >-
+  Scraping 5000 job posts in 8 seconds
 heroImage: './bdjobs-scraper.png'
 category: 'Portfolio'
 tags: ['portfolio']

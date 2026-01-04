@@ -8,9 +8,13 @@ export const getCategories = async () => {
 	return Array.from(categories)
 }
 
-export const getPosts = async (max?: number) => {
+export const getPosts = async (max?: number, filterByPortfolio: boolean = false) => {
 	return (await getCollection('blog'))
-		.filter((post) => !post.data.draft)
+		.filter(
+			(post) =>
+				!post.data.draft &&
+				!(filterByPortfolio && post.data.tags.includes('portfolio') && post.data.tags.length === 1)
+		)
 		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 		.slice(0, max)
 }
