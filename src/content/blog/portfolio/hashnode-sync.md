@@ -7,59 +7,45 @@ category: 'Portfolio'
 tags: ['portfolio']
 ---
 
-**My Role**: Sole Developer\
-**Timeline**: 1 day\
-**Tech Stack**: `Node.js` `JavaScript` `GraphQL` `npm` `CLI`
+A CLI tool that syncs local markdown files to Hashnode. Built in a day for the Hashnode GraphQL hackathon.
 
-## The Problem
+**Tech Stack:** `Node.js` `GraphQL` `npm`
 
-This was my Hashnode GraphQL hackathon submission. I wanted a tool that I could use to sync my markdown blogs with Hashnode without many extra steps. It will track the blogs, see whether they changed and sync with my online blog.
+## The Trick: Auto-Persisting State with Proxies
 
-## The Solution
+The CLI needs to remember sync state between runs - which files were synced, their Hashnode IDs, content hashes. The typical approach: manual read/write calls everywhere.
 
-I built `hashnode-sync`, an npm command-line tool that automatically synchronizes local markdown files with a Hashnode blog. It detects changes, additions, or deletions and uses the Hashnode GraphQL API to keep the blog content in sync, enabling a seamless "content as code" workflow.
-
-## Impact & Results
-
-- Automated the publishing workflow, reducing the time to post or update an article from several minutes to a single command.
-- Enables a "content-as-code" approach, allowing writers to use tools like Git for versioning and collaboration on blog posts.
-- Published on npm for anyone to use.
-
-## Key Takeaways
-
-- Gained practical experience designing a CLI tool and integrating with a third-party GraphQL API.
-- Learned the process of publishing and versioning a public package on npm.
-- Discovered that advanced language features like Proxies can offer elegant solutions to common problems like state persistence.
-
-## My Contributions
-
-- Designed the core change-detection logic using SHA-256 content hashing to minimize API calls.
-- Built the end-to-end CLI experience, from an interactive setup prompt to full integration with Hashnode's GraphQL API for CRUD operations on posts.
-- Engineered an elegant configuration persistence layer using JavaScript Proxies for simplified state management.
-
-## Technical Challenges & Decisions
-
-**Challenge:** Persisting the sync state (which files were synced, their IDs, and last-known state) across separate CLI runs.
-**Solution:** Instead of manual read/write operations, I used a JavaScript `Proxy` to wrap the configuration object. This automatically intercepted any modification and seamlessly persisted the state to the `hashnode-syncrc.json` file. This choice greatly simplified the codebase.
+Instead, I wrapped the config object in a JavaScript Proxy. Any property change automatically persists to disk:
 
 ```javascript
-// sync-json.js
 function getSyncedJson(path) {
-	const data = fs.readFileSync(path)
-	const obj = JSON.parse(data)
+	const obj = JSON.parse(fs.readFileSync(path))
 	return new Proxy(obj, {
 		set(target, property, value) {
-			Reflect.set(target, property, value) // Update in-memory object
-			saveJsonFile(path, target) // Persist change to disk
+			Reflect.set(target, property, value)
+			saveJsonFile(path, target) // Auto-persist on any change
 			return true
 		}
 	})
 }
 ```
 
-**Challenge:** Avoiding redundant API calls for files that hadn't been modified.
-**Solution:** I stored a SHA-256 hash of each file's content and metadata. On subsequent runs, the CLI only triggers an API update if a file's calculated hash differs from the stored one, ensuring API calls are made only when necessary.
+Now `config.lastSync = Date.now()` just works - no explicit save calls. The codebase got much simpler.
+
+## Change Detection
+
+SHA-256 hashing on file content + metadata. Only files with changed hashes trigger API calls. No diff logic needed - if the hash matches, skip it.
+
+## What It Does
+
+- Watches a folder of markdown files
+- Detects new/changed/deleted posts
+- Syncs to Hashnode via their GraphQL API
+- One command: `hashnode-sync`
+
+Published on npm. Content-as-code workflow for blogs.
 
 ## Links
 
-**GitHub**: [https://github.com/Aryan3212/hashnode-sync](https://github.com/Aryan3212/hashnode-sync)
+- **GitHub:** [github.com/Aryan3212/hashnode-sync](https://github.com/Aryan3212/hashnode-sync)
+- **npm:** [npmjs.com/package/hashnode-sync](https://www.npmjs.com/package/hashnode-sync)

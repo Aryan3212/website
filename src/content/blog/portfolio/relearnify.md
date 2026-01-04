@@ -2,53 +2,45 @@
 pubDate: '2096-09-23T23:11:00.000Z'
 title: Relearnify
 description: >-
-  A notes app that helps you learn
+  A notes app that emails you what to review
 heroImage: './relearnify.png'
 category: 'Portfolio'
 tags: ['portfolio']
 ---
 
-## **Relearnify | A smart notes app to improve memory retention with scheduled reviews**
+A notes app that emails you scheduled reviews based on spaced repetition. You take notes, it tells you when to revisit them.
 
-My Role: Founder & Engineer | Team Size: 1 | Timeline: 3 Months
-Tech Stack: `TypeScript` `React` `Next.js` `tRPC` `Redis` `BullMQ` `PostgreSQL` `Gemini`
+**Tech Stack:** `Next.js` `tRPC` `PostgreSQL` `BullMQ` `Tiptap` `Gemini API`
 
----
+**Try it:** [relearnify.vercel.app](https://relearnify.vercel.app/)
 
-## **The Problem**
+[![Demo](./relearnify-demo.png)](https://www.loom.com/share/85dd30e9d272471cadba553f48bafe9e?sid=52464fca-7d46-484d-a3da-1300471e3ea9)
 
-Users take notes but often forget to review them, leading to poor knowledge retention. This makes the act of note-taking inefficient without a system for automated, timed reminders.
+## How It Works
 
-## **The Solution**
+1. Write notes in a rich text editor (Tiptap)
+2. FSRS algorithm schedules optimal review times
+3. Background jobs (BullMQ) queue up daily emails
+4. You get an email with notes to review
 
-I built a web app that schedules note reviews using a spaced repetition algorithm. It sends daily emails with notes to review, turning passive note-taking into an active learning process.
+![Email example](./relearnify-mail.png)
 
-You can play around with it here: https://relearnify.vercel.app/
+## The Interesting Bits
 
-An old demo of the app:
-[![demo image](./relearnify-demo.png)](https://www.loom.com/share/85dd30e9d272471cadba553f48bafe9e?sid=52464fca-7d46-484d-a3da-1300471e3ea9)
+**Monkeypatching Tiptap** — Tiptap's default YouTube handling embeds videos inline. I wanted links instead (lighter, less distracting). Ended up patching the extension's node view to render as a styled link rather than an iframe.
 
-An example of the email sent by Relearnify:
+**FSRS integration** — The Free Spaced Repetition Scheduler is an open algorithm that calculates optimal review intervals. Integrating it meant understanding its state model (stability, difficulty, retrievability) and persisting that per-note.
 
-![Email reminder](./relearnify-mail.png)
+**Gemini summarization** — Long notes get a "summarize" button. Useful for reviewing dense content quickly.
 
-## **Impact & Results**
+## What I Learned
 
-- Increased potential memory retention by up to 70% using the FSRS algorithm.
-- Automated the delivery of ~240 review emails monthly with a background job queue using Vercel.
-- Added a Gemini API-powered summarization feature to quickly condense long notes.
+Note-taking UX has a lot of invisible details. Keyboard shortcuts, paste handling, list indentation, mobile responsiveness - you only notice when they're broken. Spent more time on these edge cases than core features.
 
-## **Key Takeaways**
+## What's Next
 
-- A note-taking app can have many small UX features that are only noticeable when they're not there. Precision is key here.
-- Learned to integrate external APIs (Google Gemini, Resend, Tiptap).
+Working on v2 as an offline-first app. The current version needs internet for everything. Local-first with sync would be more resilient.
 
-## **Technical Challenges & Decisions**
+## Links
 
-- There were quite a few challenges like properly using Tiptap and FSRS. Even though I used well known libraries, still the APIs needed context and there was a lot of digging to do. I also monkeypatched some of Tiptap's APIs so I can use links instead of embeds for YouTube videos in my notes.
-
-- Working on a second iteration for Relearnify after my learnings with the first one, that will primarily be an offline-first note-taking application.
-
-## **Links**
-
-- https://relearnify.vercel.app/
+- **Live:** [relearnify.vercel.app](https://relearnify.vercel.app/)

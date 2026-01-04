@@ -1,58 +1,51 @@
 ---
 pubDate: '2069-09-23T23:11:00.000Z'
 title: Worklist Job Board
-description: Lessons on building a job board with delightful UX
+description: PostgreSQL full-text search + payment webhooks
 heroImage: './wkl.png'
 category: 'Portfolio'
 tags: ['portfolio']
 ---
 
-_Sorry for the scribbled image the project is not running now and I didn't take any screenshots :(_
+A job board with proper search. Built to learn PostgreSQL full-text search and payment webhook handling.
 
-**My Role**: Sole Developer\
-**Team Size**: 1\
-**Timeline**: 1 Month\
-**Tech Stack:** `Django, Django Rest Framework, PostgreSQL, SSLCommerz API`
+> Project is no longer running - this is a retrospective.
 
-## The Problem
+**Tech Stack:** `Django` `PostgreSQL` `SSLCommerz API`
 
-Job seekers often struggle with generic search results. The goal was to create a platform where users could find relevant job postings using a powerful search experience, moving beyond simple keyword matching.
+## Why Not Just Use LIKE?
 
-## The Solution
+`LIKE '%python developer%'` is the obvious approach. It's also slow and dumb - no relevance ranking, no stemming, breaks on word order.
 
-I built a full-stack job board application. The core feature was a full-text search capability powered by PostgreSQL, allowing for efficient querying of job descriptions to deliver more accurate results.
+PostgreSQL has built-in full-text search. You create a `SearchVector` on your text columns, query with `SearchQuery`, and get ranked results with stemming and stop-word handling for free:
 
-## Impact & Results
+```python
+from django.contrib.postgres.search import SearchVector, SearchQuery
 
-- Successfully implemented a search feature that was more effective than standard `LIKE` queries.
-- Integrated a complete payment flow using SSLCommerz for posting jobs.
-- Authored a technical blog post on the search implementation to share the knowledge. Can be found here: [Simple and Efficient Full-Text Search using Django and Postgres](/post/fts-django/)
+Job.objects.annotate(
+    search=SearchVector('title', 'description')
+).filter(search=SearchQuery('python developer'))
+```
 
-## Key Takeaways
+No Elasticsearch needed. The database handles indexing, ranking, and query parsing. I wrote a full blog post on this: [Simple and Efficient Full-Text Search using Django and Postgres](/post/fts-django/)
 
-- Gained a deeper understanding of leveraging database-native features like full-text search.
-- Learned how to handle asynchronous, event-driven processes using webhooks for payment processing.
+## Payment Webhooks
 
-## My Contributions
+Job posts required payment before going live. The naive approach: user pays → redirect back → activate post. Problem: what if the redirect fails? User paid but post never activates.
 
-- I architected and built the entire application, including the REST API and database schema.
-- I implemented the full-text search indexing and query logic within Django's ORM.
-- I integrated the SSLCommerz API and managed webhook events for payment processing.
-- Deployed to production using AWS EC2 and RDS with Nginx and Gunicorn, including SSL setup.
+The fix: SSLCommerz webhooks. Payment processor calls your endpoint when payment succeeds, regardless of what happens on the frontend. Post activation is decoupled from the user's browser session.
 
-## Technical Challenges & Decisions
+```
+User pays → SSLCommerz processes → Webhook fires → Post activates
+                                      ↑
+                         (happens server-to-server)
+```
 
-**Challenge: Inefficient Job Post Searching**
+## Deployment
 
-- **Problem:** Basic database queries (`LIKE`) were too slow and inaccurate for searching through large job descriptions.
-- **Solution:** I used PostgreSQL's built-in `SearchVector` and `SearchQuery`. This offloaded search logic to the database, resulting in faster, more relevant results and a simpler application layer.
-
-**Challenge: Handling Payment Transaction State**
-
-- **Problem:** Reliably updating a job post's status after payment, even with potential network failures.
-- **Solution:** I used SSLCommerz Webhooks to listen for payment success events asynchronously. This decoupled payment verification from the user request, ensuring job posts were only activated after a confirmed payment.
+EC2 + RDS + Nginx + Gunicorn + SSL. Standard Django production setup on AWS.
 
 ## Links
 
 - **GitHub:** [github.com/Aryan3212/worklist](https://github.com/Aryan3212/worklist)
-- **Blog Post:** [Simple and Efficient Full-Text Search using Django and Postgres](/post/fts-django)
+- **Blog Post:** [Full-Text Search with Django + Postgres](/post/fts-django)
