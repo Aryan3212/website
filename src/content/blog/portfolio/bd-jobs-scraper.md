@@ -2,70 +2,44 @@
 pubDate: '2089-09-23T23:11:00.000Z'
 title: BDJobs Scraper
 description: >-
-  Scraping 5000 job posts in 8 seconds
+  Scraping 5000 job posts in 10 minutes
 heroImage: './bdjobs-scraper.png'
 category: 'Portfolio'
 tags: ['portfolio']
 ---
 
-A high-performance web scraper for collecting job market data.
+A scraper for BDJobs.com that collects job market data from Bangladesh. Extracts 31+ fields per job including salary, requirements, and company info.
 
-**My Role:** Sole Developer\
-**Team Size:** Solo Project\
-**Timeline:** 1 day\
+> **Disclaimer:** This scraper is bound to be brittle and may break if any of the APIs change. For educational and research purposes only.
+
 **Tech Stack:** `Python` `asyncio` `aiohttp` `BeautifulSoup4`
 
-## The Problem
+## How It Works
 
-To analyze the job market in Bangladesh, I needed access to a large, structured dataset of recent job postings. This data was unavailable in an easily accessible format, making any quantitative analysis of industry trends, required skills, or salary benchmarks difficult.
+BDJobs migrated from server-rendered pages to an Angular SPA, which broke my original HTML scraper. But digging through the Network tab revealed something better: their internal REST API.
 
-## The Solution
+Two endpoints power the whole thing:
 
-I developed an asynchronous Python script to scrape the BDJobs website, the largest job portal in the country. The script navigates through thousands of job listings, extracts key details from each posting—such as title, company, experience, and salary—and saves the structured data into a CSV file.
+- **List API** — returns paginated job listings (~60 per page)
+- **Details API** — returns complete job info (found buried in Angular's bundle)
 
-## **Impact & Results**
+No authentication, lenient rate limits, structured JSON. Much cleaner than parsing brittle CSS selectors.
 
-- Successfully collected a comprehensive dataset of over 5,000 job listings.
-- Reduced data collection time by over 85% compared to a synchronous implementation.
-- The generated dataset was processed and publicly shared on Kaggle to aid other researchers and analysts.
-- Current Status: The project is now deprecated, as significant changes to the target website's UI made the original parsing logic obsolete.
+## Performance
 
-## **Key Takeaways**
+- ~110 pages of listings in ~28 seconds
+- ~5,500 job details in ~8 minutes (batched, 20 concurrent)
+- **Total:** ~10 minutes for the complete dataset
 
-- Asynchronous programming is a powerful tool for optimizing I/O-bound applications.
-- Building simple, effective fault-tolerance mechanisms is critical for reliable data collection.
-- Even for personal projects, considering memory efficiency leads to more robust and scalable designs.
+## The Interesting Bits
 
-## My Contributions
+**Dynamic CSV columns** — automatically detects new API fields and adds them. Future-proof.
 
-- Built the end-to-end scraping pipeline using `asyncio` and `aiohttp` to make concurrent requests.
-- Created a retry mechanism to handle network failures.
-- Optimized for memory by streaming results directly to a CSV file, keeping memory usage low and constant.
+**Batch processing** — processes jobs 20 at a time with connection pooling. Doesn't overwhelm the server, doesn't eat memory.
 
-## Technical Challenges & Decisions
+**Retry mechanism** — failed requests get queued and retried up to 10 times.
 
-**1. Challenge: Inefficient Sequential Scraping**
-
-- **Solution:** A simple synchronous scraper would have taken over an hour to process ~5,000 pages. I chose `asyncio` and `aiohttp` to perform network requests concurrently. This reduced the total execution time from an estimated 83 minutes to under 10 minutes, an 8x speed improvement.
-
-```python
-# Utilizing asyncio.gather to run concurrent tasks for fetching all job links
-tasks = [parse_links(page, session) for page in range(2, total_pages + 1)]
-results = await asyncio.gather(*tasks)
-links += flatten(results)
-
-# A second, larger pool of concurrent requests for individual job detail pages
-conn_new = aiohttp.TCPConnector(limit=15)
-session_new = aiohttp.ClientSession(connector=conn_new)
-tasks = [get_details_page(link, writer, session_new) for link in links]
-(await asyncio.gather(*tasks))
-```
-
-**2. Challenge: Handling Intermittent Network Failures**
-
-- **Solution:** To prevent data loss from failed requests, I implemented a simple retry queue. Any link that failed to fetch was added to a `retry` list, which the script would process again in batches until the list was empty or a max retry count was reached.
-
-## **Links**
+## Links
 
 - **GitHub:** [github.com/Aryan3212/bdjobs-scraper](https://github.com/Aryan3212/bdjobs-scraper)
 - **Kaggle Dataset:** [kaggle.com/datasets/aryanrahman/bdjobs-all-job-listings-20-november-5pm](https://www.kaggle.com/datasets/aryanrahman/bdjobs-all-job-listings-20-november-5pm)
