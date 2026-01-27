@@ -1,14 +1,22 @@
 ---
-pubDate: '2096-09-23T23:11:00.000Z'
+pubDate: '2025-09-26T00:00:00.000Z'
 title: Relearnify
 description: >-
   A notes app that emails you what to review
+postOrder: 5
 heroImage: './relearnify.png'
 category: 'Portfolio'
 tags: ['portfolio']
 ---
 
-A notes app that emails you scheduled reviews based on spaced repetition. You take notes, it tells you when to revisit them.
+A notes app that emails you what to review. You write notes once, and the app nudges you later when it’s actually worth revisiting.
+
+## TL;DR
+
+- Rich-text notes + FSRS scheduling + daily review emails.
+- The “fun parts”: a Tiptap patch, background jobs, and a one-click “summarize” for long notes.
+
+<!-- PORTFOLIO_PROOF: Add a reliability note (retries/idempotency, queue failure modes) + an email deliverability screenshot (Resend dashboard, etc.). -->
 
 **Tech Stack:** `Next.js` `tRPC` `PostgreSQL` `BullMQ` `Tiptap` `Gemini API`
 
@@ -16,28 +24,27 @@ A notes app that emails you scheduled reviews based on spaced repetition. You ta
 
 [![Demo](./relearnify-demo.png)](https://www.loom.com/share/85dd30e9d272471cadba553f48bafe9e?sid=52464fca-7d46-484d-a3da-1300471e3ea9)
 
-## How It Works
+### How it works (the simple version)
 
-1. Write notes in a rich text editor (Tiptap)
-2. FSRS algorithm schedules optimal review times
-3. Background jobs (BullMQ) queue up daily emails
-4. You get an email with notes to review
+1. You write a note (Tiptap editor).
+2. FSRS schedules when you should see it again.
+3. A background queue sends you a daily email with “today’s reviews”.
 
 ![Email example](./relearnify-mail.png)
 
-## The Interesting Bits
+### The parts that were more annoying than expected
 
-**Monkeypatching Tiptap** — Tiptap's default YouTube handling embeds videos inline. I wanted links instead (lighter, less distracting). Ended up patching the extension's node view to render as a styled link rather than an iframe.
+**Tiptap patching.** Tiptap’s default YouTube embed is an iframe. I wanted a clean link instead (lighter UI, fewer distractions), so I patched the extension’s node view to render a styled link.
 
-**FSRS integration** — The Free Spaced Repetition Scheduler is an open algorithm that calculates optimal review intervals. Integrating it meant understanding its state model (stability, difficulty, retrievability) and persisting that per-note.
+**FSRS integration.** The scheduling model has state (stability, difficulty, retrievability). The real work is persisting that per note and not breaking it when notes change.
 
-**Gemini summarization** — Long notes get a "summarize" button. Useful for reviewing dense content quickly.
+**Summarization.** Long notes get a “summarize” button (Gemini). It’s not magic, but it’s genuinely useful when you’re reviewing dense stuff and just need the gist.
 
-## What I Learned
+### What I learned
 
 Note-taking UX has a lot of invisible details. Keyboard shortcuts, paste handling, list indentation, mobile responsiveness - you only notice when they're broken. Spent more time on these edge cases than core features.
 
-## What's Next
+### What’s next
 
 Working on v2 as an offline-first app. The current version needs internet for everything. Local-first with sync would be more resilient.
 

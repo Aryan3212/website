@@ -8,14 +8,23 @@ import CheckIcon from '../icons/CheckIcon.astro'
 
 <script>
 	const coppyBlock = () => {
-		const codeBlock = document.querySelectorAll('pre')
+		// Only attach copy behavior to code blocks that actually render the copy button.
+		const codeBlock = document.querySelectorAll('pre.code')
 
 		codeBlock.forEach((code) => {
 			const button = code.querySelector('.copy-button')
 			const check = code.querySelector('.check-span')
 
-			button!.addEventListener('click', () => {
-				navigator.clipboard.writeText(code.textContent?.trim() || '')
+			if (!(button instanceof HTMLElement)) return
+			if (button.dataset.bound === 'true') return
+			button.dataset.bound = 'true'
+
+			button.addEventListener('click', async () => {
+				try {
+					await navigator.clipboard.writeText(code.textContent?.trim() || '')
+				} catch {
+					// Clipboard may be unavailable depending on browser/permissions.
+				}
 				check?.classList.remove('opacity-0')
 				button?.classList.add('opacity-0')
 				setTimeout(() => {

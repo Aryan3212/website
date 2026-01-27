@@ -2,7 +2,7 @@
 pubDate: '2025-01-01T23:10:00.000Z'
 title: 'Microservices Part 1: Why Microservices?'
 description: 'The reasoning behind choosing microservices architecture and why jobs require them.'
-tags: ['technical']
+tags: ['technical', 'portfolio']
 heroImage: '../../assets/images/te.jpg'
 category: 'Tech'
 ---

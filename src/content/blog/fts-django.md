@@ -3,7 +3,7 @@ pubDate: '2025-01-25T23:10:00.000Z'
 title: Simple and Efficient Full Text Search using Django and Postgres
 description: >-
   Simple and Efficient Full Text Search using Django and Postgres
-tags: ['technical']
+tags: ['technical', 'portfolio']
 heroImage: '../../assets/images/te.jpg'
 category: 'Tech'
 ---

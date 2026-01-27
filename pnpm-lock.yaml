@@ -11,6 +11,9 @@ importers:
       '@astrojs/rss':
         specifier: 4.0.1
         version: 4.0.1
+      '@panzoom/panzoom':
+        specifier: ^4.6.1
+        version: 4.6.1
       astro:
         specifier: 4.0.8
         version: 4.0.8(typescript@5.2.2)
@@ -642,6 +645,9 @@ packages:
     resolution: {integrity: sha512-S+Yq4FyvXJm4F+iN/wRiLvEEF8Xs9lTKGtQGaRHXJslQyl65dytDDPIULXJXIadrDbnMrnTt4C2YHmEUIyUIHg==}
     cpu: [x64]
     os: [win32]
+
+  '@panzoom/panzoom@4.6.1':
+    resolution: {integrity: sha512-ogf/KhHHjj+DYAvHfaf3TXMQ8OE36pJtKpabLlx1OmpjcgtpCvkUoCiNONA8kuVRPGJdLiqMf0n8LRFXj1OyuA==}
 
   '@pkgr/utils@2.4.2':
     resolution: {integrity: sha512-POgTXhjrTfbTV63DiFXav4lBHiICLKKwDeaKn9Nphwj7WH6m0hMMCaJkMyRWjgtPFyRKRVoMXXjczsTQRDEhYw==}
@@ -3683,6 +3689,8 @@ snapshots:
 
   '@pagefind/windows-x64@1.0.3':
     optional: true
+
+  '@panzoom/panzoom@4.6.1': {}
 
   '@pkgr/utils@2.4.2':
     dependencies:

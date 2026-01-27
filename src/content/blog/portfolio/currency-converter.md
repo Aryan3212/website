@@ -1,8 +1,9 @@
 ---
-pubDate: '2096-09-20T00:00:00.000Z'
+pubDate: '2026-01-04T00:00:00.000Z'
 title: Building an Offline-First Currency Converter
 description: >-
   Built a production currency converter that serves unlimited users with just ~60 API calls/month using multi-tier caching and offline-first architecture
+postOrder: 6
 heroImage: './currency-converter.png'
 category: 'Portfolio'
 tags: ['portfolio']
@@ -12,53 +13,28 @@ tags: ['portfolio']
 
 **Tech Stack:** `Remix` `Workbox` `Upstash Redis` `Service Workers` `localStorage`
 
----
+## TL;DR
 
-Live at https://multiplecurrencyconverter.fly.dev/
+- Fixer’s free tier is 100 requests/month, so I treated rates as “slow-moving data” and cached aggressively.
+- Works offline after the first visit: server cache + localStorage + a service worker fallback.
 
-## The Problem
+<!-- PORTFOLIO_PROOF: Add a screenshot/GIF showing offline usage + (optional) a chart/log excerpt showing API calls/month staying ~60. -->
 
-Currency APIs like Fixer.io have strict rate limits (100 requests/month on free tier). Building a production app that serves thousands of users requires a smarter approach than direct API calls.
+**Live:** [multiplecurrencyconverter.fly.dev](https://multiplecurrencyconverter.fly.dev/)
 
-**Constraints I had to work around:**
+Fixer’s free tier is basically unusable for a real product (100 requests/month). But currency rates also don’t change every second. So I stopped thinking “API problem” and started thinking “caching problem”.
 
-- Free tier API limit: 100 requests/month
-- Need to serve unlimited users
-- Must work offline after first visit
-- Currency rates need to be reasonably fresh but don't change frequently
+The goal was simple:
 
----
+- Unlimited users (within reason) without blowing the API limit.
+- Works offline after you’ve opened it once.
+- Doesn’t hard-fail when Fixer (or the network) is down.
 
-## The Architecture
+### The core idea
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                        CLIENT                                │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────┐  │
-│  │ React/Remix  │──│ localStorage │──│ Service Worker   │  │
-│  │    UI        │  │   Cache      │  │ (Workbox)        │  │
-│  └──────────────┘  └──────────────┘  └──────────────────┘  │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                        SERVER                                │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────┐  │
-│  │ Remix Loader │──│ Upstash      │──│ Fixer.io API     │  │
-│  │              │  │ Redis        │  │ (rate limited)   │  │
-│  └──────────────┘  └──────────────┘  └──────────────────┘  │
-└─────────────────────────────────────────────────────────────┘
-```
+Cache rates for ~14 hours on the server. That’s 2 calls/day → ~60 calls/month. Everything else is just layers of fallback around that.
 
-The key insight: currency rates don't change frequently. A 14-hour cache is perfectly acceptable, allowing us to serve unlimited users with minimal API calls.
-
----
-
-## What I Built
-
-**1. Three-Tier Server Cache**
-
-The server-side caching strategy bypasses rate limits entirely. Currency rates are cached in Upstash Redis with a 14-hour TTL, plus a permanent fallback for graceful degradation.
+### Server-side cache (so traffic doesn’t matter)
 
 ```typescript
 // app/lib/currency.server.ts
@@ -84,13 +60,11 @@ try {
 }
 ```
 
-Result: 1 API call per 14 hours regardless of traffic. 100 monthly requests → 2 calls/day × 30 = 60 used.
+Result: traffic can spike and the API call count stays basically flat.
 
-**2. Four-Layer Offline-First Cache**
+### Client-side cache (so offline works)
 
-Layer 1: Upstash Redis (Server) - Serverless Redis caches API responses with hot cache (TTL) and permanent fallback.
-
-Layer 2: localStorage (Client) - Client-side persistence for offline access.
+I persisted the last good payload locally, so if you lose network you still get a usable converter:
 
 ```typescript
 // app/components/CurrencyPage.tsx
@@ -106,7 +80,7 @@ useEffect(() => {
 }, [])
 ```
 
-Layer 3: Remix Client Loader - Graceful fallback when network fails.
+Remix client loader fallback:
 
 ```typescript
 // app/routes/convert.$path.tsx
@@ -122,7 +96,7 @@ export const clientLoader = async ({ serverLoader }) => {
 }
 ```
 
-Layer 4: Service Worker (Workbox) - NetworkFirst strategy with 3-second timeout, serves cached version if offline or slow.
+Service worker: try network first, but don’t make the UI wait forever:
 
 ```typescript
 // app/plain-sw.ts
@@ -137,36 +111,11 @@ registerRoute(
 )
 ```
 
----
+### Things I learned
 
-## Learnings
-
-**Cache aggressively when data is stable.** Currency rates are stable enough for 14-hour caching. This insight transformed the architecture from "how do we handle rate limits" to "how do we cache effectively."
-
-**Multiple fallback layers prevent failures.** Redis → localStorage → hardcoded data ensures the app never completely fails, even when offline or when APIs are down.
-
-**NetworkFirst > CacheFirst for user experience.** Users get fresh data when online, cached when offline. The 3-second timeout prevents slow network from blocking the UI.
-
-**Service worker activation matters.** Clean up old caches on activate event to prevent stale data from persisting across deployments.
-
----
-
-## Impact
-
-- Converter serves unlimited users with just ~60 API calls/month
-- Works completely offline after first visit
-- Zero downtime during API outages (graceful degradation)
-- Fast user experience with multi-layer caching
-
----
-
-## Key Takeaways
-
-**Rate limits are a caching problem, not an API problem.** By understanding that currency rates don't need real-time updates, I could design a caching strategy that made the rate limit irrelevant.
-
-**Offline-first architecture improves UX.** The four-layer cache system means users get instant responses even when offline, and the app degrades gracefully when APIs fail.
-
-**Client and server caching work together.** Server-side caching reduces API calls, client-side caching enables offline functionality. Both are necessary for a production app.
+- Rate limits are rarely “API problems”. They’re usually “you didn’t cache” problems.
+- Service worker lifecycle matters. If you don’t manage activation/old caches, you’ll get weird stale behavior that’s hard to debug.
+- Multiple fallbacks are worth it. Redis → localStorage → hardcoded fallback is the difference between “offline-first” and “offline-broken”.
 
 ---
 

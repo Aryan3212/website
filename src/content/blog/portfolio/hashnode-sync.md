@@ -1,17 +1,25 @@
 ---
-pubDate: '2070-09-23T23:11:00.000Z'
+pubDate: '2025-09-26T00:00:00.000Z'
 title: Hashnode Sync
 description: A CLI for syncing with Hashnode - Hashnode Hackathon Submission
+postOrder: 8
 heroImage: './hsync.png'
 category: 'Portfolio'
 tags: ['portfolio']
 ---
 
-A CLI tool that syncs local markdown files to Hashnode. Built in a day for the Hashnode GraphQL hackathon.
+A CLI that syncs a folder of local markdown files to Hashnode. I built it in a day for the Hashnode GraphQL hackathon because I wanted “content-as-code” for blogging.
+
+## TL;DR
+
+- Content-as-code workflow: edit locally, run one command, post updates remotely.
+- The nice trick: a Proxy that auto-persists state whenever you mutate the config object.
+
+<!-- PORTFOLIO_DEMO: Add a short terminal recording/GIF showing sync in action (create -> sync -> update -> sync). -->
 
 **Tech Stack:** `Node.js` `GraphQL` `npm`
 
-## The Trick: Auto-Persisting State with Proxies
+### The trick: state that saves itself
 
 The CLI needs to remember sync state between runs - which files were synced, their Hashnode IDs, content hashes. The typical approach: manual read/write calls everywhere.
 
@@ -32,11 +40,11 @@ function getSyncedJson(path) {
 
 Now `config.lastSync = Date.now()` just works - no explicit save calls. The codebase got much simpler.
 
-## Change Detection
+### Change detection
 
 SHA-256 hashing on file content + metadata. Only files with changed hashes trigger API calls. No diff logic needed - if the hash matches, skip it.
 
-## What It Does
+### What it does
 
 - Watches a folder of markdown files
 - Detects new/changed/deleted posts

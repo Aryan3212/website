@@ -1,8 +1,9 @@
 ---
-pubDate: '2097-06-15T00:00:00.000Z'
+pubDate: '2026-01-04T00:00:00.000Z'
 title: SEO Content Builder - Growing Search Traffic 3.5X
 description: >-
   Building an in-house drag-and-drop page builder that helped scale organic search traffic from 33k to 116k monthly visits.
+postOrder: 4
 heroImage: './gozayaan-seo.png'
 category: 'Portfolio'
 tags: ['portfolio']
@@ -12,65 +13,36 @@ tags: ['portfolio']
 
 **Tech Stack:** `Vue.js` `Nuxt.js` `JSON-LD/Structured Data`
 
----
+## TL;DR
 
-## The Problem
+- Marketing needed SEO landing pages without waiting on engineers.
+- I built a simple builder + component library that shipped structured data automatically.
 
-GoZayaan's marketing team needed to publish SEO-optimized landing pages for travel destinations, deals, and guides. Every page required engineering involvement - creating bottlenecks and slowing down content production.
+<!-- PORTFOLIO_DEMO: Add a 30-60s Loom showing the builder (create page -> publish -> see live page). -->
+<!-- PORTFOLIO_PROOF: Add a GSC/analytics chart for 33k -> 116k/month with a date range + what else changed during that period. -->
 
-The team was stuck at ~33k monthly organic visitors, and scaling content meant scaling engineering time.
+At GoZayaan, we had a classic bottleneck: marketing wanted to publish a lot of SEO pages (destinations, deals, guides), but every page required engineering time. That doesn’t scale. You either hire more engineers to do content work (bad use of engineers) or you build leverage.
 
----
+So we built leverage: a drag-and-drop builder that non-technical teammates could use without breaking SEO.
 
-## The Solution
+### What the builder did (in practice)
 
-We built an in-house drag-and-drop content builder with SEO optimization baked in. The design principle was simplicity - the marketing team needed to push content without asking engineering for help.
+- A **small set of reusable blocks** (hero, cards, CTA, tables, etc.).
+- **Page duplication** so they didn’t start from scratch each time.
+- An **image picker** that plugged into our CDN/assets.
+- The important bit: **structured data was automatic.** The user picks a “FAQ block”, and the page gets `FAQPage` JSON-LD. Same idea for products, articles, whatever. No one had to remember schema rules.
 
-**Key features:**
+### What was harder than it looks
 
-- Reusable component library (hero sections, cards, CTAs, tables)
-- Auto-generated JSON-LD structured data for each component type
-- Image library selection component for asset management
-- Page duplication flow for faster content creation
+- **Editable tables.** Tables are deceptively annoying: you want something that _feels_ like Notion/Sheets, but you also need a stable data model for saving/publishing. I ended up with normalized state (cells by position) and reactive watchers to keep the UI and saved state consistent.
+- **Making it boring.** This is a weird goal, but it’s real: if the UI is clever, adoption drops. The tool needed to feel obvious so the marketing team actually used it.
 
----
+### Result
 
-## Impact
+- Organic traffic grew from ~33k/month to ~116k/month over time (3.5x).
+- 57 SEO pages shipped by H2 2025.
+- Marketing could publish without engineering involvement for each page.
 
-- **Organic traffic: 33k → 116k/month (3.5X increase)**
-- 57 SEO-optimized content pages published by H2 2025
-- Marketing team gained full independence for content publishing
-
----
-
-## Technical Challenges
-
-### Editable Tables
-
-The toughest challenge was creating tables that could be edited inline while maintaining data integrity.
-
-The solution involved a normalized state structure where cells were indexed by position, with reactive watchers handling the UI updates.
-
-### Image Library Component
-
-Built the image library selection component from scratch. It needed to integrate with our existing asset CDN while providing a smooth UX for non-technical users.
-
-### Structured Data Generation
-
-Each component type had its own JSON-LD schema requirements. I created a mapping system where adding a component automatically injected the appropriate structured data into the page head.
-
-For example, FAQ components generated `FAQPage` schema, product cards generated `Product` schema, and so on. This automated what would otherwise be manual SEO work for each page.
-
----
-
-## Key Takeaways
-
-**Building tools for non-technical teams multiplies your impact.** The 57 pages weren't built by me - they were built by the marketing team using the tool I built. That's leverage.
-
-**SEO is a long game.** The traffic growth happened over months, not days. Proper foundations compound.
-
-**Simplicity is a feature.** The marketing team's adoption was high because the tool was simple. Complex features that don't get used don't matter.
-
----
+If I rebuilt it, I’d spend even more time on guardrails: previews, validation, and “you can’t publish if this breaks SEO basics” checks. Those are the kinds of sharp edges non-engineers run into first.
 
 [Back to Portfolio Overview](/post/portfolio/about-me)

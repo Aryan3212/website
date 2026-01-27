@@ -2,7 +2,7 @@
 pubDate: '2025-01-09T15:51:00.000Z'
 title: 'Why Types Matter in Programming'
 description: 'Understanding the purpose of types in programming languages and their role in managing code complexity'
-tags: ['technical']
+tags: ['technical', 'portfolio']
 heroImage: '../../assets/images/te.jpg'
 category: 'Tech'
 ---

@@ -7,6 +7,9 @@ const blog = defineCollection({
 		z.object({
 			title: z.string().max(80),
 			description: z.string(),
+			// Optional manual ordering for curated pages (e.g. portfolio).
+			// Lower numbers appear first. Falls back to pubDate ordering when absent.
+			postOrder: z.number().int().optional(),
 			// Transform string to Date object
 			pubDate: z
 				.string()
