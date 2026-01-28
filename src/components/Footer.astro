@@ -1,14 +1,40 @@
 ---
-import Contacts from '@/components/Contacts'
-
 const today = new Date()
 ---
 
-<footer class='flex justify-between items-center w-full px-8 md:px-16 h-28 border-t-2'>
+<footer
+	class='flex flex-col gap-4 md:flex-row md:items-center md:justify-between w-full px-8 md:px-16 py-6 border-t-2'
+>
 	<div class='text-sm md:text-base'>
 		&copy; {today.getFullYear()} Aryan Rahman. All rights reserved.
 	</div>
-	<div class='hidden md:block w-[420px] max-w-[45%]'>
-		<Contacts />
+	<div class='flex flex-wrap items-center gap-x-4 gap-y-2 text-sm'>
+		<a class='underline underline-offset-4' href='mailto:rahman.aryan07@gmail.com'>
+			rahman.aryan07@gmail.com
+		</a>
+		<a
+			class='underline underline-offset-4'
+			href='https://github.com/aryan3212'
+			target='_blank'
+			rel='noopener noreferrer'
+		>
+			GitHub
+		</a>
+		<a
+			class='underline underline-offset-4'
+			href='https://www.linkedin.com/in/aryanrahman3212/'
+			target='_blank'
+			rel='noopener noreferrer'
+		>
+			LinkedIn
+		</a>
+		<a
+			class='underline underline-offset-4'
+			href='https://x.com/aryantwitting'
+			target='_blank'
+			rel='noopener noreferrer'
+		>
+			X
+		</a>
 	</div>
 </footer>
