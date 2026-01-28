@@ -14,8 +14,6 @@ tags: ['portfolio']
 - Full-stack engineer (enterprise SaaS + travel tech + personal products).
 - I like ownership, shipping, and measurable impact.
 
-<!-- PORTFOLIO_PROOF: Add 2-3 bullets with links to specific timestamps in the video (e.g. "what I optimize for", "current interests"). -->
-
 <div class="responsive-video">
   <iframe
     src="https://www.youtube.com/embed/biD09Zh1RY0?si=3u0X6-CK5_ys1ka7"

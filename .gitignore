@@ -25,3 +25,11 @@ pnpm-debug.log*
 
 node_modules
 .unlighthouse
+
+# local/private files
+AGENTS.md
+CLAUDE.md
+mywriting.txt
+Aryan Rahman Resume 2026.pdf
+Aryan Rahman Resume 2026 Academic.pdf
+voice.md

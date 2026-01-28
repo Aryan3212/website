@@ -15,8 +15,6 @@ A CLI that syncs a folder of local markdown files to Hashnode. I built it in a d
 - Content-as-code workflow: edit locally, run one command, post updates remotely.
 - The nice trick: a Proxy that auto-persists state whenever you mutate the config object.
 
-<!-- PORTFOLIO_DEMO: Add a short terminal recording/GIF showing sync in action (create -> sync -> update -> sync). -->
-
 **Tech Stack:** `Node.js` `GraphQL` `npm`
 
 ### The trick: state that saves itself

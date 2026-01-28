@@ -17,8 +17,6 @@ A job board with proper search. Built to learn PostgreSQL full-text search and p
 - Implemented Postgres full-text search (ranking > naive `LIKE`).
 - Made payments reliable via server-to-server webhooks (not browser redirects).
 
-<!-- PORTFOLIO_PROOF: Add a screenshot of search results + a note on indexing (GIN) and webhook verification/idempotency. -->
-
 **Tech Stack:** `Django` `PostgreSQL` `SSLCommerz API`
 
 The two interesting bits in this project were search and payments. Everything else was normal CRUD.

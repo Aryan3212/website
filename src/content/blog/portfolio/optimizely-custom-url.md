@@ -9,41 +9,71 @@ category: 'Portfolio'
 tags: ['portfolio']
 ---
 
-**My Role:** Full Stack Software Engineer
-
-**Tech Stack:** `AWS CloudFront` `Lambda@Edge` `DynamoDB` `Python`
+Custom URLs sound like a small routing feature until your “URLs” are served behind CloudFront, across branded domains, and you can’t afford to break caching or ship a redirect loop to enterprise customers.
 
 ## TL;DR
 
-- Custom URLs _at the CDN edge_ (so it works for branded domains and never hits the app unless it should).
-- Backwards compatible, with guardrails for collisions + reserved system paths.
+- Implemented an edge-first custom URL resolver (CloudFront + Lambda@Edge + DynamoDB) so branded vanity paths resolve without hitting the app unless they should.
+- Built validation + guardrails to prevent collisions, reserved system paths, and “looks valid but breaks prod” edge cases.
+- Shipped safely via monitoring + staged rollout (with a clean rollback path).
 
-<!-- PORTFOLIO_PROOF: Add a redacted diagram + rollout notes (monitoring, rollback) and a screenshot of traffic/latency/error rate. -->
+**My role:** Full Stack Software Engineer  
+**Tech stack:** `AWS CloudFront` · `Lambda@Edge` · `DynamoDB` · `Python`  
+**Scale:** ~1M+ assets/day (plus the fun of global edge behavior)
 
-Custom URLs sound like a small “routing” feature until you’re doing it behind CloudFront on multiple branded domains. At that point, this isn’t a controller change. It’s changing how requests flow through the whole system.
+## What I built (in plain terms)
 
-Here’s the mental model that ended up mattering:
+Users could create a vanity path like `/summer-sale` on a branded domain, and we’d serve the right underlying asset/page without rewriting a bunch of application routing. The key detail: resolution had to happen at the CDN edge, not “somewhere in the app”.
+
+The mental model that mattered:
 
 ```
 request -> CloudFront -> Lambda@Edge (resolve) -> reverse proxy -> k8s -> S3/app
 ```
 
-### What I actually owned
+## Constraints that shaped the solution
 
-- **Creating URLs safely.** Users shouldn’t be able to claim system-reserved paths, and they shouldn’t be able to collide with existing URLs. I added strict validation (regex + reserved path rules) before a mapping could be created.
-- **Edge resolution.** The edge function does a DynamoDB lookup and rewrites the request to the internal path. (Edge functions have their own constraints: packaging limits, regional replication, and you don’t get the same runtime assumptions as normal Lambda.)
-- **Making CloudFront behave.** A lot of this work was CloudFront config: which event triggers to use, which headers/metadata to forward, and how caching interacts with lookups.
-- **Debugging across layers.** When this breaks, it can break silently. I ended up bouncing between CloudFront logs, Lambda@Edge logs (in “weird” regions), and k8s pod logs to trace the request end-to-end.
+- **Branded domains + multiple tenants.** A path isn’t unique unless you include the hostname. (`/about` on domain A might be valid, but reserved on domain B.)
+- **Backwards compatibility.** Existing “real” routes must keep working exactly as before.
+- **Reserved paths.** System routes like `/api`, `/static`, `/admin`, etc. must never be claimable.
+- **Caching needs to stay sane.** If every request becomes “dynamic”, you’ve just set money on fire (and probably regressed latency).
 
-### Things I learned the hard way
+## What I actually owned
 
-- **CDN behavior is nuanced.** Viewer vs origin events and header forwarding rules can make everything “look fine” while still failing at runtime.
-- **Lambda@Edge logging is confusing at first.** Logs show up in the region closest to where the request was served, not where you deployed the function.
-- **Docs aren’t optional for infra features.** The next person needs a breadcrumb trail, otherwise they’ll spend a day just finding the right logs.
+- **Safe URL creation.** Validation rules that blocked reserved paths and collisions (including “it exists but not as a custom URL” collisions).
+- **Edge resolution.** A Lambda@Edge resolver that:
+  - Computes a stable lookup key (domain + path).
+  - Reads the mapping from DynamoDB.
+  - Rewrites the request to the internal target when it’s a match.
+  - Falls back cleanly when it’s not.
+- **Making CloudFront behave.** Picking the right event trigger, forwarding the minimum headers, and keeping caching predictable.
+- **End-to-end debugging.** Tracing issues across CloudFront, Lambda@Edge logs (region surprises included), and k8s pods.
 
-### Outcome
+## Proof (UI behavior + edge constraints)
+
+The feature is boring when it’s working, so here are the two states that actually mattered:
+
+**Valid mapping state:**
+
+![Valid custom URL configuration state](./custom-url-valid-state.png)
+
+**Blocked/invalid state (example: GUID-like path / collision patterns):**
+
+![Invalid custom URL configuration state with GUID-like path](./custom-url-invalid-state-with-guid.png)
+
+## One thing that went wrong (and what I changed)
+
+The first version “worked” in staging and failed in production in a way that looked like random 404s. It ended up being a combination of edge caching behavior + subtle header forwarding differences — classic CloudFront: everything looks correct until the wrong cache key gets involved.
+
+Fix was boring but real: tighten the cache key, forward less, and add explicit logging around “resolved vs passthrough” so we could confirm behavior without guessing.
+
+## Tradeoff I made on purpose
+
+We could’ve built a richer matching engine (wildcards, regex, precedence rules). I didn’t. I kept it intentionally simple (exact path matches + strict validation), because “cute” URL rules become permanent support debt in enterprise systems.
+
+## Outcome
 
 - Shipped to enterprise clients without outages.
-- Left behind internal documentation that made this maintainable (not just “it works on my machine”).
+- Left behind docs/runbooks so the next person can find the right logs and rollback fast.
 
 [Back to Portfolio Overview](/post/portfolio/about-me)

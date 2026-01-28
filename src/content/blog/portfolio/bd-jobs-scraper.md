@@ -18,8 +18,6 @@ A scraper for BDJobs.com that collects job market data from Bangladesh (salary, 
 - BDJobs moved to an Angular SPA, so HTML scraping got painful. I switched to their internal JSON APIs.
 - Pulled ~5.5k job details in ~10 minutes using async batching + retries.
 
-<!-- PORTFOLIO_PROOF: Add a small visualization from the dataset (top roles, salary distribution, etc.) + a short note on rate limiting / ToS / ethics. -->
-
 **Tech Stack:** `Python` `asyncio` `aiohttp` `BeautifulSoup4`
 
 ### How it works

@@ -18,8 +18,6 @@ tags: ['portfolio']
 - Fixer’s free tier is 100 requests/month, so I treated rates as “slow-moving data” and cached aggressively.
 - Works offline after the first visit: server cache + localStorage + a service worker fallback.
 
-<!-- PORTFOLIO_PROOF: Add a screenshot/GIF showing offline usage + (optional) a chart/log excerpt showing API calls/month staying ~60. -->
-
 **Live:** [multiplecurrencyconverter.fly.dev](https://multiplecurrencyconverter.fly.dev/)
 
 Fixer’s free tier is basically unusable for a real product (100 requests/month). But currency rates also don’t change every second. So I stopped thinking “API problem” and started thinking “caching problem”.

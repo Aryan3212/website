@@ -16,8 +16,6 @@ A notes app that emails you what to review. You write notes once, and the app nu
 - Rich-text notes + FSRS scheduling + daily review emails.
 - The “fun parts”: a Tiptap patch, background jobs, and a one-click “summarize” for long notes.
 
-<!-- PORTFOLIO_PROOF: Add a reliability note (retries/idempotency, queue failure modes) + an email deliverability screenshot (Resend dashboard, etc.). -->
-
 **Tech Stack:** `Next.js` `tRPC` `PostgreSQL` `BullMQ` `Tiptap` `Gemini API`
 
 **Try it:** [relearnify.vercel.app](https://relearnify.vercel.app/)
