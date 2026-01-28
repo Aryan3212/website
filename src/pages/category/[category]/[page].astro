@@ -54,6 +54,10 @@ const posts = page.data
 		)
 	}
 	<ListCategories activeCategory={params.category} />
-	<ListPosts posts={posts} FirstBig={true} activeCategory={params.category} />
+	<ListPosts
+		posts={posts}
+		FirstBig={params.category !== 'resume'}
+		activeCategory={params.category}
+	/>
 	<Pagination page={page} />
 </BaseLayout>

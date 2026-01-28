@@ -6,7 +6,9 @@ import BaseLayout from '@/layouts/BaseLayout'
 import { getPosts } from '@/utils'
 
 const MAX_POSTS = 15 // max number of posts to show on the home page
-const posts = await getPosts(MAX_POSTS, true)
+const posts = (await getPosts(undefined, true))
+	.filter((post) => post.data.category?.toLowerCase() !== 'resume')
+	.slice(0, MAX_POSTS)
 ---
 
 <BaseLayout title='Home'>

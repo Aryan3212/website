@@ -5,29 +5,46 @@ import ArrowRight from './icons/ArrowRight.astro'
 const { page } = Astro.props
 ---
 
-<div class='flex gap-5 md:gap-1 justify-around md:justify-end'>
-	<!-- Previous Button -->
-	{
-		page.start > 0 && (
-			<a
-				href={page.url.prev}
-				class='flex items-center justify-center px-8 md:px-4 h-10 text-base font-medium text-black bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-transparent dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
-			>
-				<ArrowLeft />
-			</a>
-		)
-	}
+<nav
+	class='mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between'
+	aria-label='Pagination'
+>
+	<div class='text-sm text-neutral-600 dark:text-neutral-300'>
+		Page <span class='font-semibold text-neutral-900 dark:text-white'>{page.currentPage}</span> of{
+			' '
+		}
+		<span class='font-semibold text-neutral-900 dark:text-white'>{page.lastPage}</span>
+	</div>
 
-	<!-- Next Button -->
+	<div class='flex items-center justify-between gap-3'>
+		<a
+			href={page.url.prev ?? '#'}
+			aria-label='Previous page'
+			rel='prev'
+			class:list={[
+				'flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-semibold transition-colors',
+				'border-gray-300 bg-white text-black hover:bg-gray-100 hover:text-gray-800',
+				'dark:border-gray-700 dark:bg-transparent dark:text-gray-200 dark:hover:bg-gray-700',
+				page.start > 0 ? '' : 'pointer-events-none opacity-40'
+			]}
+		>
+			<ArrowLeft />
+			<span>Previous</span>
+		</a>
 
-	{
-		page.currentPage < page.lastPage && (
-			<a
-				href={page.url.next}
-				class='flex items-center justify-center px-8 md:px-4 h-10 ml-3 text-base font-medium text-black bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-transparent dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
-			>
-				<ArrowRight />
-			</a>
-		)
-	}
-</div>
+		<a
+			href={page.url.next ?? '#'}
+			aria-label='Next page'
+			rel='next'
+			class:list={[
+				'flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-semibold transition-colors',
+				'border-gray-300 bg-white text-black hover:bg-gray-100 hover:text-gray-800',
+				'dark:border-gray-700 dark:bg-transparent dark:text-gray-200 dark:hover:bg-gray-700',
+				page.currentPage < page.lastPage ? '' : 'pointer-events-none opacity-40'
+			]}
+		>
+			<span>Next</span>
+			<ArrowRight />
+		</a>
+	</div>
+</nav>
