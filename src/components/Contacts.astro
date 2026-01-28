@@ -1,0 +1,81 @@
+---
+import EmailIcon from '@/components/icons/EmailIcon'
+import GithubIcon from '@/components/icons/GithubIcon'
+import LinkedinIcon from '@/components/icons/linkedinIcon'
+import CopyIcon from '@/components/icons/CopyIcon'
+import CheckIcon from '@/components/icons/CheckIcon'
+
+type Contact = {
+	label: string
+	value: string
+	icon: any
+}
+
+const contacts: Contact[] = [
+	{ label: 'Email', value: 'rahman.aryan07@gmail.com', icon: EmailIcon },
+	{ label: 'GitHub', value: 'github.com/aryan3212', icon: GithubIcon },
+	{ label: 'LinkedIn', value: 'linkedin.com/in/aryanrahman3212', icon: LinkedinIcon }
+]
+---
+
+<div class='flex flex-col gap-2'>
+	{
+		contacts.map((contact) => (
+			<div class='flex items-center justify-between gap-4 rounded-md bg-neutral-200/30 px-3 py-2 dark:bg-white/5'>
+				<div class='flex items-center gap-3 min-w-0'>
+					<span class='shrink-0 text-neutral-600 dark:text-neutral-300'>{<contact.icon />}</span>
+					<div class='min-w-0'>
+						<div class='text-xs text-neutral-600 dark:text-neutral-300'>{contact.label}</div>
+						<div class='truncate font-mono text-sm'>{contact.value}</div>
+					</div>
+				</div>
+
+				<button
+					type='button'
+					class='contact-copy relative shrink-0 rounded-md p-2 text-neutral-500 hover:text-indigo-500 dark:text-neutral-400 dark:hover:text-indigo-400'
+					aria-label={`Copy ${contact.label}`}
+					data-copy={contact.value}
+				>
+					<span class='copy-icon'>
+						<CopyIcon />
+					</span>
+					<span class='check-icon absolute inset-0 flex items-center justify-center opacity-0'>
+						<CheckIcon />
+					</span>
+				</button>
+			</div>
+		))
+	}
+</div>
+
+<script>
+	const bindContactCopy = () => {
+		const buttons = document.querySelectorAll('button.contact-copy')
+		buttons.forEach((button) => {
+			if (!(button instanceof HTMLButtonElement)) return
+			if (button.dataset.bound === 'true') return
+			button.dataset.bound = 'true'
+
+			button.addEventListener('click', async () => {
+				const text = button.dataset.copy ?? ''
+				try {
+					await navigator.clipboard.writeText(text)
+				} catch {
+					// Clipboard may be unavailable depending on browser/permissions.
+				}
+
+				const check = button.querySelector('.check-icon')
+				const copy = button.querySelector('.copy-icon')
+				check?.classList.remove('opacity-0')
+				copy?.classList.add('opacity-0')
+				setTimeout(() => {
+					check?.classList.add('opacity-0')
+					copy?.classList.remove('opacity-0')
+				}, 1500)
+			})
+		})
+	}
+
+	bindContactCopy()
+	document.addEventListener('astro:after-swap', bindContactCopy)
+</script>

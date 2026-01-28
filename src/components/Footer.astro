@@ -1,7 +1,14 @@
 ---
+import Contacts from '@/components/Contacts'
+
 const today = new Date()
 ---
 
-<footer class='flex justify-center items-center w-full px-16 h-28 border-t-2'>
-	&copy; {today.getFullYear()} Aryan Rahman. All rights reserved.
+<footer class='flex justify-between items-center w-full px-8 md:px-16 h-28 border-t-2'>
+	<div class='text-sm md:text-base'>
+		&copy; {today.getFullYear()} Aryan Rahman. All rights reserved.
+	</div>
+	<div class='hidden md:block w-[420px] max-w-[45%]'>
+		<Contacts />
+	</div>
 </footer>
