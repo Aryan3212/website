@@ -66,5 +66,8 @@
 		"*.{astro,js,jsx,ts,tsx,md,mdx,json}": [
 			"prettier --write --plugin-search-dir=."
 		]
+	},
+	"engines": {
+		"node": ">=24.0.0"
 	}
 }
