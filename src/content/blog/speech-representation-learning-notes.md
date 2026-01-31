@@ -1,6 +1,6 @@
 ---
 pubDate: '2026-01-31T12:00:00.000Z'
-title: 'What I’m Working On: Speech Presentation Learning (Early Research Notes)'
+title: 'What I’m Working On: Speech Representation Learning (Early Research Notes)'
 description: 'A high-level snapshot of my current independent research direction in speech representation learning.'
 tags: ['research', 'audio', 'speech', 'representation-learning']
 heroImage: '../../assets/images/te.jpg'
