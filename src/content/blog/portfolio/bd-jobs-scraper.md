@@ -15,21 +15,21 @@ A scraper for BDJobs.com that collects job market data from Bangladesh (salary, 
 
 ## TL;DR
 
-- BDJobs moved to an Angular SPA, so HTML scraping got painful. I switched to their internal JSON APIs.
+- BDJobs moved to an Angular SPA, so HTML scraping became brittle. The scraper now uses internal JSON APIs.
 - Pulled ~5.5k job details in ~10 minutes using async batching + retries.
 
 **Tech Stack:** `Python` `asyncio` `aiohttp` `BeautifulSoup4`
 
 ### How it works
 
-BDJobs migrated from server-rendered pages to an Angular SPA, which broke my original HTML scraper. But digging through the Network tab revealed something better: their internal REST API.
+BDJobs migrated from server-rendered pages to an Angular SPA, which broke the original HTML scraper. Network inspection exposed internal REST APIs that were more reliable for data extraction.
 
 Two endpoints power the whole thing:
 
 - **List API** — returns paginated job listings (~60 per page)
 - **Details API** — returns complete job info (found buried in Angular's bundle)
 
-No authentication, lenient rate limits, structured JSON. Much cleaner than parsing brittle CSS selectors.
+No authentication, lenient rate limits, and structured JSON. This is more maintainable than parsing brittle CSS selectors.
 
 ### Performance
 
@@ -39,13 +39,13 @@ No authentication, lenient rate limits, structured JSON. Much cleaner than parsi
 
 ### The bits I cared about
 
-**Dynamic CSV columns** — automatically detects new API fields and adds them. Future-proof.
+**Dynamic CSV columns** — automatically detects new API fields and adds them.
 
-**Batch processing** — processes jobs 20 at a time with connection pooling. Doesn't overwhelm the server, doesn't eat memory.
+**Batch processing** — processes jobs 20 at a time with connection pooling to keep load and memory use controlled.
 
 **Retry mechanism** — failed requests get queued and retried up to 10 times.
 
-One note: I’m careful about not hammering sites. Concurrency is capped, and this is meant for research/learning, not abuse.
+Concurrency is capped to avoid overloading the source site. This project is intended for research and learning.
 
 ## Links
 

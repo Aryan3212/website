@@ -14,7 +14,7 @@ type Props = {
 }
 
 const { data, readTime, headings, id } = Astro.props
-const { title, description, pubDate, heroImage, tags } = data
+const { title, description, pubDate, heroImage, demoVideo, demoEmbed, tags } = data
 
 const articleDate = pubDate.toISOString()
 ---
@@ -49,7 +49,30 @@ const articleDate = pubDate.toISOString()
 			</div>
 		</header>
 		{
-			heroImage && (
+			demoVideo ? (
+				<video
+					controls
+					playsinline
+					preload='metadata'
+					class='mx-auto my-6 w-full max-w-[760px] max-h-[280px] object-contain md:max-h-[360px]'
+					title={`Demo video for ${title}`}
+				>
+					<source src={demoVideo} />
+				</video>
+			) : demoEmbed ? (
+				<div class='mx-auto my-6 w-full max-w-[760px]'>
+					<div class='aspect-video'>
+						<iframe
+							src={demoEmbed}
+							title={`Demo video for ${title}`}
+							loading='lazy'
+							allow='autoplay; fullscreen; picture-in-picture'
+							allowfullscreen
+							class='h-full w-full border-0'
+						/>
+					</div>
+				</div>
+			) : (
 				<Image
 					src={heroImage}
 					width={1000}

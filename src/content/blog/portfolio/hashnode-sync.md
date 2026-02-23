@@ -8,20 +8,20 @@ category: 'Portfolio'
 tags: ['portfolio']
 ---
 
-A CLI that syncs a folder of local markdown files to Hashnode. I built it in a day for the Hashnode GraphQL hackathon because I wanted “content-as-code” for blogging.
+A CLI that syncs a folder of local markdown files to Hashnode. Built in a day for the Hashnode GraphQL hackathon to support a content-as-code blogging workflow.
 
 ## TL;DR
 
 - Content-as-code workflow: edit locally, run one command, post updates remotely.
-- The nice trick: a Proxy that auto-persists state whenever you mutate the config object.
+- Uses a Proxy to auto-persist state whenever the config object changes.
 
 **Tech Stack:** `Node.js` `GraphQL` `npm`
 
-### The trick: state that saves itself
+### State that saves itself
 
 The CLI needs to remember sync state between runs - which files were synced, their Hashnode IDs, content hashes. The typical approach: manual read/write calls everywhere.
 
-Instead, I wrapped the config object in a JavaScript Proxy. Any property change automatically persists to disk:
+Instead, the config object is wrapped in a JavaScript Proxy. Any property change automatically persists to disk:
 
 ```javascript
 function getSyncedJson(path) {
@@ -36,11 +36,11 @@ function getSyncedJson(path) {
 }
 ```
 
-Now `config.lastSync = Date.now()` just works - no explicit save calls. The codebase got much simpler.
+Now `config.lastSync = Date.now()` works without explicit save calls. This reduced state-management boilerplate.
 
 ### Change detection
 
-SHA-256 hashing on file content + metadata. Only files with changed hashes trigger API calls. No diff logic needed - if the hash matches, skip it.
+SHA-256 hashing on file content + metadata. Only files with changed hashes trigger API calls. If the hash matches, the file is skipped.
 
 ### What it does
 

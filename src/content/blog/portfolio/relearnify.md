@@ -5,6 +5,7 @@ description: >-
   A notes app that emails you what to review
 postOrder: 5
 heroImage: './relearnify.png'
+demoEmbed: 'https://www.loom.com/embed/85dd30e9d272471cadba553f48bafe9e?sid=52464fca-7d46-484d-a3da-1300471e3ea9'
 category: 'Portfolio'
 tags: ['portfolio']
 ---
@@ -14,7 +15,7 @@ A notes app that emails you what to review. You write notes once, and the app nu
 ## TL;DR
 
 - Rich-text notes + FSRS scheduling + daily review emails.
-- The “fun parts”: a Tiptap patch, background jobs, and a one-click “summarize” for long notes.
+- Key implementation areas: a Tiptap patch, background jobs, and a one-click “summarize” flow for long notes.
 
 **Tech Stack:** `Next.js` `tRPC` `PostgreSQL` `BullMQ` `Tiptap` `Gemini API`
 
@@ -30,17 +31,17 @@ A notes app that emails you what to review. You write notes once, and the app nu
 
 ![Email example](./relearnify-mail.png)
 
-### The parts that were more annoying than expected
+### Implementation details that took more effort
 
-**Tiptap patching.** Tiptap’s default YouTube embed is an iframe. I wanted a clean link instead (lighter UI, fewer distractions), so I patched the extension’s node view to render a styled link.
+**Tiptap patching.** Tiptap’s default YouTube embed is an iframe. The extension node view was patched to render a styled link instead (lighter UI, fewer distractions).
 
 **FSRS integration.** The scheduling model has state (stability, difficulty, retrievability). The real work is persisting that per note and not breaking it when notes change.
 
-**Summarization.** Long notes get a “summarize” button (Gemini). It’s not magic, but it’s genuinely useful when you’re reviewing dense stuff and just need the gist.
+**Summarization.** Long notes get a “summarize” button (Gemini). It is a practical shortcut during review of dense material.
 
 ### What I learned
 
-Note-taking UX has a lot of invisible details. Keyboard shortcuts, paste handling, list indentation, mobile responsiveness - you only notice when they're broken. Spent more time on these edge cases than core features.
+Note-taking UX has many invisible details. Keyboard shortcuts, paste handling, list indentation, and mobile responsiveness only become visible when they break. A significant part of the effort went into these edge cases.
 
 ### What’s next
 

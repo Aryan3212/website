@@ -62,22 +62,75 @@ const groups = Array.from(groupedByMonth.values())
 					<ol class='mt-4 space-y-6'>
 						{group.posts.map(async (post) => {
 							const { remarkPluginFrontmatter } = await post.render()
-							const { title, description, pubDate, heroImage, category } = post.data
+							const { title, description, pubDate, heroImage, demoVideo, demoEmbed, category } =
+								post.data
 
 							return (
 								<li class='border-b border-gray-200 pb-6 last:border-b-0 dark:border-gray-700'>
-									<article class='grid gap-4 md:grid-cols-[220px_minmax(0,1fr)] md:gap-5'>
-										<a href={`/post/${post.slug}/`} aria-label={`Open ${title}`}>
-											<Image
-												src={heroImage}
-												width={440}
-												height={240}
-												alt={`Cover image for ${title}`}
-												class='h-[130px] w-full object-cover'
-											/>
-										</a>
+									<article class='flex flex-col gap-4 md:flex-row md:items-start md:gap-5'>
+										{demoVideo || demoEmbed ? (
+											<div
+												class='relative story-media md:basis-[220px] md:shrink-0'
+												data-story-media
+												data-expanded='false'
+												data-media-title={title}
+											>
+												<div
+													role='button'
+													tabindex='0'
+													data-media-toggle
+													aria-label={`Play ${title} demo inline. Click outside to collapse.`}
+													aria-expanded='false'
+													class='group relative cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500'
+												>
+													{demoVideo ? (
+														<video
+															data-inline-video
+															muted
+															playsinline
+															preload='metadata'
+															poster={heroImage.src}
+															class='story-media-video'
+															title={`Demo preview for ${title}`}
+														>
+															<source src={demoVideo} />
+														</video>
+													) : (
+														<div class='story-media-embed overflow-hidden bg-black'>
+															<iframe
+																data-inline-embed
+																data-src={demoEmbed}
+																src={demoEmbed}
+																title={`Demo preview for ${title}`}
+																loading='lazy'
+																allow='autoplay; fullscreen; picture-in-picture'
+																allowfullscreen
+																class='story-inline-embed-frame h-full w-full border-0 pointer-events-none'
+															/>
+														</div>
+													)}
+													<span aria-hidden='true' class='story-media-play'>
+														<span class='story-media-play-triangle' />
+													</span>
+												</div>
+											</div>
+										) : (
+											<a
+												href={`/post/${post.slug}/`}
+												aria-label={`Open ${title}`}
+												class='md:basis-[220px] md:shrink-0'
+											>
+												<Image
+													src={heroImage}
+													width={440}
+													height={240}
+													alt={`Cover image for ${title}`}
+													class='h-[130px] w-full object-cover'
+												/>
+											</a>
+										)}
 
-										<div class='min-w-0'>
+										<div class='min-w-0 md:flex-1'>
 											<p class='text-xs text-gray-600 dark:text-gray-300'>
 												<FormattedDate date={pubDate} /> · {remarkPluginFrontmatter.minutesRead}
 												{showCategory && <span> · {category}</span>}
@@ -110,3 +163,191 @@ const groups = Array.from(groupedByMonth.values())
 		</section>
 	)
 }
+
+<script>
+	const getMediaElements = (block: HTMLElement) => ({
+		trigger: block.querySelector<HTMLElement>('[data-media-toggle]'),
+		inlineVideo: block.querySelector<HTMLVideoElement>('[data-inline-video]'),
+		inlineEmbed: block.querySelector<HTMLIFrameElement>('[data-inline-embed]')
+	})
+
+	const setExpanded = (block: HTMLElement, nextExpanded: boolean) => {
+		const { trigger, inlineVideo, inlineEmbed } = getMediaElements(block)
+		if (!trigger) return
+
+		const mediaTitle = block.dataset.mediaTitle ?? 'this'
+		block.dataset.expanded = String(nextExpanded)
+		trigger.setAttribute('aria-expanded', String(nextExpanded))
+		trigger.setAttribute(
+			'aria-label',
+			nextExpanded
+				? `${mediaTitle} demo is expanded and playing inline. Click outside to collapse.`
+				: `Play ${mediaTitle} demo inline. Click outside to collapse.`
+		)
+
+		if (inlineVideo) {
+			inlineVideo.controls = nextExpanded
+			inlineVideo.muted = !nextExpanded
+			if (nextExpanded) {
+				inlineVideo.play().catch(() => {})
+			} else {
+				inlineVideo.pause()
+				inlineVideo.currentTime = 0
+			}
+		}
+
+		if (inlineEmbed) {
+			if (nextExpanded) {
+				inlineEmbed.classList.remove('pointer-events-none')
+				if (inlineEmbed.dataset.src) {
+					const separator = inlineEmbed.dataset.src.includes('?') ? '&' : '?'
+					inlineEmbed.src = `${inlineEmbed.dataset.src}${separator}autoplay=1`
+				}
+			} else {
+				inlineEmbed.classList.add('pointer-events-none')
+				if (inlineEmbed.dataset.src) {
+					inlineEmbed.src = inlineEmbed.dataset.src
+				}
+			}
+		}
+	}
+
+	const collapseExpandedExcept = (keepBlock?: HTMLElement) => {
+		const expandedBlocks = Array.from(
+			document.querySelectorAll<HTMLElement>('[data-story-media][data-expanded="true"]')
+		)
+		expandedBlocks.forEach((block) => {
+			if (keepBlock && block === keepBlock) return
+			setExpanded(block, false)
+		})
+	}
+
+	const initStoryMedia = () => {
+		const mediaBlocks = Array.from(document.querySelectorAll<HTMLElement>('[data-story-media]'))
+
+		mediaBlocks.forEach((block) => {
+			if (block.dataset.ready === 'true') return
+			block.dataset.ready = 'true'
+
+			const trigger = block.querySelector<HTMLElement>('[data-media-toggle]')
+			if (!trigger) return
+
+			setExpanded(block, false)
+
+			const toggleExpanded = () => {
+				const isExpanded = block.dataset.expanded === 'true'
+				if (isExpanded) return
+				if (!isExpanded) collapseExpandedExcept(block)
+				setExpanded(block, !isExpanded)
+			}
+
+			trigger.addEventListener('click', toggleExpanded)
+			trigger.addEventListener('keydown', (event) => {
+				if (event.key === 'Enter' || event.key === ' ') {
+					event.preventDefault()
+					toggleExpanded()
+				}
+			})
+		})
+
+		if (document.documentElement.dataset.storyMediaOutsideBound !== 'true') {
+			document.documentElement.dataset.storyMediaOutsideBound = 'true'
+			document.addEventListener('click', (event) => {
+				const target = event.target as Node | null
+				if (!target) return
+
+				const expandedBlocks = Array.from(
+					document.querySelectorAll<HTMLElement>('[data-story-media][data-expanded="true"]')
+				)
+				expandedBlocks.forEach((block) => {
+					if (block.contains(target)) return
+					setExpanded(block, false)
+				})
+			})
+
+			document.addEventListener('keydown', (event) => {
+				if (event.key === 'Escape') {
+					collapseExpandedExcept()
+				}
+			})
+		}
+	}
+
+	initStoryMedia()
+	document.addEventListener('astro:after-swap', initStoryMedia)
+</script>
+
+<style>
+	.story-media-video,
+	.story-media-embed {
+		height: 130px;
+		width: 100%;
+	}
+
+	.story-media-video {
+		object-fit: cover;
+		background: #0f1117;
+	}
+
+	.story-media-play {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		pointer-events: none;
+	}
+
+	.story-media-play::before {
+		content: '';
+		position: absolute;
+		width: 52px;
+		height: 52px;
+		border-radius: 9999px;
+		background: rgba(0, 0, 0, 0.62);
+	}
+
+	.story-media-play-triangle {
+		position: relative;
+		z-index: 1;
+		width: 0;
+		height: 0;
+		margin-left: 3px;
+		border-top: 8px solid transparent;
+		border-bottom: 8px solid transparent;
+		border-left: 13px solid #fff;
+	}
+
+	.story-media[data-expanded='true'] .story-media-play {
+		opacity: 0;
+	}
+
+	.story-media[data-expanded='true'] .story-media-video {
+		height: auto;
+		max-height: min(62vh, 520px);
+		object-fit: contain;
+		background: #000;
+	}
+
+	.story-media[data-expanded='true'] .story-media-embed {
+		height: auto;
+		aspect-ratio: 16 / 9;
+		max-height: min(62vh, 520px);
+	}
+
+	.story-media[data-expanded='true'] .story-inline-embed-frame {
+		pointer-events: auto;
+	}
+
+	@media (min-width: 768px) {
+		.story-media {
+			flex: 0 0 220px;
+			max-width: 220px;
+		}
+
+		.story-media[data-expanded='true'] {
+			flex-basis: min(52vw, 760px);
+			max-width: min(52vw, 760px);
+		}
+	}
+</style>

@@ -9,7 +9,7 @@ category: 'Portfolio'
 tags: ['portfolio']
 ---
 
-Marketing wanted to ship SEO landing pages fast. Engineering time was the bottleneck. I built a page builder so they could publish without breaking SEO.
+Marketing needed to ship SEO landing pages quickly, but engineering bandwidth was the bottleneck. We built a page builder so pages could be published without breaking SEO.
 
 ## TL;DR
 
@@ -35,37 +35,38 @@ Every new SEO page was “a ticket for engineering”, which meant:
 
 We didn’t need a fancier CMS. We needed leverage: **a constrained builder that made the “right” thing easy** (and the wrong thing hard).
 
-## What I built (what it actually did)
+## What we built (what it actually did)
 
 The builder was basically: “pick a block, fill fields, reorder, publish”.
 
-## Demo (builder UI)
-
-![SEO content builder UI (internal tool)](./gozayaan-seo.png)
+## What a page looks like
 
 Live page built with the builder:
-[Saint Martin Ship Route](https://gozayaan.com/route/saint-martin-ship)
 
-- **A small block library** (hero, cards, CTAs, tables, FAQ, etc.) built out of existing design system patterns.
+[![Saint Martin Ship Route page built with the SEO builder](./gozayaan-seo.png)](https://gozayaan.com/route/saint-martin-ship)
+
+[Open Live Page ↗](https://gozayaan.com/route/saint-martin-ship)
+
+- **A small block library** (hero, cards, CTAs, tables, FAQ, etc.) based on existing design-system patterns.
 - **Duplication / templating** so a new page started from a known-good baseline.
 - **Image picker** hooked into our existing asset/CDN flow.
 - **Preview + validation** (lightweight, but enough to prevent obvious foot-guns).
 
-The most important part (and the part I cared about the most): **structured data was automatic.**
+The most important part was that **structured data was automatic.**
 
 If someone adds an FAQ block, the page gets `FAQPage` JSON-LD. If they don’t add it, it doesn’t. Nobody on the marketing team had to memorize schema rules or worry about formatting.
 
-## The parts that were harder than they sound
+## The parts that were harder than expected
 
-### 1) Editable tables (I underestimated this)
+### 1) Editable tables
 
-Tables are deceptively annoying. Everyone expects it to feel like Notion/Sheets, but under the hood you still need a stable data model you can save, version, and render reliably.
+Tables are deceptively hard. Everyone expects a Notion/Sheets-like experience, but under the hood you still need a stable data model that can be saved, versioned, and rendered reliably.
 
-I ended up moving to a normalized representation (cells keyed by coordinates) instead of trying to keep nested arrays perfectly in sync with the UI. That made persistence and “copy/paste-ish” behaviors much less fragile.
+We moved to a normalized representation (cells keyed by coordinates) instead of trying to keep nested arrays perfectly in sync with the UI. That made persistence and copy/paste behavior much less fragile.
 
 ### 2) Making it boring (on purpose)
 
-This is a real constraint for internal tools: if the UI is clever, adoption drops.
+This is a real constraint for internal tools: if the UI is overly clever, adoption drops.
 
 So the builder intentionally avoided “power user” affordances that would confuse people. Fewer features, fewer states, fewer ways to accidentally publish a broken page.
 
@@ -73,7 +74,7 @@ That was the main tradeoff: **less flexibility now, but higher confidence + adop
 
 ### 3) SEO guardrails without slowing people down
 
-The builder had to be fast to use, but I didn’t want it to become a “random HTML generator”.
+The builder had to be fast to use, but we wanted to avoid turning it into an unstructured HTML generator.
 
 So we leaned on defaults + validation:
 
@@ -81,7 +82,7 @@ So we leaned on defaults + validation:
 - schema is generated from structured inputs,
 - and publishing is constrained to known-good patterns.
 
-Not perfect, but it removed a lot of “silent failures” that only show up weeks later in search performance.
+This removed many “silent failures” that only show up weeks later in search performance.
 
 ## Proof (before/after)
 
@@ -100,14 +101,14 @@ Source: Semrush (monthly organic traffic).
 
 ## What went wrong / what I’d do differently
 
-The first version was too permissive. It technically “worked”, but it was easy to create pages that looked fine and still had SEO issues (missing required fields, weird headings, etc.).
+The first version was too permissive. It worked, but it was still easy to create pages that looked fine while having SEO issues (missing required fields, heading problems, etc.).
 
-If I rebuilt it, I’d spend more time on guardrails up front:
+If we rebuilt it, we would spend more time on guardrails up front:
 
 - clearer previews (including a “schema preview” for debugging),
 - stricter validation on publish,
 - and some opinionated templates for the common page types.
 
-Those are the sharp edges non-engineers run into first — and if they hit too many of them, they’ll stop using the tool.
+These are the first sharp edges non-engineers hit, and too many of them reduce adoption.
 
 [Back to Portfolio Overview](/post/portfolio/about-me)

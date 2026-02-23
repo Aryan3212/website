@@ -13,7 +13,7 @@ draft: true
 ## TL;DR
 
 - Full-stack engineer (enterprise SaaS + travel tech + personal products).
-- I like ownership, shipping, and measurable impact.
+- Focus on ownership, shipping, and measurable impact.
 
 <div class="responsive-video">
   <iframe

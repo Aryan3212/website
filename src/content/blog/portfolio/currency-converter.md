@@ -5,6 +5,7 @@ description: >-
   Built a production currency converter that serves unlimited users with just ~60 API calls/month using multi-tier caching and offline-first architecture
 postOrder: 6
 heroImage: './currency-converter.png'
+demoVideo: '/videos/offline-currency-converter-demo.mov'
 category: 'Portfolio'
 tags: ['portfolio']
 ---
@@ -15,12 +16,12 @@ tags: ['portfolio']
 
 ## TL;DR
 
-- Fixer’s free tier is 100 requests/month, so I treated rates as “slow-moving data” and cached aggressively.
+- Fixer’s free tier is 100 requests/month, so rates were treated as “slow-moving data” and cached aggressively.
 - Works offline after the first visit: server cache + localStorage + a service worker fallback.
 
 **Live:** [multiplecurrencyconverter.fly.dev](https://multiplecurrencyconverter.fly.dev/)
 
-Fixer’s free tier is basically unusable for a real product (100 requests/month). But currency rates also don’t change every second. So I stopped thinking “API problem” and started thinking “caching problem”.
+Fixer’s free tier is very limited for a real product (100 requests/month). Since currency rates also do not change every second, the problem was handled as a caching problem rather than an API-throughput problem.
 
 The goal was simple:
 
@@ -62,7 +63,7 @@ Result: traffic can spike and the API call count stays basically flat.
 
 ### Client-side cache (so offline works)
 
-I persisted the last good payload locally, so if you lose network you still get a usable converter:
+The app persists the last good payload locally, so it remains usable when network access is lost:
 
 ```typescript
 // app/components/CurrencyPage.tsx
@@ -111,8 +112,8 @@ registerRoute(
 
 ### Things I learned
 
-- Rate limits are rarely “API problems”. They’re usually “you didn’t cache” problems.
-- Service worker lifecycle matters. If you don’t manage activation/old caches, you’ll get weird stale behavior that’s hard to debug.
+- Rate limits are usually caching problems, not raw API problems.
+- Service worker lifecycle matters. Without careful activation and cache cleanup, stale behavior becomes hard to debug.
 - Multiple fallbacks are worth it. Redis → localStorage → hardcoded fallback is the difference between “offline-first” and “offline-broken”.
 
 ---
