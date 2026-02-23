@@ -77,7 +77,7 @@ const softwareExperience: ExperienceItem[] = [
 		role: 'Software Engineer II (Frontend)',
 		org: 'GoZayaan',
 		highlight:
-			'Shipped core frontend features while leading migration work and scaling SEO traffic from 33k/month to 100k+/month.',
+			'Shipped core frontend features and built website builder that scaled SEO traffic from 33k/month to 100k+/month.',
 		projects: [
 			{
 				name: 'SEO Content Builder',
@@ -105,7 +105,7 @@ const softwareExperience: ExperienceItem[] = [
 		role: 'Software Engineer',
 		org: 'Shotero + YY Design Studio',
 		highlight:
-			'Built server-rendered tools with Koa.js and PostgreSQL while supporting production shipping and deployments.',
+			'Worked with Koa.js and PostgreSQL while supporting production shipping and deployments.',
 		projects: [
 			{
 				name: 'Lean Model Canvas Generator',
@@ -128,7 +128,7 @@ const researchExperience: ExperienceItem[] = [
 		role: 'Independent Researcher',
 		org: 'BRAC University',
 		highlight:
-			'Studying self-supervised speech representation learning for low-resource Bengali speech with controlled ablations.',
+			'Researching self-supervised speech representation learning for low-resource Bengali speech with controlled ablations.',
 		projects: [
 			{
 				name: 'Speech Representation Learning Notes',
@@ -148,8 +148,7 @@ const researchExperience: ExperienceItem[] = [
 		period: 'May 2022',
 		role: 'BSc Thesis, Computer Science',
 		org: 'BRAC University',
-		highlight:
-			'Built a lightweight CNN for Bangladeshi sign language recognition with 99.21% accuracy on Ishara-Lipi.',
+		highlight: 'Built a lightweight CNN model for Bangladeshi sign language recognition',
 		projects: [
 			{
 				name: 'Thesis Paper',
@@ -167,7 +166,7 @@ const researchExperience: ExperienceItem[] = [
 		]
 	},
 	{
-		period: '2022 - 2025',
+		period: '2021 - 2025',
 		role: 'Industry Experience Supporting Research Direction',
 		org: 'GoZayaan + Optimizely',
 		highlight:
@@ -197,7 +196,7 @@ const researchExperience: ExperienceItem[] = [
 				rel='noopener noreferrer'
 				class='underline'
 			>
-				[Software Resume]
+				[Software Engineering Resume]
 			</a>
 			<a
 				href='/resume/aryan-rahman-resume-2026-academic.pdf'
@@ -205,7 +204,7 @@ const researchExperience: ExperienceItem[] = [
 				rel='noopener noreferrer'
 				class='underline'
 			>
-				[Academic Resume]
+				[Academic Research Resume]
 			</a>
 		</div>
 
@@ -477,11 +476,29 @@ const researchExperience: ExperienceItem[] = [
 		if (buttons.length === 0 || panels.length === 0) return
 
 		const getPanel = (lane: string) => panels.find((panel) => panel.dataset.lanePanel === lane)
+		const laneStorageKey = 'home-portfolio-lane'
+		const readStoredLane = () => {
+			try {
+				const storedLane = localStorage.getItem(laneStorageKey)
+				return storedLane && getPanel(storedLane) ? storedLane : null
+			} catch {
+				return null
+			}
+		}
+		const persistLane = (lane: string) => {
+			try {
+				localStorage.setItem(laneStorageKey, lane)
+			} catch {
+				// Ignore storage failures (e.g. private browsing restrictions).
+			}
+		}
 		let activeLane =
 			buttons.find((button) => button.getAttribute('aria-pressed') === 'true')?.dataset
 				.laneTarget ?? 'software'
+		const storedLane = readStoredLane()
+		if (storedLane) activeLane = storedLane
 
-		const setLane = (nextLane: string) => {
+		const setLane = (nextLane: string, persistSelection = true) => {
 			if (!nextLane) return
 			const nextPanel = getPanel(nextLane)
 			if (!nextPanel) return
@@ -496,6 +513,9 @@ const researchExperience: ExperienceItem[] = [
 			})
 
 			activeLane = nextLane
+			if (persistSelection) {
+				persistLane(nextLane)
+			}
 		}
 
 		buttons.forEach((button) => {
@@ -506,7 +526,7 @@ const researchExperience: ExperienceItem[] = [
 			})
 		})
 
-		setLane(activeLane)
+		setLane(activeLane, false)
 	}
 
 	initHomePage()
