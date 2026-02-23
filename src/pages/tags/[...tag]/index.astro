@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
-import ListPosts from '@/components/ListPosts'
+import StoryPostList from '@/components/StoryPostList'
 import TitlePage from '@/components/TitlePage'
 import { getTags, getPostByTag } from '@/utils'
 
@@ -20,5 +20,10 @@ const posts = await getPostByTag(tag)
 
 <BaseLayout title={tag}>
 	<TitlePage title={tag} />
-	<ListPosts posts={posts} />
+	<StoryPostList
+		posts={posts}
+		ctaLabel='Read'
+		showCategory={true}
+		emptyMessage='No posts found for this tag.'
+	/>
 </BaseLayout>

@@ -1,0 +1,112 @@
+---
+import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
+import FormattedDate from '@/components/FormattedDate'
+
+type Props = {
+	posts: CollectionEntry<'blog'>[]
+	ctaLabel?: string
+	showCategory?: boolean
+	emptyMessage?: string
+	preserveOrder?: boolean
+}
+
+type StoryGroup = {
+	key: string
+	label: string
+	posts: CollectionEntry<'blog'>[]
+}
+
+const {
+	posts,
+	ctaLabel = 'Read',
+	showCategory = false,
+	emptyMessage = 'No posts yet.',
+	preserveOrder = false
+} = Astro.props
+
+const sortedPosts = preserveOrder
+	? [...posts]
+	: [...posts].sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+
+const groupedByMonth = new Map<string, StoryGroup>()
+for (const post of sortedPosts) {
+	const date = post.data.pubDate
+	const key = `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, '0')}`
+
+	if (!groupedByMonth.has(key)) {
+		groupedByMonth.set(key, {
+			key,
+			label: date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+			posts: []
+		})
+	}
+
+	groupedByMonth.get(key)!.posts.push(post)
+}
+
+const groups = Array.from(groupedByMonth.values())
+---
+
+{
+	posts.length === 0 ? (
+		<p class='py-8 text-sm text-gray-600 dark:text-gray-300'>{emptyMessage}</p>
+	) : (
+		<section class='mt-6 space-y-10'>
+			{groups.map((group) => (
+				<section>
+					<h2 class='text-xs font-semibold uppercase tracking-[0.22em] text-gray-600 dark:text-gray-400'>
+						{group.label}
+					</h2>
+
+					<ol class='mt-4 space-y-6'>
+						{group.posts.map(async (post) => {
+							const { remarkPluginFrontmatter } = await post.render()
+							const { title, description, pubDate, heroImage, category } = post.data
+
+							return (
+								<li class='border-b border-gray-200 pb-6 last:border-b-0 dark:border-gray-700'>
+									<article class='grid gap-4 md:grid-cols-[220px_minmax(0,1fr)] md:gap-5'>
+										<a href={`/post/${post.slug}/`} aria-label={`Open ${title}`}>
+											<Image
+												src={heroImage}
+												width={440}
+												height={240}
+												alt={`Cover image for ${title}`}
+												class='h-[130px] w-full object-cover'
+											/>
+										</a>
+
+										<div class='min-w-0'>
+											<p class='text-xs text-gray-600 dark:text-gray-300'>
+												<FormattedDate date={pubDate} /> · {remarkPluginFrontmatter.minutesRead}
+												{showCategory && <span> · {category}</span>}
+											</p>
+
+											<h3 class='mt-1 text-lg font-semibold leading-snug md:text-xl'>
+												<a href={`/post/${post.slug}/`} class='hover:underline'>
+													{title}
+												</a>
+											</h3>
+
+											<p class='mt-2 max-w-2xl text-sm leading-6 text-gray-700 dark:text-gray-200'>
+												{description}
+											</p>
+
+											<a
+												href={`/post/${post.slug}/`}
+												class='mt-2 inline-block text-sm font-semibold hover:underline'
+											>
+												[{ctaLabel}]
+											</a>
+										</div>
+									</article>
+								</li>
+							)
+						})}
+					</ol>
+				</section>
+			))}
+		</section>
+	)
+}

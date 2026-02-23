@@ -44,7 +44,7 @@ const disqusEnabled = disqusConfig.enabled
 	headings={headings}
 	readTime={remarkPluginFrontmatter.minutesRead}
 >
-	<div class='grid grid-cols-1 md:grid-cols-[20%_auto] gap-10 mt-8'>
+	<div class='mt-8 grid grid-cols-1 gap-10 md:grid-cols-[260px_minmax(0,1fr)]'>
 		<!-- aside  -->
 		<aside class='md:flex flex-col gap-8 hidden'>
 			<Share />
@@ -54,8 +54,10 @@ const disqusEnabled = disqusConfig.enabled
 		</aside>
 
 		<!-- post -->
-		<article class='max-w-full w-full'>
-			<div class='prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'>
+		<article class='w-full min-w-0'>
+			<div
+				class='prose prose-sm prose-p:leading-7 prose-li:leading-7 prose-headings:scroll-mt-24 prose-img:my-5 prose-img:mx-auto prose-img:max-w-[74%] prose-pre:max-w-[88%] prose-pre:mx-auto dark:prose-invert mb-12 max-w-[66ch] md:prose-sm'
+			>
 				<Content components={{ pre: Code, SButton }} />
 			</div>
 

@@ -7,68 +7,83 @@ import ToggleTheme from './ToggleTheme.astro'
 import Contacts from '@/components/Contacts'
 ---
 
-<header class='relative flex items-center h-12 font-semibold'>
-	<a class='text-lg mr-auto' href='/'>Home</a>
-	<div>
-		<Search />
-	</div>
-	<ToggleTheme />
-	<div
-		id='astro-header-drawer'
-		class='shadow rounded-l-lg md:bg-transparent dark:md:bg-transparent bg-white dark:bg-[#0a0910] md:shadow-none md:rounded-none md:border-none md:h-auto md:static absolute transition-transform duration-300 ease-in translate-x-96 md:translate-x-0 top-12 -right-5 pl-4 pt-6 pb-4 md:p-0 w-[280px] md:w-auto z-50'
-	>
-		<nav
-			class='flex h-full flex-col justify-between gap-12 text-left md:flex-row md:w-full md:gap-5'
+<header class='relative flex h-12 items-center justify-between gap-4 font-semibold'>
+	<div class='flex items-center gap-4'>
+		<a class='text-lg' href='/'>Home</a>
+		<a
+			href='/blog'
+			class='text-sm font-black tracking-[0.22em] underline underline-offset-4 decoration-2'
 		>
-			<div
-				class='flex flex-col gap-4 md:flex-row md:border-r-2 border-black pr-4 dark:border-white'
-			>
-				<HeaderLink href='/tags' class='flex items-center gap-1 text-2xl md:text-base'>
-					<TagIcon /> Tags
-				</HeaderLink>
-			</div>
-
-			<div class='flex flex-col gap-3 md:flex-row md:items-center md:justify-end md:gap-6 md:p-0'>
-				<div class='hidden md:flex items-center gap-4 text-sm font-normal'>
-					<span class='font-mono text-opacity-80'>rahman.aryan07@gmail.com</span>
-					<span class='text-opacity-40'>·</span>
-					<a
-						href='https://github.com/aryan3212'
-						target='_blank'
-						rel='noopener noreferrer'
-						class='underline underline-offset-4 text-opacity-80 hover:text-opacity-100'
-					>
-						GitHub
-					</a>
-					<a
-						href='https://www.linkedin.com/in/aryanrahman3212/'
-						target='_blank'
-						rel='noopener noreferrer'
-						class='underline underline-offset-4 text-opacity-80 hover:text-opacity-100'
-					>
-						LinkedIn
-					</a>
-					<a
-						href='https://x.com/aryantwitting'
-						target='_blank'
-						rel='noopener noreferrer'
-						class='underline underline-offset-4 text-opacity-80 hover:text-opacity-100'
-					>
-						X
-					</a>
-				</div>
-				<div class='md:hidden'><Contacts /></div>
-			</div>
-		</nav>
+			[BLOG]
+		</a>
 	</div>
 
-	<div class='flex items-center gap-3 md:pl-3' transition:persist='navbar'>
-		<button id='astro-header-drawer-button' type='button' class='md:ml-6 md:hidden'>
+	<div class='hidden md:flex items-center gap-6'>
+		<div class='flex items-center gap-3'>
+			<a
+				href='/tags'
+				class='text-sm font-black tracking-[0.16em] underline underline-offset-4 decoration-2'
+			>
+				[TAGS]
+			</a>
+			<Search />
+			<ToggleTheme />
+		</div>
+
+		<div class='flex items-center gap-4 text-sm font-normal'>
+			<span class='font-mono text-opacity-80'>rahman.aryan07@gmail.com</span>
+			<span class='text-opacity-40'>·</span>
+			<a
+				href='https://github.com/aryan3212'
+				target='_blank'
+				rel='noopener noreferrer'
+				class='underline underline-offset-4 text-opacity-80 hover:text-opacity-100'
+			>
+				GitHub
+			</a>
+			<a
+				href='https://www.linkedin.com/in/aryanrahman3212/'
+				target='_blank'
+				rel='noopener noreferrer'
+				class='underline underline-offset-4 text-opacity-80 hover:text-opacity-100'
+			>
+				LinkedIn
+			</a>
+			<a
+				href='https://x.com/aryantwitting'
+				target='_blank'
+				rel='noopener noreferrer'
+				class='underline underline-offset-4 text-opacity-80 hover:text-opacity-100'
+			>
+				X
+			</a>
+		</div>
+	</div>
+
+	<div class='flex items-center gap-3 md:hidden' transition:persist='navbar'>
+		<Search />
+		<ToggleTheme />
+		<button id='astro-header-drawer-button' type='button'>
 			<MenuIcon />
 			<span class='sr-only'>Show Menu</span>
 		</button>
 	</div>
+
+	<div
+		id='astro-header-drawer'
+		class='shadow rounded-l-lg bg-white dark:bg-[#1b1d23] absolute transition-transform duration-300 ease-in translate-x-96 top-12 -right-5 pl-4 pt-6 pb-4 w-[280px] z-50 md:hidden'
+	>
+		<nav class='flex h-full flex-col justify-between gap-10 text-left'>
+			<div class='border-b border-gray-200 pb-4 dark:border-gray-700'>
+				<HeaderLink href='/tags' class='flex items-center gap-1 text-2xl'>
+					<TagIcon /> Tags
+				</HeaderLink>
+			</div>
+			<Contacts />
+		</nav>
+	</div>
 </header>
+
 <script>
 	document.addEventListener('click', (event) => {
 		const menu = document.getElementById('astro-header-drawer')

@@ -43,6 +43,9 @@ The builder was basically: “pick a block, fill fields, reorder, publish”.
 
 ![SEO content builder UI (internal tool)](./gozayaan-seo.png)
 
+Live page built with the builder:
+[Saint Martin Ship Route](https://gozayaan.com/route/saint-martin-ship)
+
 - **A small block library** (hero, cards, CTAs, tables, FAQ, etc.) built out of existing design system patterns.
 - **Duplication / templating** so a new page started from a known-good baseline.
 - **Image picker** hooked into our existing asset/CDN flow.

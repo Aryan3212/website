@@ -3,50 +3,57 @@ import SunIcon from '@/components/icons/SunIcon'
 import MoonIcon from '@/components/icons/MoonIcon'
 ---
 
-<script>
-	class themeToggle extends HTMLElement {
-		constructor() {
-			super()
-			const button = this.querySelector('button') as HTMLButtonElement
-			if (button) {
-				const bodyThemeIsDark = document.documentElement.classList.contains('dark')
-				button.setAttribute('aria-pressed', String(bodyThemeIsDark))
-				button.addEventListener('click', (e) => {
-					if (e.currentTarget instanceof HTMLButtonElement) {
-						let isPressed = e.currentTarget.getAttribute('aria-pressed') === 'true'
-						let themeChangeEvent = new CustomEvent('theme-change', {
-							detail: {
-								theme: isPressed ? 'light' : 'dark'
-							}
-						})
-						// dispatch event -> ThemeProvider.astro
-						document.dispatchEvent(themeChangeEvent)
-						button.setAttribute('aria-pressed', String(!isPressed))
-					}
-				})
-			}
-		}
-	}
-
-	if ('customElements' in window) {
-		customElements.define('theme-toggle', themeToggle)
-	}
-</script>
-
-<theme-toggle class='flex justify-center items-center relative h-6 w-6'>
-	<button id='toggle-theme' class='group' aria-label='Toggle Theme'>
-		<span class='opacity-0 group-aria-pressed:opacity-100 group-aria-[pressed=false]:hidden'>
+<theme-toggle class='inline-flex'>
+	<button
+		id='toggle-theme'
+		type='button'
+		class='inline-flex h-8 w-8 items-center justify-center rounded border border-gray-300 text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-gray-100 dark:hover:bg-gray-800'
+		aria-label='Toggle Theme'
+		aria-pressed='false'
+	>
+		<span data-theme-icon='sun' class='hidden' aria-hidden='true'>
 			<SunIcon />
 		</span>
-
-		<span class='opacity-0 group-aria-[pressed=false]:opacity-100 group-aria-pressed:hidden'>
+		<span data-theme-icon='moon' aria-hidden='true'>
 			<MoonIcon />
 		</span>
 	</button>
 </theme-toggle>
 
 <script is:inline>
-	const button = document.getElementById('toggle-theme')
-	const bodyThemeIsDark = document.documentElement.classList.contains('dark')
-	button.setAttribute('aria-pressed', String(bodyThemeIsDark))
+	function initThemeToggle() {
+		const root = document.querySelector('theme-toggle')
+		if (!(root instanceof HTMLElement)) return
+
+		const button = root.querySelector('#toggle-theme')
+		const sunIcon = root.querySelector('[data-theme-icon="sun"]')
+		const moonIcon = root.querySelector('[data-theme-icon="moon"]')
+		if (!(button instanceof HTMLButtonElement) || !sunIcon || !moonIcon) return
+
+		const syncButtonState = () => {
+			const isDark = document.documentElement.classList.contains('dark')
+			button.setAttribute('aria-pressed', String(isDark))
+			sunIcon.classList.toggle('hidden', !isDark)
+			moonIcon.classList.toggle('hidden', isDark)
+		}
+
+		if (button.dataset.bound !== 'true') {
+			button.dataset.bound = 'true'
+			button.addEventListener('click', () => {
+				const isDark = document.documentElement.classList.contains('dark')
+				const nextTheme = isDark ? 'light' : 'dark'
+				document.dispatchEvent(new CustomEvent('theme-change', { detail: { theme: nextTheme } }))
+				syncButtonState()
+			})
+		}
+
+		syncButtonState()
+	}
+
+	initThemeToggle()
+	if (!window.__themeToggleListenersBound) {
+		document.addEventListener('astro:after-swap', initThemeToggle)
+		document.addEventListener('theme-change', initThemeToggle)
+		window.__themeToggleListenersBound = true
+	}
 </script>

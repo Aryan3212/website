@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
-import ListPosts from '@/components/ListPosts'
+import StoryPostList from '@/components/StoryPostList'
 import ListCategories from '@/components/ListCategories'
 import TitlePage from '@/components/TitlePage'
 import { sluglify, unsluglify, getCategories, filterPostsByCategory } from '@/utils'
@@ -32,32 +32,60 @@ const { page } = Astro.props
 
 const unsluglifyNameCategory = unsluglify(params.category!.toLowerCase())
 const posts = page.data
+const normalizedCategory = params.category!.toLowerCase()
+
+const isPortfolioCategory = normalizedCategory === 'portfolio'
+const isResearchCategory = normalizedCategory === 'research'
+const isFirstCategoryPage = page.currentPage === 1
 ---
 
 <BaseLayout title={params.category}>
 	<TitlePage title={unsluglifyNameCategory} />
 	{
-		params.category == 'portfolio' && (
-			<>
-				<h2 class='text-lg font-medium tracking-wide'>
-					Hi, I'm Aryan Rahman, a full-stack software engineer, I find joy in building products that
-					delight users and solve actual pain points in people's lives. This means working with any
-					technology or any part of the stack(including infra) to figure it out! I love taking
-					ownership of my work and finding new directions where the product can go.
-				</h2>
-
-				<h2 class='text-lg font-medium tracking-wide'>
-					This page contains a quick summary about my work(see first blog) and a few case studies.
-					You can find my other blogs in the other categories.
-				</h2>
-			</>
+		isPortfolioCategory && isFirstCategoryPage && (
+			<section class='mt-3'>
+				<p class='max-w-3xl text-base text-gray-700 dark:text-gray-200'>
+					A curated portfolio story of software work across startup and enterprise systems, with
+					demos and proof inside each post.
+				</p>
+			</section>
+		)
+	}
+	{
+		isResearchCategory && isFirstCategoryPage && (
+			<section class='mt-3'>
+				<p class='max-w-3xl text-base text-gray-700 dark:text-gray-200'>
+					A chronological set of deep learning research writings focused on experiments, evaluation,
+					and iteration.
+				</p>
+			</section>
 		)
 	}
 	<ListCategories activeCategory={params.category} />
-	<ListPosts
-		posts={posts}
-		FirstBig={params.category !== 'resume'}
-		activeCategory={params.category}
-	/>
+	{
+		isPortfolioCategory ? (
+			<StoryPostList
+				posts={posts}
+				ctaLabel='Read'
+				showCategory={false}
+				emptyMessage='No case studies on this page.'
+				preserveOrder={true}
+			/>
+		) : isResearchCategory ? (
+			<StoryPostList
+				posts={posts}
+				ctaLabel='Read'
+				showCategory={false}
+				emptyMessage='Research notes are coming soon.'
+			/>
+		) : (
+			<StoryPostList
+				posts={posts}
+				ctaLabel='Read'
+				showCategory={false}
+				emptyMessage='No posts on this page.'
+			/>
+		)
+	}
 	<Pagination page={page} />
 </BaseLayout>

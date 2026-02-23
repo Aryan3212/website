@@ -1,48 +1,538 @@
 ---
-import ListCategories from '@/components/ListCategories'
-import ListPosts from '@/components/ListPosts'
-import TitlePage from '@/components/TitlePage'
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
 import BaseLayout from '@/layouts/BaseLayout'
-import { getPosts } from '@/utils'
+import StoryPostList from '@/components/StoryPostList'
+import { filterPostsByCategory } from '@/utils'
+import profileImage from '../content/blog/aryan-head.png'
+import customUrlArchitectureImage from '../content/blog/portfolio/custom-url.png'
+import gozayaanSeoChartImage from '../content/blog/portfolio/gozayaan-seo-after-graph.png'
+import gozayaanSeoScreenshotImage from '../content/blog/portfolio/gozayaan-seo.png'
+import monharyCanvasVideo from '../content/blog/_monhary-canvas.mov'
+import thesisProofImage from '../content/blog/thesis-image.png'
+import speechResearchProofImage from '../content/blog/weights-and-biases-speech-representation-learning.png'
 
-const MAX_POSTS = 15 // max number of posts to show on the home page
-const posts = (await getPosts(undefined, true))
-	.filter((post) => post.data.category?.toLowerCase() !== 'resume')
-	.slice(0, MAX_POSTS)
+type ProjectProofImage = {
+	src: ImageMetadata
+	alt: string
+	href?: string
+	external?: boolean
+}
+
+type ProjectProofVideo = {
+	src: string
+	title: string
+}
+
+type ExperienceProject = {
+	name: string
+	highlight: string
+	href?: string
+	external?: boolean
+	linkLabel?: string
+	images?: ProjectProofImage[]
+	video?: ProjectProofVideo
+}
+
+type ExperienceItem = {
+	period: string
+	role: string
+	org: string
+	highlight: string
+	projects: ExperienceProject[]
+}
+
+const softwareCaseStudies = (await filterPostsByCategory('portfolio'))
+	.filter((post) => !['portfolio/intro', 'portfolio/about-me'].includes(post.slug))
+	.slice(0, 8)
+
+const researchCaseStudies = (await filterPostsByCategory('research')).slice(0, 8)
+
+const SHOTERO_LEAN_CANVAS_DEMO_URL = 'https://monhary-canvas.netlify.app/'
+
+const softwareExperience: ExperienceItem[] = [
+	{
+		period: 'May 2024 - Sep 2025',
+		role: 'Software Engineer I (Full Stack)',
+		org: 'Optimizely',
+		highlight:
+			'Shipped multiple product features and owned the custom URL feature end-to-end across backend and AWS edge infrastructure handling 1M+ requests/day.',
+		projects: [
+			{
+				name: 'Custom URL Feature',
+				highlight: 'Edge resolver with validation guardrails, monitoring, and safe rollout.',
+				href: '/post/portfolio/optimizely-custom-url/',
+				linkLabel: 'Read More',
+				images: [
+					{
+						src: customUrlArchitectureImage,
+						alt: 'Custom URL architecture diagram'
+					}
+				]
+			}
+		]
+	},
+	{
+		period: 'Dec 2022 - Mar 2024',
+		role: 'Software Engineer II (Frontend)',
+		org: 'GoZayaan',
+		highlight:
+			'Shipped core frontend features while leading migration work and scaling SEO traffic from 33k/month to 100k+/month.',
+		projects: [
+			{
+				name: 'SEO Content Builder',
+				highlight:
+					'Internal website builder that accelerated SEO page generation and ranking growth.',
+				href: '/post/portfolio/gozayaan-seo-builder/',
+				linkLabel: 'Read More',
+				images: [
+					{
+						src: gozayaanSeoChartImage,
+						alt: 'SEO traffic growth chart for GoZayaan'
+					},
+					{
+						src: gozayaanSeoScreenshotImage,
+						alt: 'GoZayaan SEO content builder website screenshot',
+						href: 'https://gozayaan.com/route/saint-martin-ship',
+						external: true
+					}
+				]
+			}
+		]
+	},
+	{
+		period: 'Sep 2021 - Aug 2022',
+		role: 'Software Engineer',
+		org: 'Shotero + YY Design Studio',
+		highlight:
+			'Built server-rendered tools with Koa.js and PostgreSQL while supporting production shipping and deployments.',
+		projects: [
+			{
+				name: 'Lean Model Canvas Generator',
+				highlight:
+					'Interactive startup-planning generator built as a practical product experiment.',
+				href: SHOTERO_LEAN_CANVAS_DEMO_URL,
+				linkLabel: 'Visit App',
+				video: {
+					src: monharyCanvasVideo,
+					title: 'Lean Model Canvas generator web demo'
+				}
+			}
+		]
+	}
+]
+
+const researchExperience: ExperienceItem[] = [
+	{
+		period: 'Sep 2025 - Ongoing',
+		role: 'Independent Researcher',
+		org: 'BRAC University',
+		highlight:
+			'Studying self-supervised speech representation learning for low-resource Bengali speech with controlled ablations.',
+		projects: [
+			{
+				name: 'Speech Representation Learning Notes',
+				highlight: 'Early-stage notes on setup, methodology, and evaluation direction.',
+				href: '/post/speech-representation-learning-notes/',
+				linkLabel: 'Read More',
+				images: [
+					{
+						src: speechResearchProofImage,
+						alt: 'Weights and Biases screenshot for speech representation learning experiments'
+					}
+				]
+			}
+		]
+	},
+	{
+		period: 'May 2022',
+		role: 'BSc Thesis, Computer Science',
+		org: 'BRAC University',
+		highlight:
+			'Built a lightweight CNN for Bangladeshi sign language recognition with 99.21% accuracy on Ishara-Lipi.',
+		projects: [
+			{
+				name: 'Thesis Paper',
+				highlight: 'Full thesis write-up with methodology, model details, and evaluation results.',
+				href: 'https://dspace.bracu.ac.bd/xmlui/bitstream/handle/10361/17893/18201174%2c%2018201190%2c%2018201121_CSE.pdf?sequence=1&isAllowed=y',
+				external: true,
+				linkLabel: 'Link to PDF',
+				images: [
+					{
+						src: thesisProofImage,
+						alt: 'Thesis result visualization'
+					}
+				]
+			}
+		]
+	},
+	{
+		period: '2022 - 2025',
+		role: 'Industry Experience Supporting Research Direction',
+		org: 'GoZayaan + Optimizely',
+		highlight:
+			'Production engineering at scale sharpened debugging, evaluation, and reproducibility habits used in my research workflow.',
+		projects: []
+	}
+]
 ---
 
 <BaseLayout title='Home'>
-	<TitlePage title='Building Reality by Aryan' />
-	<div>
-		<br />
-		<h2 class='text-lg font-medium tracking-wide'>
-			For a few writings about my research work on deep learning, visit the
-			<a class='underline' href='/category/research/1'>Research category.</a>
-			 If you're interested about my work please go to the
-			<a class='underline' href='/category/portfolio/1'>Portfolio section.</a>
-		</h2>
-	</div>
-	<ListCategories />
-	<div>
-		<h2 class='text-lg font-medium tracking-wide text-end'>Latest Posts</h2>
-		<ListPosts FirstBig={false} posts={posts} activeCategory='all' />
-	</div>
+	<section class='mt-4' data-lane-switcher>
+		<div class='mb-6 flex items-center gap-4'>
+			<Image
+				src={profileImage}
+				width={96}
+				height={96}
+				alt='Portrait of Aryan Rahman'
+				class='h-20 w-20 rounded-full object-cover'
+			/>
+			<h1 class='text-2xl font-bold tracking-[0.14em] md:text-3xl'>ARYAN RAHMAN</h1>
+		</div>
+
+		<div class='mt-4 flex flex-wrap gap-3 text-sm font-semibold'>
+			<a
+				href='/resume/aryan-rahman-resume-2026.pdf'
+				target='_blank'
+				rel='noopener noreferrer'
+				class='underline'
+			>
+				[Software Resume]
+			</a>
+			<a
+				href='/resume/aryan-rahman-resume-2026-academic.pdf'
+				target='_blank'
+				rel='noopener noreferrer'
+				class='underline'
+			>
+				[Academic Resume]
+			</a>
+		</div>
+
+		<div class='mt-5 flex flex-wrap gap-3'>
+			<button
+				type='button'
+				class='lane-button px-4 py-2 text-sm font-semibold'
+				data-lane-target='software'
+				data-active='true'
+				aria-pressed='true'
+			>
+				[Software Engineer Portfolio]
+			</button>
+			<button
+				type='button'
+				class='lane-button px-4 py-2 text-sm font-semibold'
+				data-lane-target='research'
+				data-active='false'
+				aria-pressed='false'
+			>
+				[Research Portfolio]
+			</button>
+		</div>
+
+		<section class='mt-8' data-lane-panel='software'>
+			<section class='mt-8'>
+				<h2
+					class='text-xs font-semibold uppercase tracking-[0.22em] text-gray-600 dark:text-gray-400'
+				>
+					Experience
+				</h2>
+				<ol class='mt-4 space-y-7'>
+					{
+						softwareExperience.map((item) => (
+							<li class='border-b border-gray-200 pb-7 last:border-b-0 dark:border-gray-700'>
+								<p class='text-xs text-gray-600 dark:text-gray-300'>{item.period}</p>
+								<h3 class='mt-1 text-lg font-semibold'>{item.role}</h3>
+								<p class='mt-1 text-sm text-gray-700 dark:text-gray-200'>{item.org}</p>
+								<ul class='mt-2 list-disc pl-5 text-sm leading-6 text-gray-700 dark:text-gray-200'>
+									<li>{item.highlight}</li>
+								</ul>
+
+								{item.projects.length > 0 && (
+									<div class='mt-3'>
+										<p class='text-xs uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400'>
+											Projects
+										</p>
+										<ul class='mt-2 space-y-2 text-sm leading-6 text-gray-700 dark:text-gray-200'>
+											{item.projects.map((project) => (
+												<li class='space-y-3'>
+													{project.images && project.images.length > 0 && (
+														<div class='grid gap-2 sm:grid-cols-2'>
+															{project.images.map((proofImage) =>
+																proofImage.href ? (
+																	<a
+																		href={proofImage.href}
+																		target={proofImage.external ? '_blank' : undefined}
+																		rel={proofImage.external ? 'noopener noreferrer' : undefined}
+																		aria-label={`Open live page for ${proofImage.alt}`}
+																		class='group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500'
+																	>
+																		<Image
+																			src={proofImage.src}
+																			width={560}
+																			height={320}
+																			alt={proofImage.alt}
+																			class='h-[250px] w-full cursor-pointer object-cover transition-opacity group-hover:opacity-90'
+																		/>
+																		<span class='mt-1 inline-block text-xs font-semibold underline underline-offset-4'>
+																			[Open Live Page ↗]
+																		</span>
+																	</a>
+																) : (
+																	<Image
+																		src={proofImage.src}
+																		width={560}
+																		height={320}
+																		alt={proofImage.alt}
+																		class='h-[250px] w-full object-cover'
+																	/>
+																)
+															)}
+														</div>
+													)}
+													{project.video && (
+														<video
+															controls
+															playsinline
+															preload='metadata'
+															class='h-auto w-full max-w-[560px]'
+															title={project.video.title}
+														>
+															<source src={project.video.src} />
+														</video>
+													)}
+													<p class='flex flex-wrap items-baseline gap-2'>
+														<span class='font-semibold'>{project.name}:</span>
+														<span>{project.highlight}</span>
+														{project.href ? (
+															<a
+																href={project.href}
+																target={project.external ? '_blank' : undefined}
+																rel={project.external ? 'noopener noreferrer' : undefined}
+																class='font-semibold hover:underline'
+															>
+																[{project.linkLabel ?? 'Read'}]
+															</a>
+														) : (
+															<span class='text-xs text-gray-500 dark:text-gray-400'>
+																[{project.linkLabel ?? 'Add Link'}]
+															</span>
+														)}
+													</p>
+												</li>
+											))}
+										</ul>
+									</div>
+								)}
+							</li>
+						))
+					}
+				</ol>
+				<p class='mt-4 text-sm text-gray-600 dark:text-gray-300'>
+					For more details, go to
+					<a class='underline' href='/post/portfolio/about-me/'> A Summary of My Work till 2025</a>.
+				</p>
+			</section>
+
+			<section class='mt-10'>
+				<h2
+					class='text-xs font-semibold uppercase tracking-[0.22em] text-gray-600 dark:text-gray-400'
+				>
+					Case Studies
+				</h2>
+				<StoryPostList
+					posts={softwareCaseStudies}
+					ctaLabel='Read'
+					showCategory={false}
+					emptyMessage='No case studies yet.'
+				/>
+			</section>
+		</section>
+
+		<section class='mt-8' data-lane-panel='research' hidden>
+			<section class='mt-8'>
+				<h2
+					class='text-xs font-semibold uppercase tracking-[0.22em] text-gray-600 dark:text-gray-400'
+				>
+					Experience
+				</h2>
+				<ol class='mt-4 space-y-7'>
+					{
+						researchExperience.map((item) => (
+							<li class='border-b border-gray-200 pb-7 last:border-b-0 dark:border-gray-700'>
+								<p class='text-xs text-gray-600 dark:text-gray-300'>{item.period}</p>
+								<h3 class='mt-1 text-lg font-semibold'>{item.role}</h3>
+								<p class='mt-1 text-sm text-gray-700 dark:text-gray-200'>{item.org}</p>
+								<ul class='mt-2 list-disc pl-5 text-sm leading-6 text-gray-700 dark:text-gray-200'>
+									<li>{item.highlight}</li>
+								</ul>
+
+								{item.projects.length > 0 && (
+									<div class='mt-3'>
+										<p class='text-xs uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400'>
+											Projects
+										</p>
+										<ul class='mt-2 space-y-2 text-sm leading-6 text-gray-700 dark:text-gray-200'>
+											{item.projects.map((project) => (
+												<li class='space-y-3'>
+													{project.images && project.images.length > 0 && (
+														<div class='grid gap-2 sm:grid-cols-2'>
+															{project.images.map((proofImage) =>
+																proofImage.href ? (
+																	<a
+																		href={proofImage.href}
+																		target={proofImage.external ? '_blank' : undefined}
+																		rel={proofImage.external ? 'noopener noreferrer' : undefined}
+																		aria-label={`Open live page for ${proofImage.alt}`}
+																		class='group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500'
+																	>
+																		<Image
+																			src={proofImage.src}
+																			width={560}
+																			height={320}
+																			alt={proofImage.alt}
+																			class='h-[250px] w-full cursor-pointer object-cover transition-opacity group-hover:opacity-90'
+																		/>
+																		<span class='mt-1 inline-block text-xs font-semibold underline underline-offset-4'>
+																			[Open Live Page ↗]
+																		</span>
+																	</a>
+																) : (
+																	<Image
+																		src={proofImage.src}
+																		width={560}
+																		height={320}
+																		alt={proofImage.alt}
+																		class='h-[250px] w-full object-cover'
+																	/>
+																)
+															)}
+														</div>
+													)}
+													{project.video && (
+														<video
+															controls
+															playsinline
+															preload='metadata'
+															class='h-auto w-full max-w-[560px]'
+															title={project.video.title}
+														>
+															<source src={project.video.src} />
+														</video>
+													)}
+													<p class='flex flex-wrap items-baseline gap-2'>
+														<span class='font-semibold'>{project.name}:</span>
+														<span>{project.highlight}</span>
+														{project.href ? (
+															<a
+																href={project.href}
+																target={project.external ? '_blank' : undefined}
+																rel={project.external ? 'noopener noreferrer' : undefined}
+																class='font-semibold hover:underline'
+															>
+																[{project.linkLabel ?? 'Read'}]
+															</a>
+														) : (
+															<span class='text-xs text-gray-500 dark:text-gray-400'>
+																[{project.linkLabel ?? 'Add Link'}]
+															</span>
+														)}
+													</p>
+												</li>
+											))}
+										</ul>
+									</div>
+								)}
+							</li>
+						))
+					}
+				</ol>
+			</section>
+
+			<section class='mt-10'>
+				<h2
+					class='text-xs font-semibold uppercase tracking-[0.22em] text-gray-600 dark:text-gray-400'
+				>
+					Case Studies
+				</h2>
+				<StoryPostList
+					posts={researchCaseStudies}
+					ctaLabel='Read'
+					showCategory={false}
+					emptyMessage='Research case studies are coming soon.'
+				/>
+			</section>
+		</section>
+	</section>
 </BaseLayout>
 
 <script>
-	import { animate } from 'motion'
-	const showAnimations = localStorage.getItem('animations') === 'true'
+	const initHomePage = () => {
+		const switcher = document.querySelector('[data-lane-switcher]')
+		if (!(switcher instanceof HTMLElement) || switcher.dataset.ready === 'true') return
+		switcher.dataset.ready = 'true'
 
-	if (showAnimations) {
-		animate(
-			'.title',
-			{ y: [80, 0], opacity: [0, 1] },
-			{
-				duration: 2.5,
-				opacity: { duration: 3 },
+		const buttons = Array.from(switcher.querySelectorAll<HTMLButtonElement>('[data-lane-target]'))
+		const panels = Array.from(switcher.querySelectorAll<HTMLElement>('[data-lane-panel]'))
+		if (buttons.length === 0 || panels.length === 0) return
 
-				offset: [0, 0.55, 0.75]
-			}
-		)
+		const getPanel = (lane: string) => panels.find((panel) => panel.dataset.lanePanel === lane)
+		let activeLane =
+			buttons.find((button) => button.getAttribute('aria-pressed') === 'true')?.dataset
+				.laneTarget ?? 'software'
+
+		const setLane = (nextLane: string) => {
+			if (!nextLane) return
+			const nextPanel = getPanel(nextLane)
+			if (!nextPanel) return
+			panels.forEach((panel) => {
+				panel.hidden = panel !== nextPanel
+			})
+
+			buttons.forEach((button) => {
+				const isActive = button.dataset.laneTarget === nextLane
+				button.dataset.active = String(isActive)
+				button.setAttribute('aria-pressed', String(isActive))
+			})
+
+			activeLane = nextLane
+		}
+
+		buttons.forEach((button) => {
+			button.addEventListener('click', () => {
+				const lane = button.dataset.laneTarget
+				if (!lane) return
+				setLane(lane)
+			})
+		})
+
+		setLane(activeLane)
 	}
+
+	initHomePage()
+	document.addEventListener('astro:after-swap', initHomePage)
 </script>
+
+<style>
+	.lane-button {
+		border: 1px solid #111827;
+		background: #ffffff;
+		color: #111827;
+	}
+
+	.lane-button[data-active='true'] {
+		background: #111827;
+		color: #ffffff;
+	}
+
+	html.dark .lane-button {
+		border-color: #f4f4f5;
+		background: #1b1d23;
+		color: #f4f4f5;
+	}
+
+	html.dark .lane-button[data-active='true'] {
+		background: #ffffff;
+		color: #111827;
+	}
+</style>

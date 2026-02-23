@@ -3,10 +3,11 @@ pubDate: '2026-01-16T00:00:00.000Z'
 title: Introduction
 description: >-
   A quick elevator pitch about who I am and what I do
-postOrder: 1
+postOrder: 2
 heroImage: './about-me.jpeg'
 category: 'Portfolio'
 tags: ['portfolio']
+draft: true
 ---
 
 ## TL;DR

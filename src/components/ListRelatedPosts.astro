@@ -1,7 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 
-import { cn } from '@/utils'
 import { Image } from 'astro:assets'
 
 type Props = {
@@ -11,28 +10,28 @@ type Props = {
 const { posts } = Astro.props
 ---
 
-<section class={cn(`flex flex-col md:flex-row sm:justify-between gap-8`)}>
+<section class='flex flex-col gap-4'>
 	{
 		posts.length > 0 ? (
 			posts.map((post) => {
 				return (
-					<div class='flex flex-wrap gap-2'>
-						<div class='min-h-full'>
+					<article class='flex items-center gap-3'>
+						<div class='shrink-0'>
 							<Image
 								src={post.data.heroImage}
-								width={200}
-								height={200}
+								width={160}
+								height={160}
 								format='webp'
-								class='w-16 h-16 object-cover rounded-full  '
+								class='h-14 w-14 rounded object-cover'
 								alt={`img of ${post.data.title}`}
 							/>
 						</div>
-						<header class='flex justify-center items-center'>
-							<a class='font-medium  hover:underline' href={`/post/${post.slug}/`}>
+						<header class='min-w-0'>
+							<a class='text-sm font-medium hover:underline' href={`/post/${post.slug}/`}>
 								{post.data.title}
 							</a>
 						</header>
-					</div>
+					</article>
 				)
 			})
 		) : (

@@ -1,0 +1,33 @@
+---
+import BaseLayout from '@/layouts/BaseLayout'
+import ListCategories from '@/components/ListCategories'
+import StoryPostList from '@/components/StoryPostList'
+import TitlePage from '@/components/TitlePage'
+import { getPosts } from '@/utils'
+
+const posts = (await getPosts()).filter((post) => {
+	const normalizedCategory = post.data.category.toLowerCase()
+	return (
+		normalizedCategory !== 'portfolio' &&
+		normalizedCategory !== 'research' &&
+		normalizedCategory !== 'resume'
+	)
+})
+---
+
+<BaseLayout title='Blog'>
+	<TitlePage title='Blog' />
+	<p class='mt-3 max-w-3xl text-base text-gray-700 dark:text-gray-200'>
+		Notes, essays, and technical writing outside the portfolio and research tracks.
+	</p>
+	<div class='mt-6'>
+		<ListCategories />
+	</div>
+
+	<StoryPostList
+		posts={posts}
+		ctaLabel='Read'
+		showCategory={true}
+		emptyMessage='Blog posts are coming soon.'
+	/>
+</BaseLayout>
