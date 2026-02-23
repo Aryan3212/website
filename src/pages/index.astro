@@ -8,7 +8,6 @@ import profileImage from '../content/blog/aryan-head.png'
 import customUrlArchitectureImage from '../content/blog/portfolio/custom-url.png'
 import gozayaanSeoChartImage from '../content/blog/portfolio/gozayaan-seo-after-graph.png'
 import gozayaanSeoScreenshotImage from '../content/blog/portfolio/gozayaan-seo.png'
-import monharyCanvasVideo from '../content/blog/_monhary-canvas.mov'
 import thesisProofImage from '../content/blog/thesis-image.png'
 import speechResearchProofImage from '../content/blog/weights-and-biases-speech-representation-learning.png'
 
@@ -49,6 +48,8 @@ const softwareCaseStudies = (await filterPostsByCategory('portfolio'))
 const researchCaseStudies = (await filterPostsByCategory('research')).slice(0, 8)
 
 const SHOTERO_LEAN_CANVAS_DEMO_URL = 'https://monhary-canvas.netlify.app/'
+const SHOTERO_LEAN_CANVAS_DEMO_VIDEO_URL =
+	'https://res.cloudinary.com/dwz8ueclf/video/upload/f_mp4,vc_h264,q_auto:good,ac_none/v1771860809/aryanrahman.dev/_monhary-canvas_roopds.mp4'
 
 const softwareExperience: ExperienceItem[] = [
 	{
@@ -114,7 +115,7 @@ const softwareExperience: ExperienceItem[] = [
 				href: SHOTERO_LEAN_CANVAS_DEMO_URL,
 				linkLabel: 'Visit App',
 				video: {
-					src: monharyCanvasVideo,
+					src: SHOTERO_LEAN_CANVAS_DEMO_VIDEO_URL,
 					title: 'Lean Model Canvas generator web demo'
 				}
 			}

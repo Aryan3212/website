@@ -5,7 +5,7 @@ description: >-
   Built a production currency converter that serves unlimited users with just ~60 API calls/month using multi-tier caching and offline-first architecture
 postOrder: 6
 heroImage: './currency-converter.png'
-demoVideo: '/videos/offline-currency-converter-demo.mov'
+demoVideo: 'https://res.cloudinary.com/dwz8ueclf/video/upload/f_mp4,vc_h264,q_auto:good,ac_none/v1771860919/aryanrahman.dev/offline-currency-converter-demo_wdvtnv.mp4'
 category: 'Portfolio'
 tags: ['portfolio']
 ---
