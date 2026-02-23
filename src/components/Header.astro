@@ -9,7 +9,12 @@ import Contacts from '@/components/Contacts'
 
 <header class='relative flex h-12 items-center justify-between gap-4 font-semibold'>
 	<div class='flex items-center gap-4'>
-		<a class='text-lg' href='/'>Home</a>
+		<a
+			href='/'
+			class='text-sm font-black tracking-[0.22em] underline underline-offset-4 decoration-2'
+		>
+			[HOME]
+		</a>
 		<a
 			href='/blog'
 			class='text-sm font-black tracking-[0.22em] underline underline-offset-4 decoration-2'
@@ -71,13 +76,16 @@ import Contacts from '@/components/Contacts'
 
 	<div
 		id='astro-header-drawer'
-		class='shadow rounded-l-lg bg-white dark:bg-[#1b1d23] absolute transition-transform duration-300 ease-in translate-x-96 top-12 -right-5 pl-4 pt-6 pb-4 w-[280px] z-50 md:hidden'
+		class='shadow rounded-l-lg bg-white dark:bg-[#1b1d23] absolute transition-transform duration-300 ease-in translate-x-96 top-12 -right-5 p-2 pt-6 pb-4 w-[280px] z-50 md:hidden'
 	>
 		<nav class='flex h-full flex-col justify-between gap-10 text-left'>
 			<div class='border-b border-gray-200 pb-4 dark:border-gray-700'>
-				<HeaderLink href='/tags' class='flex items-center gap-1 text-2xl'>
-					<TagIcon /> Tags
-				</HeaderLink>
+				<a
+					href='/tags'
+					class='text-sm font-black tracking-[0.16em] underline underline-offset-4 decoration-2'
+				>
+					[TAGS]
+				</a>
 			</div>
 			<Contacts />
 		</nav>

@@ -16,7 +16,7 @@ const contacts: Contact[] = [
 <div class='flex flex-col gap-2 text-sm'>
 	{
 		contacts.map((contact) => (
-			<div class='flex items-start justify-between gap-3'>
+			<div class='flex items-start justify-between flex-col'>
 				<div class='text-neutral-600 dark:text-neutral-300'>{contact.label}</div>
 				<div class='min-w-0 text-right font-mono'>
 					{contact.href ? (
