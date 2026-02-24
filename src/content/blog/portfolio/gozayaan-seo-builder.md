@@ -62,8 +62,6 @@ If someone adds an FAQ block, the page gets `FAQPage` JSON-LD. If they don’t a
 
 Tables are deceptively hard. Everyone expects a Notion/Sheets-like experience, but under the hood you still need a stable data model that can be saved, versioned, and rendered reliably.
 
-We moved to a normalized representation (cells keyed by coordinates) instead of trying to keep nested arrays perfectly in sync with the UI. That made persistence and copy/paste behavior much less fragile.
-
 ### 2) Making it boring (on purpose)
 
 This is a real constraint for internal tools: if the UI is overly clever, adoption drops.
@@ -101,14 +99,6 @@ Source: Semrush (monthly organic traffic).
 
 ## What went wrong / what I’d do differently
 
-The first version was too permissive. It worked, but it was still easy to create pages that looked fine while having SEO issues (missing required fields, heading problems, etc.).
-
-If we rebuilt it, we would spend more time on guardrails up front:
-
-- clearer previews (including a “schema preview” for debugging),
-- stricter validation on publish,
-- and some opinionated templates for the common page types.
-
-These are the first sharp edges non-engineers hit, and too many of them reduce adoption.
+I was very new to software engineering then and I feel I didn't make the right abstractions with regards to validation and component structure.
 
 [Back to Portfolio Overview](/post/portfolio/about-me)
