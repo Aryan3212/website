@@ -154,4 +154,3 @@ Tradeoffs:
 - `pg_restore`: https://www.postgresql.org/docs/current/app-pgrestore.html
 
 If you are running a side project on RDS and the cost is disproportionate, this is a practical migration to evaluate.
-![AWS billing screenshot showing monthly spend around ~$20/month for my small RDS setup](./aws-cost-screenshot.png)

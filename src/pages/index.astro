@@ -493,11 +493,21 @@ const researchExperience: ExperienceItem[] = [
 				// Ignore storage failures (e.g. private browsing restrictions).
 			}
 		}
+
+		const params = new URLSearchParams(window.location.search)
+		const queryLane = params.get('lane')
+
 		let activeLane =
 			buttons.find((button) => button.getAttribute('aria-pressed') === 'true')?.dataset
 				.laneTarget ?? 'software'
+
 		const storedLane = readStoredLane()
-		if (storedLane) activeLane = storedLane
+
+		if (queryLane && getPanel(queryLane)) {
+			activeLane = queryLane
+		} else if (storedLane) {
+			activeLane = storedLane
+		}
 
 		const setLane = (nextLane: string, persistSelection = true) => {
 			if (!nextLane) return
@@ -516,6 +526,9 @@ const researchExperience: ExperienceItem[] = [
 			activeLane = nextLane
 			if (persistSelection) {
 				persistLane(nextLane)
+				const url = new URL(window.location.href)
+				url.searchParams.set('lane', nextLane)
+				window.history.replaceState({}, '', url.toString())
 			}
 		}
 
