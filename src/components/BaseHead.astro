@@ -112,7 +112,8 @@ import { AstroFont } from 'astro-font'
 			(e.__SV = 1))
 	})(document, window.posthog || [])
 	posthog.init('phc_fv22mw84lEexQPf50Ae8NyHEsaqSa8xYBruNyTlij31', {
-		api_host: 'https://us.i.posthog.com',
+		api_host: '/p',
+		ui_host: 'https://us.posthog.com',
 		person_profiles: 'identified_only' // or 'always' to create profiles for anonymous users as well
 	})
 </script>
