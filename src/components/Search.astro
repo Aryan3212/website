@@ -5,7 +5,7 @@ import '@pagefind/default-ui/css/ui.css'
 import SearchIcon from '@/components/icons/SearchIcon'
 ---
 
-<site-search id='search' class='inline-flex'>
+<site-search class='inline-flex'>
 	<button data-open-modal disabled class='flex items-center justify-center rounded-md gap-1'>
 		<SearchIcon />
 		<!-- <span class='md:hidden text-2xl'> Search</span> -->
@@ -30,7 +30,7 @@ import SearchIcon from '@/components/icons/SearchIcon'
 					</div>
 				) : (
 					<div class='search-container dark:text-white'>
-						<div id='pagefind__search' />
+						<div class='pagefind__search' />
 					</div>
 				)
 			}
@@ -103,20 +103,30 @@ import SearchIcon from '@/components/icons/SearchIcon'
 				}
 			})
 
-			window.addEventListener('DOMContentLoaded', () => {
+			const initPagefind = async () => {
 				if (import.meta.env.DEV) return
+				const searchDiv = this.querySelector('.pagefind__search')
+				if (!searchDiv || searchDiv.hasAttribute('data-initialized')) return
+
 				const onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1))
 				onIdle(async () => {
 					// @ts-ignore
 					const { PagefindUI } = await import('@pagefind/default-ui')
 					new PagefindUI({
-						element: '#pagefind__search',
+						element: searchDiv,
 						baseUrl: import.meta.env.BASE_URL,
 						bundlePath: import.meta.env.BASE_URL.replace(/\/$/, '') + '/pagefind/',
 						showImages: false
 					})
+					searchDiv.setAttribute('data-initialized', 'true')
 				})
-			})
+			}
+
+			if (document.readyState === 'complete') {
+				initPagefind()
+			} else {
+				window.addEventListener('DOMContentLoaded', initPagefind)
+			}
 		}
 	}
 
