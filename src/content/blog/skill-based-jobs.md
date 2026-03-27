@@ -3,7 +3,7 @@ pubDate: '2024-06-24T23:11:00.000Z'
 title: Jobs as a Dev - Mindset
 description: The Simple State of Tech Jobs
 tags: ['blog']
-
+draft: true
 heroImage: '../../assets/images/hill.png'
 category: 'Tech'
 ---
