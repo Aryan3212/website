@@ -5,6 +5,7 @@ description: Academic-focused resume as a PDF.
 heroImage: '../portfolio/about-me.jpeg'
 category: 'Resume'
 tags: ['resume', 'cv', 'academic']
+draft: true
 ---
 
 ## TL;DR
