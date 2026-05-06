@@ -112,9 +112,9 @@
 %--------------------------------------------------------------
 % Bullet Lists with fewer gaps command
 \newenvironment{bullets}{%
-\vspace{-1.5mm}
+\vspace{-1.0mm}
 \begin{itemize}
-\itemsep1pt 
+\itemsep1.25pt 
 \parskip1pt 
 \parsep1pt
 \fontsize{9.35pt}{11pt}

@@ -8,7 +8,7 @@
 %--------------------------------------------------------------
 
 % Create job position command. Parameters: company, position, location, when
-\newcommand{\resumeHeading}[4]{\runsubsection{#1}\descript{ | #2 | #3 | #4}}
+\newcommand{\resumeHeading}[3]{\runsubsection{#1}\descript{ | #2 | #3}}
 
 % Create project heading. Parameters: Name, link, Tech stack
 \newcommand{\projectHeading}[3]{\Project{#1}{#2}
@@ -27,7 +27,7 @@
 \newcommand{\yourWebsite}{aryanrahman.dev}
 % vs how you want it to show up. If it's the same you can just replace "\yourWebsiteLink" with "yourWebsite"
 \newcommand{\yourWebsiteLink}{\underlinedLink{https://www.aryanrahman.dev}{aryanrahman.dev}}
-\newcommand{\yourEmail}{\underlinedLink{mailto:rahman.aryan07@gmail.com}{rahman.aryan07@gmail.com}}
+\newcommand{\yourEmail}{rahman.aryan07@gmail.com}
 \newcommand{\yourPhone}{+8801761443969}
 \newcommand{\githubUserName}{\underlinedLink{https://www.github.com/Aryan3212}{GitHub: Aryan3212}}
 \newcommand{\linkedInUserName}{\underlinedLink{https://www.linkedin.com/in/aryanrahman3212/}{LinkedIn: aryanrahman3212}}
@@ -42,34 +42,39 @@
 
 \section{Experience}
 \sectionsep
-\resumeHeading{Software Engineer 1 - Full Stack}{Optimizely}{Hybrid, Dhaka}{May 2024 – Aug 2025}
+\resumeHeading{Software Engineer}{Optimizely}{May 2024 – Aug 2025}
+\\
+\small{Optimizely is an enterprise SaaS platform serving Fortune 500 companies. I was on the Content Marketing Platform and Digital Asset Management teams.}
+\sectionsep
 \begin{bullets}
-    \item Shipped the \underlinedLink{https://aryanrahman.dev/post/portfolio/optimizely-custom-url/}{custom URL feature} for assets — contributed to AWS CloudFront, Lambda@Edge, and DynamoDB infrastructure on a system handling \textbf{\textasciitilde1M requests/day} and wrote supporting documentation for long-term maintenance.
+    \item Shipped the \underlinedLink{https://aryanrahman.dev/post/portfolio/optimizely-custom-url/}{custom URL feature} for assets - contributed to AWS CloudFront, Lambda@Edge, and DynamoDB infrastructure on a system handling \textbf{\textasciitilde1M requests/day} and wrote supporting documentation for long-term maintenance.
+    \item Resolved multiple high-priority, SLA-bound production issues, saving the company \textbf{\textasciitilde\$10,000} on each issue through cross-team collaboration using OpenSearch, AWS CloudWatch, Kubernetes.
     \item Implemented and handled production issues for multiple features including user calendar, secure asset collection sharing, dynamic forms, and data reporting, driving user retention.
     \item Led testing for the data reporting feature by writing tests for \textbf{3 different services}, achieving over \textbf{80\% code coverage}, allowing it to go into maintenance mode.
-    \item Collaborated with external product teams to roll out product analytics tracking which generates \textbf{5,000 events/month} to track user behaviour.
-    \item Resolved multiple high-priority, SLA-bound production issues, saving the company \textbf{\textasciitilde\$10,000} on each issue through cross-team collaboration using OpenSearch, AWS CloudWatch, Kubernetes.
+    \item Collaborated with external product teams to roll out product analytics which generates \textbf{5,000 events/month} to track user behaviour.
 \end{bullets}
 \sectionsep
-\resumeHeading{Software Engineer 2 - Frontend}{GoZayaan}{Remote}{Dec 2022 – Mar 2024}
+\resumeHeading{Software Engineer}{GoZayaan}{Dec 2022 – Mar 2024}\\
+\small{GoZayaan is one of the largest online travel agencies (OTA) in Bangladesh, with operations in Singapore, Pakistan, and Sri Lanka.}
+\sectionsep
 \begin{bullets}
     \item Developed an \underlinedLink{https://aryanrahman.dev/post/portfolio/gozayaan-seo-builder/}{in-house SEO web page builder} that helped the marketing team push SEO content, resulting in organic Google search traffic increase from \textbf{33k to 116k/month (\textasciitilde3.5x)}; built reusable components including tables and an image library, and implemented automatic Google Search markup for SEO and rich search results.
     \item Contributed to the Vue 2 to Nuxt 2 codebase migration, improving performance and maintainability by optimizing Docker configurations and integrating Vite.
-    \item Mentored and onboarded new teammates to the codebase, helping them get up to speed.
     \item Delivered key user-facing features such as travel wishlist, support popups, hotel map search, gift cards, and improved booking page, enhancing user engagement.
+    \item Mentored and onboarded new teammates to the codebase, helping them get up to speed.
 \end{bullets}
 \sectionsep
 
-\resumeHeading{Software Engineer - Full Stack}{Shotero}{Hybrid, Dhaka}{Feb 2022 – Aug 2022}
+\resumeHeading{Software Engineer}{Shotero}{Feb 2022 – Aug 2022}
 \begin{bullets}
-    \item Gained hands-on experience with JavaScript, Koa.js, Nunjucks, Alpine.js, PostgreSQL, and Sqitch, focusing on backend development, interactive web apps, and database schema design.
     \item Built \textbf{\underlinedLink{https://monhary-canvas.netlify.app/}{1 free tool}} with a cloud save and share feature.
+    \item Gained hands-on experience with JavaScript, Node.js, Alpine.js, PostgreSQL.
 \end{bullets}
 \sectionsep
-\resumeHeading{Web Development Intern}{YY Ventures}{Onsite, Dhaka}{Sep 2021 – Nov 2021}
+\resumeHeading{Web Development Intern}{YY Ventures}{Sep 2021 – Nov 2021}
 \begin{bullets}
-    \item Developed and deployed 4 web landing pages for social businesses, \textbf{bringing over \$2,000} in revenue with a two-person team.
-    \item Supported deployment of \textbf{3 legacy PHP websites} and used GitHub Actions for CI/CD, streamlining the development process.
+    \item Developed 4 web landing pages, bringing over \textbf{\$2,000 in revenue} with a 2-person team.
+    \item Maintained \textbf{3 PHP websites} using GitHub Actions for CI/CD, streamlining the development process.
 \end{bullets}
 \vspace{12pt}
 %--------------------------------------------------------------
@@ -77,34 +82,29 @@
 %--------------------------------------------------------------
 \section{Projects}
 \sectionsep
-\projectHeading{Relearnify}{https://relearnify.vercel.app/}{TypeScript, React, Redis, BullMQ, \underlinedLink{https://create.t3.gg/}{T3 Stack}}
+\projectHeading{Relearnify}{https://relearnify.vercel.app/}{TypeScript, React, tRPC, \underlinedLink{https://create.t3.gg/}{T3 Stack}}
 \begin{bullets}
     \item A note-taking app leveraging the \underlinedLink{https://github.com/open-spaced-repetition/ts-fsrs}{FSRS Spaced Repetition} algorithm to \textbf{boost memory retention by 50\%}, with an automated review system and daily email reminders to ensure users revisit their notes.
     \item Built a rich text editor using \underlinedLink{https://github.com/ueberdosis/tiptap}{Tiptap}, supporting markdown, video embedding, and flexible formatting.
-    \item Built out asynchronous email flow sending approximately \textbf{8 emails/day} using Redis and BullMQ scheduled jobs.
-\end{bullets}
-\sectionsep
-\projectHeading{Article: Full Text Search using Django and Postgres}{https://dev.to/aryan3212/simple-and-efficient-full-text-search-using-django-and-postgres-33o0}{Django, PostgreSQL}
-\begin{bullets}
-    \item Wrote a tutorial on implementing efficient full-text search feature using Django and PostgreSQL, leveraging SearchVectorField, GIN indexes, and weighted search for enhanced query performance.
-\end{bullets}
-\sectionsep
-\projectHeading{BDJobs Scraper}{https://github.com/Aryan3212/bdjobs-scraper}{Python}
-\begin{bullets}
-    \item Developed a script using asynchronous Python that scrapes \textbf{6,000 job listings} from BDJobs in 10 minutes, an 8x speed increase compared to traditional methods.
-    \item Optimized file handling to store one page in memory at a time, preventing high memory usage.
+    \item Built out asynchronous email flow sending approximately \textbf{8 emails/day} using cron jobs.
 \end{bullets}
 \sectionsep
 \projectHeading{Multiple Currency Converter}{https://multiplecurrencyconverter.fly.dev/}{Remix, PWA, Redis}
 \begin{bullets}
-    \item Architected a multi-tier caching system (Upstash Redis + localStorage + Service Worker) that reduced API consumption by 99\%, handling unlimited users with only 60 monthly API calls
-  \item Built an offline-first Progressive Web App using Remix, Workbox, and NetworkFirst caching strategies, enabling full functionality without internet connectivity after initial load
+     \item An \textbf{offline-first} PWA using Remix, and service workers enabling full functionality without internet connectivity after initial load
+     \item Implemented a caching layer with Redis to store exchange rates, \textbf{reducing 3rd party API calls by 90\%} and improving response times.
 \end{bullets}
 \sectionsep
-\projectHeading{Review It}{https://review-it.onrender.com/posts}{ExpressJS, MongoDB, TypeScript}
+\projectHeading{BDJobs Scraper}{https://github.com/Aryan3212/bdjobs-scraper}{Python}
 \begin{bullets}
-    \item Built \textbf{10+ features} that include posting, commenting, image uploads, authN/Z, maps, rate-limiting for a reviews website.
+    \item Developed a script using asynchronous Python that scrapes \textbf{6,000 job listings} from BDJobs in 10 minutes, an 8x speed increase and optimized memory usage compared to traditional methods.
 \end{bullets}
+\sectionsep
+\projectHeading{Article: Full Text Search using Django and Postgres}{https://dev.to/aryan3212/simple-and-efficient-full-text-search-using-django-and-postgres-33o0}{Django, PostgreSQL}
+\begin{bullets}
+    \item Wrote a tutorial on implementing \textbf{efficient full-text search feature} using Django and PostgreSQL, leveraging SearchVectorField, GIN indexes, and weighted search for enhanced search functionalities.
+\end{bullets}
+\sectionsep
 \vspace{12pt}
 % \section{Skills}
 % Languages: JavaScript, Python, NodeJS, SQL, CSS, HTML, Golang\\
