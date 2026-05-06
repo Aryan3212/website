@@ -9,6 +9,8 @@ category: 'Portfolio'
 tags: ['portfolio']
 ---
 
+Optimizely is an enterprise SaaS platform serving Fortune 500 companies including Shell and Xerox. I worked on the Content Marketing Platform and Digital Asset Management teams.
+
 Custom URLs sound like a small routing feature until your “URLs” are served behind CloudFront, across branded domains, and you can’t afford to break caching or ship a redirect loop to enterprise customers.
 
 ## TL;DR

@@ -9,6 +9,8 @@ category: 'Portfolio'
 tags: ['portfolio']
 ---
 
+GoZayaan is Bangladesh's largest online travel agency ($8.1M raised, Wavemaker-backed), with operations in Singapore, Pakistan, and Sri Lanka.
+
 Marketing needed to ship SEO landing pages quickly, but engineering bandwidth was the bottleneck. We built a page builder so pages could be published without breaking SEO.
 
 ## TL;DR
