@@ -1,0 +1,257 @@
+\documentclass[]{resume-openfont}
+
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+\usepackage{enumitem} % For tighter itemized lists
+\pagestyle{fancy}
+\resetHeaderAndFooter
+
+%--------------------------------------------------------------
+
+% Create job position command. Parameters: company, position, location, when
+\newcommand{\resumeHeading}[3]{\runsubsection{#1}\descript{ | #2 | #3}}
+\newcommand{\publicationHeading}[3]{\runsubsection{#1}\descript{ | #2 | #3}}
+% Create project heading. Parameters: Name, link, Tech stack
+\newcommand{\projectHeading}[3]{\Project{#1}{#2}
+| \descript{#3}}
+
+\newcommand{\projectHeadingWithoutLink}[2]{\ProjectWithoutLink{#1} | \descript{#2}}
+
+%--------------------------------------------------------------
+\begin{document}
+
+%--------------------------------------------------------------
+%     Profile
+%--------------------------------------------------------------
+\newcommand{\yourName}{Aryan Rahman}
+\newcommand{\yourWebsite}{aryanrahman.dev}
+\newcommand{\yourWebsiteLink}{\underlinedLink{https://www.aryanrahman.dev}{aryanrahman.dev}}
+\newcommand{\yourEmail}{rahman.aryan07@gmail.com}
+\newcommand{\yourPhone}{+8801761443969}
+\newcommand{\githubUserName}{\underlinedLink{https://www.github.com/Aryan3212}{GitHub: Aryan3212}}
+\newcommand{\linkedInUserName}{\underlinedLink{https://www.linkedin.com/in/aryanrahman3212/}{LinkedIn: aryanrahman3212}}
+
+
+\noindent\Large{\latoBold{\yourName}},  \normalfont%
+\normalsize
+\yourEmail, \githubUserName, \linkedInUserName, \yourWebsiteLink
+\vspace{12pt}
+
+%--------------------------------------------------------------
+%  Summary (Optional, but good for Masters applications)
+%--------------------------------------------------------------
+\section{Summary}
+\sectionsep
+Software engineer with ~3 years of industry experience, transitioning into research on efficient neural network architectures. Strong background in reading and implementing research papers, designing controlled experiments, and building reproducible PyTorch training pipelines. Currently focused on architectural efficiency and representation learning for sequence models.
+\sectionsep
+%--------------------------------------------------------------
+%     Education
+%--------------------------------------------------------------
+\section{Education}
+\sectionsep
+\resumeHeading{BRAC University, Bachelor of Computer Science}{CGPA: 3.91 / 4.0 (Highest Distinction)}{May 2022}
+\begin{bullets}
+    \item \textbf{Research Thesis:}  \underlinedLink{https://dspace.bracu.ac.bd/xmlui/bitstream/handle/10361/17893/18201174\%2C\%2018201190\%2C\%2018201121_CSE.pdf?sequence=1&isAllowed=y}{A Novel Lightweight CNN Approach for Bangladeshi Sign Language Gesture Recognition} (Supervisor: Arnisha Khondaker)
+    \begin{itemize}[leftmargin=1em, itemsep=0pt, topsep=0pt] % Tighter list
+        \item Achieved an A+(>97\%) on the entire thesis paper spanning 3 semesters(1 academic year), defended to a panel of 3 faculty members.
+        \item Developed a custom CNN model achieving 99.21\% accuracy on the Ishara-Lipi dataset for Bengali sign language.
+    \end{itemize}
+    \item \textbf{Relevant Coursework:} Artificial Intelligence, Software Engineering, Cloud Computing (Independent Research Course).
+    \item Was awarded a \textbf{50\% scholarship} based on previous academic achievement and maintained it throughout my study.
+    \item \textbf{Independent Study Course:} Cloud Computing
+         \begin{itemize}[leftmargin=1em, itemsep=0pt, topsep=0pt] % Tighter list
+        \item Conducted literature review on cloud-based blockchain services that resulted in a literature presentation. Attained an A grade.
+        \item Implemented a distributed object storage system and explored concepts related to distributed systems.
+    \end{itemize}
+\end{bullets}
+\sectionsep
+
+%--------------------------------------------------------------
+%     Research Experience
+%--------------------------------------------------------------
+% \section{Research Experience}
+% \sectionsep
+% \resumeHeading{Undergraduate Thesis}{BRAC University}{Dhaka, Bangladesh}{2021 – 2022}
+% \begin{bullets}
+%     \item 
+%     \item Developed expertise in CNN architectures, image processing, data augmentation, and model evaluation using Python Tensorflow library.
+%     \item Presented research findings and defended thesis successfully to a faculty panel after 3 rounds of evaluation spanning 3 trimesters(1 academic year).
+% \end{bullets}
+% \sectionsep
+
+% \resumeHeading{Independent Study: Cloud Computing (CSE491)}{BRAC University}{Dhaka, Bangladesh}{Summer 2021}
+% \begin{bullets}
+%     \item Conducted an in-depth literature review on cloud computing, focusing on containers, virtualization, and distributed systems.
+%     \item Critically analyzed research papers and presented findings to faculty and peers.
+%     \item Produced a comprehensive report summarizing current research trends and challenges in cloud computing.
+% \end{bullets}
+% \sectionsep
+
+%--------------------------------------------------------------
+%     Research Interests
+%--------------------------------------------------------------
+\section{Research Interests}
+\sectionsep
+\begin{bullets}
+    \item \textbf{Large Language Models (LLMs):} Improving the ability of LLMs to use long inputs effectively.
+    \item \textbf{Resource-Efficient AI:}  Optimizing LLMs for deployment on consumer hardware, including quantization and compression techniques.
+    \item \textbf{Diffusion-based LLMs:}  Exploring diffusion-based text generation rather than auto-regressive LLMs.
+    \item \textbf{AI for Software Engineering:}  Using multiple techniques to make LLMs work better for software engineering tasks.
+\end{bullets}
+\sectionsep
+\section{Research Experience}
+\sectionsep
+\resumeHeading{Artificial Intelligence Researcher}{BRAC University}{Sep 2025 – Present}
+\begin{bullets}
+\item Pre-training a foundation speech model using a training framework combining ideas from JEPA, RAE, and neural audio codecs
+\item Built a config-driven PyTorch pipeline for continuous-latent autoencoders: multi-dataset manifests (OpenSLR, Common Voice Bengali, IndicVoices), DDP training, and reproducible probe evaluation
+\item Designed controlled ablations on latent regularization (SIGReg/VISReg), JEPA view consistency, and optional spectrogram-domain GAN objectives
+\item Open-source implementation: \underlinedLink{https://github.com/Aryan3212/continuous-latent-autoencoder}{continuous-latent-autoencoder}
+\end{bullets}
+\sectionsep
+% \section{Teaching Experience}
+% \sectionsep
+% \resumeHeading{Student Tutor}{BRAC University}{}{Feb 2021 – May 2021}
+% \begin{bullets}
+% \item Tutored for the Computer Architecture course with \textbf{150 students}, providing academic support and grading lab work and coursework.
+% \item Created a script to automate inputting student grades into Google Sheets using Google Sheets API, improving grading efficiency.
+% \end{bullets}
+% \resumeHeading{Private Tutor}{Freelance}{}{Jan 2020 – Mar 2021}
+% \begin{bullets}
+% \item Tutored a GCE exam student for 3 months and helped them get all A's(>80\%) on their Mathematics, Accounting, and Economics exams.
+% \end{bullets}
+% \sectionsep
+%--------------------------------------------------------------
+%     Technical Skills
+%--------------------------------------------------------------
+\section{Industry Experience}
+\sectionsep
+
+\resumeHeading{Software Engineer}{Optimizely}{May 2024 – Sep 2025}
+\begin{bullets}
+    \item Owned the \underlinedLink{https://aryanrahman.dev/post/portfolio/optimizely-custom-url/}{Custom URL feature} end-to-end, spanning backend logic, AWS Lambda, and cloud configuration, serving \textbf{1M requests/day}
+    \item Designed and implemented the system with a focus on correctness, debuggability, and long-term maintainability; authored detailed internal documentation to support future development
+    \item Led testing efforts for a core reporting feature by writing tests across three services, achieving \textbf{80\%+ code coverage}
+    \item Resolved multiple SLA-bound production incidents through systematic debugging and cross-team coordination, reducing failure recurrence
+\end{bullets}
+
+\sectionsep
+
+\resumeHeading{Software Engineer}{GoZayaan}{Dec 2022 – Mar 2024}
+\begin{bullets}
+    \item Built an \underlinedLink{https://aryanrahman.dev/post/portfolio/gozayaan-seo-builder/}{in-house website builder} from scratch, owning architecture, component design.
+    \item Migrated a \textbf{500k-line} codebase from Vue 2 to Nuxt 2, managing regressions, performance trade-offs, and incremental rollout
+    \item Debugged complex UI and rendering issues through profiling and iterative refinement in a large frontend system
+\end{bullets}
+
+\sectionsep
+
+\resumeHeading{Software Engineer}{Shotero}{Feb 2022 – Aug 2022}
+\begin{bullets}
+    \item Designed database schemas and migration workflows using Sqitch, emphasizing reproducibility and controlled changes
+    \item Built a small \underlinedLink{https://monhary-canvas.netlify.app/}{open web tool} with cloud save and share functionality, taking the project from concept to deployment independently
+\end{bullets}
+
+\sectionsep
+
+\resumeHeading{Web Development Intern}{YY Ventures}{Sep 2021 – Nov 2021}
+\begin{bullets}
+    \item Developed multiple production landing pages for social enterprises, end-to-end from implementation to deployment in a small team
+    \item Assisted in maintaining and deploying legacy PHP applications and CI/CD workflows using GitHub Actions
+\end{bullets}
+
+\sectionsep
+\pagebreak
+\section{Awards and Achievements}
+\sectionsep
+\begin{bullets}
+\item Placed on the \textbf{Vice Chancellor's List} at BRAC University for attaining a 4.0 GPA in 5 semesters and on the \textbf{Dean's List} for a GPA greater than 3.75 in 5 semesters.
+\item \textbf{2nd Runner-up at the National ICT Hackathon} organized by the Military Institute of Science and Technology for building a software solution to reduce city-wide food wastage.
+\item Received the \textbf{Daily Star Award} in Bangladesh for being a high achiever in my GCE and A levels examinations.
+\item Represented my school in the National Spelling Bee 2013, reaching the quarter-finals.
+\end{bullets}
+\sectionsep
+
+\sectionsep
+\section{Projects}
+\sectionsep
+\projectHeading{Relearnify}{https://relearnify.com/}{TypeScript, React, Redis, BullMQ, T3 Stack}
+\begin{bullets}
+    \item Developed a note-taking application incorporating the FSRS spaced repetition algorithm to enhance memory retention.
+    \item Built a custom rich text editor with markdown support and video embedding using Tiptap.
+    \item Implemented an asynchronous email notification system using Redis and BullMQ.
+\end{bullets}
+\sectionsep
+\projectHeading{Article: Full Text Search using Django and Postgres}{https://dev.to/aryan3212/simple-and-efficient-full-text-search-using-django-and-postgres-33o0}{Django, PostgreSQL}
+\begin{bullets}
+    \item Wrote a tutorial on implementing efficient full-text search feature using Django and PostgreSQL, leveraging SearchVectorField, GIN indexes, and weighted search for enhanced query performance.
+\end{bullets}
+\sectionsep
+\projectHeading{Multiple Currency Converter}{https://multiplecurrencyconverter.fly.dev/}{Remix, PWA, Redis}
+\begin{bullets}
+    \item Architected a multi-tier caching system (Upstash Redis + localStorage + Service Worker) that reduced API consumption by 99\%, handling unlimited users with only 60 monthly API calls
+  \item Built an offline-first Progressive Web App using Remix, Workbox, and NetworkFirst caching strategies, enabling full functionality without internet connectivity after initial load
+\end{bullets}
+\sectionsep
+\projectHeading{BDJobs Scraper}{https://github.com/Aryan3212/bdjobs-scraper}{Python}
+\begin{bullets}
+    \item Developed a script using asynchronous Python that scrapes \textbf{6,000 job listings} from BDJobs in 10 minutes, an 8x speed increase compared to traditional methods.
+    \item Optimized file handling to store one page in memory at a time, preventing high memory usage.
+\end{bullets}
+\sectionsep
+
+\section{Technical Skills}
+\sectionsep
+\begin{bullets}
+    \item \textbf{Programming Languages:} Python, TypeScript/JavaScript, SQL, Go
+    \item \textbf{Machine Learning Frameworks:} TensorFlow, Keras, PyTorch
+    \item \textbf{Data Analysis \& Visualization:}  NumPy, Pandas, Matplotlib, Seaborn
+    \item \textbf{Databases:} PostgreSQL, MongoDB, Redis, ElasticSearch
+    \item \textbf{Tools \& Technologies:} Git, Docker, AWS (EC2, RDS), Linux, Nginx, Jupyter Notebook, CI/CD (GitHub Actions),
+\end{bullets}
+\sectionsep
+
+\section{Volunteering Experience}
+\sectionsep
+\begin{bullets}
+\item \textbf{Software Development Mentor:} Provided career guidance to 20+ aspiring software engineers through mentorship sessions.
+\item \textbf{BRACU Programmer's Community:} Helped university students get familiarized with competitive programming.
+\item \textbf{Youth Opportunities:} Served as the project lead managing activities of 100+ volunteers spanning 25+ countries for a non-profit.
+\item \textbf{Fuller Road Community:} Organized local events, festivals, and sports tournaments for the local community.
+\end{bullets}
+\sectionsep
+\section{Extracurricular Activities}
+\sectionsep
+\begin{bullets}
+    \item \textbf{BRACU Express:} Acted as Sports Editor for our university's independent newsletter.
+    \item \textbf{Model United Nations:} Organized and led the documentation department for our school's first MUN.
+    \item \textbf{Soccer:} Played soccer for my local and school teams.
+\end{bullets}
+\sectionsep
+
+\section{Certifications}
+\sectionsep
+\begin{bullets}
+    \item \textbf{IELTS:} Band: 8.5/9; Listening: 9, Reading: 9, Writing: 7.5, Speaking: 8
+\end{bullets}
+\sectionsep
+
+\section{Referees}
+\sectionsep
+
+\begin{tabular}{p{0.45\textwidth}p{0.45\textwidth}}
+\textbf{Dr. Md. Golam Rabiul Alam} & \textbf{Arnisha Khondaker} \\
+Professor, CSE, BRAC University & Data Scientist, Alberta Blue Cross \\
+Research Supervisor & Thesis Supervisor \\
+rabiul.alam@bracu.ac.bd & arnisha@ualberta.ca \\
+\end{tabular}
+
+\vspace{6pt}
+\begin{tabular}{p{0.45\textwidth}}
+\textbf{Faria Begum Riya} \\
+Senior Software Engineer, GoZayaan \\
+Manager \\
+fariariya@gozayaan.com \\
+\end{tabular}
+
+\end{document}
