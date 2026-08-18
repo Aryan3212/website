@@ -1,10 +1,10 @@
 # Fdb version 4
-["xdvipdfmx"] 1786964900.81116 "resume.xdv" "resume.pdf" "resume" 1786964900.86026 0
-  "resume.xdv" 1786964900.75955 85760 453664ef007f8c74bf499d83c2bbdbef "xelatex"
+["xdvipdfmx"] 1786966140.19422 "resume.xdv" "resume.pdf" "resume" 1786966140.24055 0
+  "resume.xdv" 1786966140.15052 85900 e43f34c1dcf9480e935495934a009c30 "xelatex"
   (generated)
   "resume.pdf"
   (rewritten before read)
-["xelatex"] 1786964899.51396 "resume.tex" "resume.xdv" "resume" 1786964900.85953 0
+["xelatex"] 1786966139.11671 "resume.tex" "resume.xdv" "resume" 1786966140.2398 0
   "/Users/aryanrahman/Library/TinyTeX/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/Users/aryanrahman/Library/TinyTeX/texmf-dist/fonts/tfm/public/latex-fonts/lasy6.tfm" 1136768653 520 4889cce2180234b97cad636b6039c722 ""
   "/Users/aryanrahman/Library/TinyTeX/texmf-dist/tex/generic/babel-english/english.ldf" 1496785618 7008 9ff5fdcc865b01beca2b0fe4a46231d4 ""
@@ -81,9 +81,9 @@
   "font-color.sty" 1786935300 380 88c15d5916db72997361f1cd81f75034 ""
   "lato-font.sty" 1786935300 2822 0ad41f910dce62f4a80d4438a887491f ""
   "resume-openfont.cls" 1786964629.05626 3691 5ff9802efd9182b1a3df515da23ccfdb ""
-  "resume.aux" 1786964900.75858 1606 355a99fc6452590719c0852880896913 "xelatex"
-  "resume.out" 1786964900.75924 1496 8a3735cc3c61b79a9925c3430a32f2d3 "xelatex"
-  "resume.tex" 1786964888.32498 14288 33687be5b749eb5406a8fae415c1f3cd ""
+  "resume.aux" 1786966140.14961 1606 355a99fc6452590719c0852880896913 "xelatex"
+  "resume.out" 1786966140.15015 1496 8a3735cc3c61b79a9925c3430a32f2d3 "xelatex"
+  "resume.tex" 1786966120.03316 14302 adc10e21e7a67c6135d2028655af6bb3 ""
   (generated)
   "resume.aux"
   "resume.log"
