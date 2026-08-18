@@ -80,7 +80,6 @@ The documentation for Tina CMS can be found [here](https://tina.io/docs/)
 - ✅ CMS in the repository (Tina CMS)
 - ✅ Pagination
 - ✅ ViewTransition (new)
-- ✅ Disqus comments (new)
 
 ## 🛣️ Roadmap
 

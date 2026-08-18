@@ -9,11 +9,9 @@ const { page } = Astro.props
 	class='mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between'
 	aria-label='Pagination'
 >
-	<div class='text-sm text-neutral-600 dark:text-neutral-300'>
-		Page <span class='font-semibold text-neutral-900 dark:text-white'>{page.currentPage}</span> of{
-			' '
-		}
-		<span class='font-semibold text-neutral-900 dark:text-white'>{page.lastPage}</span>
+	<div class='text-sm text-neutral-600'>
+		Page <span class='font-semibold text-neutral-900'>{page.currentPage}</span> of{' '}
+		<span class='font-semibold text-neutral-900'>{page.lastPage}</span>
 	</div>
 
 	<div class='flex items-center justify-between gap-3'>
@@ -24,7 +22,6 @@ const { page } = Astro.props
 			class:list={[
 				'flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-semibold transition-colors',
 				'border-gray-300 bg-white text-black hover:bg-gray-100 hover:text-gray-800',
-				'dark:border-gray-700 dark:bg-transparent dark:text-gray-200 dark:hover:bg-gray-700',
 				page.start > 0 ? '' : 'pointer-events-none opacity-40'
 			]}
 		>
@@ -39,7 +36,6 @@ const { page } = Astro.props
 			class:list={[
 				'flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-semibold transition-colors',
 				'border-gray-300 bg-white text-black hover:bg-gray-100 hover:text-gray-800',
-				'dark:border-gray-700 dark:bg-transparent dark:text-gray-200 dark:hover:bg-gray-700',
 				page.currentPage < page.lastPage ? '' : 'pointer-events-none opacity-40'
 			]}
 		>

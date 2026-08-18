@@ -50,12 +50,12 @@ const groups = Array.from(groupedByMonth.values())
 
 {
 	posts.length === 0 ? (
-		<p class='py-8 text-sm text-gray-600 dark:text-gray-300'>{emptyMessage}</p>
+		<p class='py-8 text-sm text-gray-600'>{emptyMessage}</p>
 	) : (
 		<section class='mt-6 space-y-10'>
 			{groups.map((group) => (
 				<section>
-					<h2 class='text-xs font-semibold uppercase tracking-[0.22em] text-gray-600 dark:text-gray-400'>
+					<h2 class='text-xs font-semibold uppercase tracking-[0.22em] text-gray-600'>
 						{group.label}
 					</h2>
 
@@ -66,7 +66,7 @@ const groups = Array.from(groupedByMonth.values())
 								post.data
 
 							return (
-								<li class='border-b border-gray-200 pb-6 last:border-b-0 dark:border-gray-700'>
+								<li class='border-b border-gray-200 pb-6 last:border-b-0'>
 									<article class='flex flex-col gap-4 md:flex-row md:items-start md:gap-5'>
 										{demoVideo || demoEmbed ? (
 											<div
@@ -131,7 +131,7 @@ const groups = Array.from(groupedByMonth.values())
 										)}
 
 										<div class='min-w-0 md:flex-1'>
-											<p class='text-xs text-gray-600 dark:text-gray-300'>
+											<p class='text-xs text-gray-600'>
 												<FormattedDate date={pubDate} /> · {remarkPluginFrontmatter.minutesRead}
 												{showCategory && <span> · {category}</span>}
 											</p>
@@ -142,9 +142,7 @@ const groups = Array.from(groupedByMonth.values())
 												</a>
 											</h3>
 
-											<p class='mt-2 max-w-2xl text-sm leading-6 text-gray-700 dark:text-gray-200'>
-												{description}
-											</p>
+											<p class='mt-2 max-w-2xl text-sm leading-6 text-gray-700'>{description}</p>
 
 											<a
 												href={`/post/${post.slug}/`}

@@ -12,24 +12,23 @@ import SearchIcon from '@/components/icons/SearchIcon'
 	</button>
 	<dialog
 		aria-label='search'
-		class='h-full max-h-full w-full max-w-full border border-zinc-400 bg-white dark:bg-[#1b1d23f0] shadow backdrop:backdrop-blur sm:mx-auto sm:mb-auto sm:mt-16 sm:h-max sm:max-h-[calc(100%-8rem)] sm:min-h-[15rem] sm:w-5/6 sm:max-w-[48rem] sm:rounded-md opacity-0'
+		class='h-full max-h-full w-full max-w-full border border-zinc-400 bg-white shadow backdrop:backdrop-blur sm:mx-auto sm:mb-auto sm:mt-16 sm:h-max sm:max-h-[calc(100%-8rem)] sm:min-h-[15rem] sm:w-5/6 sm:max-w-[48rem] sm:rounded-md opacity-0'
 	>
 		<div class='dialog-frame flex flex-col gap-4 p-6 pt-12 sm:pt-6'>
 			<button
 				data-close-modal
-				class='ms-auto cursor-pointer rounded-full bg-black text-white px-4 py-2 dark:bg-white dark:text-black'
-				>Close</button
+				class='ms-auto cursor-pointer rounded-full bg-black text-white px-4 py-2'>Close</button
 			>
 			{
 				import.meta.env.DEV ? (
-					<div class='mx-auto text-center dark:text-white'>
+					<div class='mx-auto text-center'>
 						<p>
 							Search is only available in production builds. <br />
 							Try building and previewing the site to test it out locally.
 						</p>
 					</div>
 				) : (
-					<div class='search-container dark:text-white'>
+					<div class='search-container'>
 						<div class='pagefind__search' />
 					</div>
 				)
@@ -132,13 +131,3 @@ import SearchIcon from '@/components/icons/SearchIcon'
 
 	customElements.define('site-search', SiteSearch)
 </script>
-
-<style is:global>
-	.dark {
-		--pagefind-ui-primary: #eeeeee;
-		--pagefind-ui-text: #eeeeee;
-		--pagefind-ui-background: #222632;
-		--pagefind-ui-border: #222632;
-		--pagefind-ui-tag: #222632;
-	}
-</style>

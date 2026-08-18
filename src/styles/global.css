@@ -23,13 +23,7 @@
 	.prose h4,
 	.prose h5,
 	.prose h6 {
-		@apply text-zinc-800 dark:text-zinc-100   !important;
-	}
-
-	html.dark .shiki,
-	html.dark .shiki span {
-	  color: var(--shiki-dark) !important;
-	  background-color: theme(colors.zinc.800) !important;
+		@apply text-zinc-800 !important;
 	}
 }
 
