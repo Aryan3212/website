@@ -1,16 +1,16 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content'
 import BlogPost from '@/layouts/BlogPost'
+import BaseLayout from '@/layouts/BaseLayout'
 import Code from '@/components/mdx/Code'
 import ListRelatedPosts from '@/components/ListRelatedPosts'
 import Share from '@/components/Share'
 import TableOfContents from '@/components/TableOfContents'
-import { getPosts } from '@/utils'
 import SButton from '@/components/mdx/SButton'
 
 const posts = await getCollection('blog')
 export async function getStaticPaths() {
-	const posts = await getPosts()
+	const posts = await getCollection('blog')
 
 	return posts.map((post) => ({
 		params: { slug: post.slug },
@@ -31,37 +31,72 @@ const getRelatedPosts = (post: Props) => {
 
 const relatedPosts = getRelatedPosts(post)
 
-const { Content, headings, remarkPluginFrontmatter } = await post.render()
+const renderedPost = post.data.draft ? null : await post.render()
+const Content = renderedPost?.Content
 ---
 
-<BlogPost
-	id={post.id}
-	data={post.data}
-	headings={headings}
-	readTime={remarkPluginFrontmatter.minutesRead}
->
-	<div class='mt-8 grid grid-cols-1 gap-10 md:grid-cols-[260px_minmax(0,1fr)]'>
-		<!-- aside  -->
-		<aside class='md:flex flex-col gap-8 hidden'>
-			<Share />
-			<div class='sticky top-24 self-start hidden md:block transition-all duration-200'>
-				{headings && headings.length > 0 && <TableOfContents {headings} />}
-			</div>
-		</aside>
-
-		<!-- post -->
-		<article class='w-full min-w-0'>
-			<div
-				class='prose prose-sm prose-p:leading-7 prose-li:leading-7 prose-headings:scroll-mt-24 prose-img:my-5 prose-img:mx-auto prose-img:max-w-[74%] prose-pre:max-w-[88%] prose-pre:mx-auto mb-12 max-w-[66ch] md:prose-sm'
+{post.data.draft ? (
+	<BaseLayout title={`${post.data.title} — Work in progress`}>
+		<div class='mx-auto flex min-h-[60vh] max-w-2xl items-center py-12'>
+			<section
+				class='rounded-xl border border-gray-200 bg-gray-50 px-6 py-8 shadow-sm sm:px-10'
+				aria-labelledby='draft-title'
 			>
-				<Content components={{ pre: Code, SButton }} />
-			</div>
+				<p class='text-sm font-semibold uppercase tracking-wide text-gray-500'>
+					This post is a work in progress
+				</p>
+				<h1 id='draft-title' class='mt-3 text-3xl font-semibold'>
+					{post.data.title}
+				</h1>
+				<p class='mt-6 text-base leading-7 text-gray-700'>
+					Confession: I initially generated most of the content for these posts using AI without
+					acknowledging whether this post brought any value to the people reading it or to myself. I
+					will be publishing it once again with 0 AI, all me. It'll be a bit rough around the edges,
+					but I hope it will be much more worth reading. Maybe you'll learn something new about the
+					topic, or about me.
+				</p>
+				<p class='mt-4 text-base leading-7 text-gray-700'>
+					Thanks for coming by. Feel free to email me at
+					<a class='underline' href='mailto:rahman.aryan07@gmail.com'>
+						rahman.aryan07@gmail.com
+					</a>
+					if you want to talk about this post.
+				</p>
+			</section>
+		</div>
+	</BaseLayout>
+) : (
+	renderedPost && (
+		<BlogPost
+			id={post.id}
+			data={post.data}
+			headings={renderedPost.headings}
+			readTime={renderedPost.remarkPluginFrontmatter.minutesRead}
+		>
+			<div class='mt-8 grid grid-cols-1 gap-10 md:grid-cols-[260px_minmax(0,1fr)]'>
+				<!-- aside  -->
+				<aside class='md:flex flex-col gap-8 hidden'>
+					<Share />
+					<div class='sticky top-24 self-start hidden md:block transition-all duration-200'>
+						{renderedPost.headings && renderedPost.headings.length > 0 && (
+							<TableOfContents headings={renderedPost.headings} />
+						)}
+					</div>
+				</aside>
 
-			<!-- related posts -->
-			<footer>
-				<h2 class='font-bold text-lg mb-6'>Related Posts</h2>
-				<ListRelatedPosts posts={relatedPosts} />
-			</footer>
-		</article>
-	</div>
-</BlogPost>
+				<!-- post -->
+				<article class='w-full min-w-0'>
+					<div class='prose prose-sm prose-p:leading-7 prose-li:leading-7 prose-headings:scroll-mt-24 prose-img:my-5 prose-img:mx-auto prose-img:max-w-[74%] prose-pre:max-w-[88%] prose-pre:mx-auto mb-12 max-w-[66ch] md:prose-sm'>
+						{Content && <Content components={{ pre: Code, SButton }} />}
+					</div>
+
+					<!-- related posts -->
+					<footer>
+						<h2 class='font-bold text-lg mb-6'>Related Posts</h2>
+						<ListRelatedPosts posts={relatedPosts} />
+					</footer>
+				</article>
+			</div>
+		</BlogPost>
+	)
+)}

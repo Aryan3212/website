@@ -12,8 +12,3 @@
   to = "https://us.i.posthog.com/:splat"
   status = 200
   force = true
-
-[[redirects]]
-  from = "/post/*"
-  to = "/blog/"
-  status = 302
