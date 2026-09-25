@@ -1,6 +1,9 @@
 [build]
   command = 'pnpm build'
 
+[build.environment]
+  NODE_VERSION = '24'
+
 [[redirects]]
   from = "/p/static/*"
   to = "https://us-assets.i.posthog.com/static/:splat"
@@ -12,3 +15,8 @@
   to = "https://us.i.posthog.com/:splat"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/post/*"
+  to = "/blog/"
+  status = 302
