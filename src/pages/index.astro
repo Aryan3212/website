@@ -160,104 +160,95 @@ const softwareExperience: ExperienceItem[] = [
 			<section class='mt-8'>
 				<h2 class='text-3xl font-semibold'>WORK EXPERIENCE</h2>
 				<ol class='mt-4 space-y-7'>
-					{
-						softwareExperience.map((item) => (
-							<li class='border-b border-gray-200 pb-7 last:border-b-0'>
-								<p class='text-xs text-gray-600'>{item.period}</p>
-								<h3 class='mt-1 text-lg font-semibold'>{item.role}</h3>
-								<p class='mt-1 text-sm text-gray-700'>{item.org}</p>
-								<ul class='mt-2 list-disc pl-5 text-sm leading-6 text-gray-700'>
-									<li>{item.highlight}</li>
-								</ul>
+					{softwareExperience.map((item) => (
+						<li class='border-b border-gray-200 pb-7 last:border-b-0'>
+							<p class='text-xs text-gray-600'>{item.period}</p>
+							<h3 class='mt-1 text-lg font-semibold'>{item.role}</h3>
+							<p class='mt-1 text-sm text-gray-700'>{item.org}</p>
+							<ul class='mt-2 list-disc pl-5 text-sm leading-6 text-gray-700'>
+								<li>{item.highlight}</li>
+							</ul>
 
-								{item.projects.length > 0 && (
-									<div class='mt-3'>
-										<p class='text-xs uppercase tracking-[0.18em] text-gray-500'>Projects</p>
-										<ul class='mt-2 space-y-2 text-sm leading-6 text-gray-700'>
-											{item.projects.map((project) => (
-												<li class='space-y-3'>
-													{project.images && project.images.length > 0 && (
-														<div class='grid gap-2 sm:grid-cols-2'>
-															{project.images.map((proofImage) =>
-																proofImage.href ? (
-																	<a
-																		href={proofImage.href}
-																		target={proofImage.external ? '_blank' : undefined}
-																		rel={proofImage.external ? 'noopener noreferrer' : undefined}
-																		aria-label={`Open live page for ${proofImage.alt}`}
-																		class='group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500'
-																	>
-																		<Image
-																			src={proofImage.src}
-																			width={560}
-																			height={320}
-																			alt={proofImage.alt}
-																			class='h-[250px] w-full cursor-pointer object-cover transition-opacity group-hover:opacity-90'
-																		/>
-																		<span class='mt-1 inline-block text-xs font-semibold underline underline-offset-4'>
-																			[Open Live Page ↗]
-																		</span>
-																	</a>
-																) : (
-																	<Image
-																		src={proofImage.src}
-																		width={560}
-																		height={320}
-																		alt={proofImage.alt}
-																		class='h-[250px] w-full object-cover'
-																	/>
-																)
-															)}
-														</div>
-													)}
+							{item.projects.length > 0 && (
+								<div class='mt-3'>
+									<p class='text-xs uppercase tracking-[0.18em] text-gray-500'>Projects</p>
+									<ul class='mt-2 space-y-2 text-sm leading-6 text-gray-700'>
+										{item.projects.map((project) => (
+											<li class='grid items-start gap-5 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]'>
+												<div class='min-w-0 space-y-4'>
+													{project.images?.map((proofImage) => (
+														<a
+															href={proofImage.href ?? proofImage.src.src}
+															target='_blank'
+															rel='noopener noreferrer'
+															aria-label={
+																proofImage.href
+																	? `Open live page for ${proofImage.alt}`
+																	: `View full image: ${proofImage.alt}`
+															}
+															class='group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500'
+														>
+															<Image
+																src={proofImage.src}
+																width={1000}
+																alt={proofImage.alt}
+																class='h-auto max-h-[320px] w-full rounded border border-gray-200 bg-white object-contain transition-opacity group-hover:opacity-90'
+															/>
+															<span class='mt-1 inline-block text-xs font-semibold underline underline-offset-4'>
+																{proofImage.href ? '[Open Live Page ↗]' : '[View Full Image ↗]'}
+															</span>
+														</a>
+													))}
 													{project.video && (
 														<video
 															controls
 															playsinline
 															preload='metadata'
-															class='h-auto w-full max-w-[560px]'
+															class='h-auto max-h-[320px] w-full rounded border border-gray-200 object-contain'
 															title={project.video.title}
 														>
 															<source src={project.video.src} />
 														</video>
 													)}
-													<p class='flex flex-wrap items-baseline gap-2'>
-														<span class='font-semibold'>{project.name}:</span>
-														<span>{project.highlight}</span>
-														{project.href ? (
-															<a
-																href={project.href}
-																target={project.external ? '_blank' : undefined}
-																rel={project.external ? 'noopener noreferrer' : undefined}
-																class='font-semibold hover:underline'
-															>
-																[{project.linkLabel ?? 'Read'}]
-															</a>
-														) : (
-															<span class='text-xs text-gray-500'>
-																[{project.linkLabel ?? 'Add Link'}]
-															</span>
-														)}
-													</p>
-												</li>
-											))}
-										</ul>
-									</div>
-								)}
-							</li>
-						))
-					}
+												</div>
+												<p class='flex min-w-0 flex-col items-start gap-2'>
+													<span class='font-semibold'>{project.name}:</span>
+													<span>{project.highlight}</span>
+													{project.href ? (
+														<a
+															href={project.href}
+															target={project.external ? '_blank' : undefined}
+															rel={project.external ? 'noopener noreferrer' : undefined}
+															class='font-semibold hover:underline'
+														>
+															[{project.linkLabel ?? 'Read'}]
+														</a>
+													) : (
+														<span class='text-xs text-gray-500'>
+															[{project.linkLabel ?? 'Add Link'}]
+														</span>
+													)}
+												</p>
+											</li>
+										))}
+									</ul>
+								</div>
+							)}
+						</li>
+					))}
 				</ol>
 				<p class='mt-4 text-sm text-gray-600'>
 					For more about me, go to
-					<a class='underline' href='/post/portfolio/about-me/'> About me</a>.
+					<a class='underline' href='/post/portfolio/about-me/'>
+						{' '}
+						About me
+					</a>
+					.
 				</p>
 			</section>
 
 			<section class='mt-10'>
-				<h2 class='text-3xl font-semibold'>
-					CASE STUDIES
-				</h2>
+				<h2 class='text-3xl font-semibold'>CASE STUDIES</h2>
 				<StoryPostList
 					posts={softwareCaseStudies}
 					ctaLabel='Read'

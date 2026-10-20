@@ -46,6 +46,8 @@ Naturally, the non-functional requirements would be:
 1. Fast image retrieval time.
 2. Image path should be alive for clients very quickly.
 
+![Custom URL architecture diagram](./custom-url.png)
+
 Now, our existing system already had these setup with CDNs and Edge functions that ran on the CDNs. So, image retrieval was fast but we were adding another step to this workflow. Mapping custom URL paths to the original media. We made sure we were careful not to add too many operations to this flow since this path was very high volume and even a second of added latency meant \$\$\$ to our cloud bill.
 
 Luckily for us, we were already using DynamoDB in our CDNs for checking view permissions for any particular asset and since DynamoDB is a globally distributed database it meant that reads could happen in the same edge location as our CDN, meaning we didn't have to account for any network latency you get when the data store is far away from the requesting server. DynamoDB has a few other desirable properties but mostly it is very fast to read and write, and can be tuned to get very consistent reads.
