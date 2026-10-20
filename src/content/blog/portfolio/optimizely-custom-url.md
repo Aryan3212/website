@@ -37,6 +37,8 @@ The functional requirements came out to be:
 
 ![URL structure](./url-structure.png)
 
+<!-- PORTFOLIO_PROOF: Add a screenshot or demo of the shipped Custom URL feature. -->
+
 3. Images can be retrieved using that custom URL path. We can edit the path, and the previous paths should continue working to ensure that content that used those old paths don't show broken links.
 
 Naturally, the non-functional requirements would be:
