@@ -11,7 +11,7 @@ category: 'Portfolio'
 tags: ['portfolio', 'blog']
 ---
 
-In my last project at Optimizely, we had just went through a reorg and I was assigned to the Digital Asset Management(DAM) team from the Content Marketing Platform(CMP) Team. DAM was a completely separate module that would become it's own product separate from CMP. Our first project was adding the Custom URL module to DAM.
+In my last project at Optimizely, we had just went through a reorg and I was assigned to the Digital Asset Management(DAM) team from the Content Marketing Platform(CMP) Team. Our first project was adding the Custom URL module to DAM.
 
 As the feature name suggests, this feature would allow users to set custom url paths to their assets, which can be images, files, videos. It would be a way to make the URL more recognizable among some other benefits. We made a few more improvements along the way with the entire system which we'll discuss here.
 
