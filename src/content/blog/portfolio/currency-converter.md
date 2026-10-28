@@ -1,12 +1,12 @@
 ---
-draft: true
-pubDate: '2026-01-04T00:00:00.000Z'
+draft: false
+pubDate: '2026-10-28T00:00:00+07:00'
 title: Building an Offline-First Currency Converter
 description: >-
-  Built a production currency converter that serves unlimited users with just ~60 API calls/month using multi-tier caching and offline-first architecture
+  Built a production currency converter that serves unlimited users with roughly 72 API calls/month using multi-tier caching and offline-first architecture
 postOrder: 6
 heroImage: './currency-converter.png'
-demoVideo: 'https://res.cloudinary.com/dwz8ueclf/video/upload/f_mp4,vc_h264,q_auto:good,ac_none/v1771860919/aryanrahman.dev/offline-currency-converter-demo_wdvtnv.mp4'
+demoVideo: 'https://res.cloudinary.com/dwz8ueclf/video/upload/f_auto,q_auto/v1793173381/untitled_h13rl7.mp4'
 category: 'Portfolio'
 tags: ['portfolio']
 ---
@@ -36,13 +36,13 @@ The goal was simple:
 
 ### The core idea
 
-Cache rates for ~14 hours on the server. That’s 2 calls/day → ~60 calls/month. Everything else is just layers of fallback around that.
+Cache rates for 10 hours on the server. That’s up to roughly 72 calls in a 30-day month if the cache is refreshed as soon as it expires. Everything else is just layers of fallback around that.
 
 ### Server-side cache (so traffic doesn’t matter)
 
 ```typescript
 // app/lib/currency.server.ts
-const cacheResponse = await redis.get('currency_response') // TTL: 50,000s
+const cacheResponse = await redis.get('currency_response') // TTL: 36,000s
 const fallbackCache = await redis.get('currency_response_fallback') // Permanent
 
 if (cacheResponse) {
@@ -52,8 +52,8 @@ if (cacheResponse) {
 try {
 	const data = await fetch(`https://data.fixer.io/api/latest?access_key=${key}`)
 
-	// Store with 14-hour TTL
-	await redis.set('currency_response', data, { ex: 50000 })
+	// Store with 10-hour TTL
+	await redis.set('currency_response', data, { ex: 36000 })
 	// Store permanent fallback
 	await redis.set('currency_response_fallback', data)
 

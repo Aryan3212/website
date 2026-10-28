@@ -1,9 +1,9 @@
 ---
 draft: false
 pubDate: '2026-10-28T00:00:00+07:00'
-title: SEO Content Builder - Growing Search Traffic 3.5X
+title: No-code Webpage Builder Overview
 description: >-
-  Building an in-house drag-and-drop page builder that helped scale organic search traffic from 33k to 116k monthly visits.
+  Building an in-house drag-and-drop page builder that helped scale organic search traffic from 33k to 100k monthly visits.
 postOrder: 4
 heroImage: './gozayaan-seo.png'
 demoVideo: 'https://res.cloudinary.com/dwz8ueclf/video/upload/f_auto,q_auto/v1793170999/2026-10-28_13-53-45_oyx0ib.mp4'
