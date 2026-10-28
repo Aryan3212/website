@@ -1,6 +1,6 @@
 ---
-draft: true
-pubDate: '2026-01-04T00:00:00.000Z'
+draft: false
+pubDate: '2026-10-28T00:00:00+07:00'
 title: SEO Content Builder - Growing Search Traffic 3.5X
 description: >-
   Building an in-house drag-and-drop page builder that helped scale organic search traffic from 33k to 116k monthly visits.
