@@ -176,29 +176,34 @@ const softwareExperience: ExperienceItem[] = [
 										{item.projects.map((project) => (
 											<li class='grid items-start gap-5 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]'>
 												<div class='min-w-0 space-y-4'>
-													{project.images?.map((proofImage) => (
-														<a
-															href={proofImage.href ?? proofImage.src.src}
-															target='_blank'
-															rel='noopener noreferrer'
-															aria-label={
-																proofImage.href
-																	? `Open live page for ${proofImage.alt}`
-																	: `View full image: ${proofImage.alt}`
-															}
-															class='group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500'
-														>
+													{project.images?.map((proofImage) =>
+														proofImage.href ? (
+															<a
+																href={proofImage.href}
+																target='_blank'
+																rel='noopener noreferrer'
+																aria-label={`Open live page for ${proofImage.alt}`}
+																class='group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500'
+															>
+																<Image
+																	src={proofImage.src}
+																	width={1000}
+																	alt={proofImage.alt}
+																	class='h-auto max-h-[320px] w-full rounded border border-gray-200 bg-white object-contain transition-opacity group-hover:opacity-90'
+																/>
+																<span class='mt-1 inline-block text-xs font-semibold underline underline-offset-4'>
+																	[Open Live Page ↗]
+																</span>
+															</a>
+														) : (
 															<Image
 																src={proofImage.src}
 																width={1000}
 																alt={proofImage.alt}
-																class='h-auto max-h-[320px] w-full rounded border border-gray-200 bg-white object-contain transition-opacity group-hover:opacity-90'
+																class='h-auto max-h-[320px] w-full rounded border border-gray-200 bg-white object-contain'
 															/>
-															<span class='mt-1 inline-block text-xs font-semibold underline underline-offset-4'>
-																{proofImage.href ? '[Open Live Page ↗]' : '[View Full Image ↗]'}
-															</span>
-														</a>
-													))}
+														)
+													)}
 													{project.video && (
 														<video
 															controls
