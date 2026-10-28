@@ -11,6 +11,10 @@ category: 'Portfolio'
 tags: ['portfolio']
 ---
 
+I built this currency converter in 2024 after running into a problem while travelling in Vietnam. I often needed to convert between Bangladeshi taka, US dollars, and the local currency, and I wanted to see those conversions at the same time and save them for later. In 2026, I'm still using it while travelling in Indonesia.
+
+The app lets me add currencies, saves my conversions, and works offline. When there is no internet connection, it loads saved values from localStorage and the website from the service worker cache.
+
 **My Role:** Full Stack Software Engineer
 
 **Tech Stack:** `Remix` `Workbox` `Upstash Redis` `Service Workers` `localStorage`
@@ -116,6 +120,8 @@ registerRoute(
 - Rate limits are usually caching problems, not raw API problems.
 - Service worker lifecycle matters. Without careful activation and cache cleanup, stale behavior becomes hard to debug.
 - Multiple fallbacks are worth it. Redis → localStorage → hardcoded fallback is the difference between “offline-first” and “offline-broken”.
+
+This was also one of the first times I tried agentic coding. I used the Droid coding agent, but I still needed to be very hands-on with the code.
 
 ---
 
