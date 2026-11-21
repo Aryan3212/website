@@ -1,5 +1,6 @@
 ---
 pubDate: '2025-01-25T23:10:00.000Z'
+draft: true
 title: Simple and Efficient Full Text Search using Django and Postgres
 description: >-
   Simple and Efficient Full Text Search using Django and Postgres
