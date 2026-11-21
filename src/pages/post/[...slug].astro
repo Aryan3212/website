@@ -24,10 +24,12 @@ const post = Astro.props
 const MAX_POSTS = 3
 const getRelatedPosts = (post: Props) => {
 	const lowercaseTags = post.data.tags.map((tag) => tag.toLowerCase())
+	const category = post.data.category.toLowerCase()
 	const relatedPosts = posts.filter(
 		(p) =>
 			!p.data.draft &&
 			p.slug !== post.slug &&
+			p.data.category.toLowerCase() === category &&
 			p.data.tags.some((t) => lowercaseTags.includes(t.toLowerCase()))
 	)
 	return relatedPosts.slice(0, MAX_POSTS)
